@@ -1,2 +1,2 @@
 # Parking-Application
-App for reserving different types of parking spaces 
+App incharge of reserving different types of parking spaces across a university campus
