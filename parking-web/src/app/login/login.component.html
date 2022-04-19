@@ -1,0 +1,13 @@
+<div class="mt-5">
+    <form>
+        <div class="form-group">
+          <label for="usuario">Nombre de usuario</label>
+          <input type="text" [(ngModel)]="receivedUsername" class="form-control" name="usuario" placeholder="Usuario">
+        </div>
+        <div class="form-group">
+          <label for="contraseña">Contraseña</label>
+          <input type="password" [(ngModel)]="receivedPassword" class="form-control" name="contraseña" placeholder="Contraseña">
+        </div>
+        <button type="submit" class="btn btn-primary" (click)="submitLoginData()">Aceptar</button>
+      </form>
+</div>
