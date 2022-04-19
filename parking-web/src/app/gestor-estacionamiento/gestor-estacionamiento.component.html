@@ -1,0 +1,53 @@
+<div class="mt-5" >
+    <h1>Gestionar estacionamientos</h1>
+    <form>
+        <div class="form-group">
+          <label for="estacionamiento">Nombre del estacionamiento</label>
+          <input type="text" [(ngModel)]="nombreEstacionamiento" class="form-control" name="estacionamiento">
+        </div>
+
+        <div class="form-group">
+          <label for="ubicacion">Ubicacion</label>
+          <input type="text" [(ngModel)]="ubicacion" class="form-control" name="ubicacion">
+        </div>
+
+        <div class="form-group">
+            <label for="totales">Espacios totales</label>
+            <input type="number" [(ngModel)]="espaciosTotales" class="form-control" name="totales">
+          </div>
+
+          <div class="form-group">
+            <label for="comunes">Espacios comunes</label>
+            <input type="number" [(ngModel)]="espaciosComunes" class="form-control" name="comunes">
+          </div>
+
+          <div class="form-group">
+            <label for="especiales">Espacios especiales</label>
+            <input type="number" [(ngModel)]="espaciosEspeciales" class="form-control" name="especiales">
+          </div>
+
+          <div class="form-group">
+            <label for="oficiales">Espacios oficiales</label>
+            <input type="number" [(ngModel)]="espaciosOficiales" class="form-control" name="oficiales">
+          </div>
+
+
+          <div class="btn-group" role="group" aria-label="Basic example">
+            <label >Tipo de estacionamiento</label>
+            <button type="button" class="btn btn-secondary" (click)="tipoPropio()">Propio</button>
+            <button type="button" class="btn btn-secondary" (click)="tipoSubcontratado()">Subcontratado</button>
+          </div>
+
+        <button type="submit" class="btn btn-primary" (click)="agregarEstacionamiento()">Aceptar</button>
+      </form>
+</div>
+<p></p>
+<p></p>
+<label for="list-group">Lista de estacionamientos</label>
+<div class="container">
+  <ul class="list-group">
+    <li *ngFor="let estacionamiento of listaEstacionamientos" class="list-group-item list-group-item-action">
+        <span class="badge badge-primary">Editar</span>{{estacionamiento.nombre}}
+    </li>
+  </ul>
+</div>
