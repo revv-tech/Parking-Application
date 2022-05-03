@@ -3,32 +3,32 @@
     <form>
         <div class="form-group">
           <label for="estacionamiento">Nombre del estacionamiento</label>
-          <input type="text" [(ngModel)]="nombreEstacionamiento" class="form-control" name="estacionamiento">
+          <input type="text" [(ngModel)]="estacionamientoSelec.nombre" class="form-control" name="estacionamiento">
         </div>
 
         <div class="form-group">
           <label for="ubicacion">Ubicacion</label>
-          <input type="text" [(ngModel)]="ubicacion" class="form-control" name="ubicacion">
+          <input type="text" [(ngModel)]="estacionamientoSelec.ubicacion" class="form-control" name="ubicacion">
         </div>
 
         <div class="form-group">
             <label for="totales">Espacios totales</label>
-            <input type="number" [(ngModel)]="espaciosTotales" class="form-control" name="totales">
+            <input type="number" [(ngModel)]="estacionamientoSelec.espaciosTotales" class="form-control" name="totales">
           </div>
 
           <div class="form-group">
             <label for="comunes">Espacios comunes</label>
-            <input type="number" [(ngModel)]="espaciosComunes" class="form-control" name="comunes">
+            <input type="number" [(ngModel)]="estacionamientoSelec.espaciosComunes" class="form-control" name="comunes">
           </div>
 
           <div class="form-group">
             <label for="especiales">Espacios especiales</label>
-            <input type="number" [(ngModel)]="espaciosEspeciales" class="form-control" name="especiales">
+            <input type="number" [(ngModel)]="estacionamientoSelec.espaciosEspeciales" class="form-control" name="especiales">
           </div>
 
           <div class="form-group">
             <label for="oficiales">Espacios oficiales</label>
-            <input type="number" [(ngModel)]="espaciosOficiales" class="form-control" name="oficiales">
+            <input type="number" [(ngModel)]="estacionamientoSelec.espaciosOficiales" class="form-control" name="oficiales">
           </div>
 
 
@@ -39,6 +39,7 @@
           </div>
 
         <button type="submit" class="btn btn-primary" (click)="agregarEstacionamiento()">Aceptar</button>
+        <button type="submit" *ngIf="isSelected == true" class="btn btn-danger" (click)="eliminarEstacionamiento()">Borrar</button>
       </form>
 </div>
 <p></p>
@@ -46,8 +47,10 @@
 <label for="list-group">Lista de estacionamientos</label>
 <div class="container">
   <ul class="list-group">
-    <li *ngFor="let estacionamiento of listaEstacionamientos" class="list-group-item list-group-item-action">
-        <span class="badge badge-primary">Editar</span>{{estacionamiento.nombre}}
+    <li *ngFor="let estacionamiento of listaEstacionamientos" class="list-group-item list-group-item-action"
+    (click)="cargarEstacionamientoSelec(estacionamiento)"
+    [class.active]="estacionamiento == estacionamientoSelec">
+        {{estacionamiento.nombre}}
     </li>
   </ul>
 </div>

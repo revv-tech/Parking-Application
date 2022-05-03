@@ -15,41 +15,48 @@ export class GestorEstacionamientoComponent implements OnInit {
 
   //Simula la base de datos
   listaEstacionamientos:Estacionamiento[] = []
-
-  nombreEstacionamiento:any
-  ubicacion:any
-  espaciosTotales:any
-  espaciosComunes:any
-  espaciosEspeciales:any
-  espaciosOficiales:any
-  tipo:any
   estacionamiento:any
+  estacionamientoSelec:Estacionamiento = new Estacionamiento("", "", 0, 0, 0, 0, 0)
+  isEditing:boolean = false
+  isSelected:boolean = false
 
 
   agregarEstacionamiento(){
 
-    this.estacionamiento = new Estacionamiento(this.nombreEstacionamiento, this.ubicacion, this.espaciosTotales, 
-    this.espaciosEspeciales, this.espaciosOficiales, this.espaciosComunes, this.tipo)
 
-    this.listaEstacionamientos.push(this.estacionamiento)
-    console.log(this.listaEstacionamientos)
-    this.printEstacionamiento(this.estacionamiento)
 
-    this.nombreEstacionamiento= ""
-    this.ubicacion = ""
-    this.espaciosTotales = ""
-    this.espaciosComunes = ""
-    this.espaciosEspeciales = ""
-    this.espaciosOficiales = ""
-    this.tipo = ""
+    if(this.isEditing){
+      this.isEditing = false
+    }
+
+    else{
+      this.estacionamiento = this.estacionamientoSelec
+
+      this.listaEstacionamientos.push(this.estacionamiento)
+      console.log(this.listaEstacionamientos)
+      this.printEstacionamiento(this.estacionamiento)
+    }
+    this.estacionamientoSelec = new Estacionamiento("", "", 0, 0, 0, 0, 0)
+    this.isSelected = false
+  }
+
+  eliminarEstacionamiento(){
+
+    if(confirm('Estas seguro de que deseas eliminar ese estacionamiento?')){
+      this.listaEstacionamientos = this.listaEstacionamientos.filter(x => x != this.estacionamientoSelec)
+      this.estacionamientoSelec = new Estacionamiento("", "", 0, 0, 0, 0, 0)
+      this.isEditing = false
+      this.isSelected = false
+    }
+
   }
 
   tipoPropio(){
-    this.tipo = TEstacionamiento.CAMPUS
+    this.estacionamientoSelec.tipo = TEstacionamiento.CAMPUS
   }
 
   tipoSubcontratado(){
-    this.tipo = TEstacionamiento.SUBCONTRATADO
+    this.estacionamientoSelec.tipo = TEstacionamiento.SUBCONTRATADO
   }
 
   printEstacionamiento(estacionamiento:Estacionamiento){
@@ -61,5 +68,11 @@ export class GestorEstacionamientoComponent implements OnInit {
     console.log("Espacios especiales: " + estacionamiento.espaciosEspeciales)
     console.log("Espacios oficiales: " + estacionamiento.espaciosOficiales)
     console.log("Tipo: " + estacionamiento.tipo)
+  }
+
+  cargarEstacionamientoSelec(estacionamiento:Estacionamiento){
+    this.isSelected = true
+    this.estacionamientoSelec = estacionamiento;
+    this.isEditing = true
   }
 }
