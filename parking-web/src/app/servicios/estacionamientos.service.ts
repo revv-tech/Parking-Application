@@ -36,7 +36,7 @@ import { Estacionamiento } from '../model/estacionamiento';
 
 export class EstacionamientosService {
   private baseUrl:string = 'http://localhost:8080/api/parqueos'
-  
+
   parqueos:any=[]
   // parqueos:any=[
   //   {
