@@ -1,46 +1,48 @@
 <div class="mt-5" >
     <h1>Gestionar estacionamientos</h1>
     <form>
-        <div class="form-group">
+        <div class="form-group"  data-aos="fade-down">
           <label for="estacionamiento">Nombre del estacionamiento</label>
           <input type="text" [(ngModel)]="estacionamientoSelec.nombre" class="form-control" name="estacionamiento">
         </div>
 
-        <div class="form-group">
+        <div class="form-group" data-aos="fade-down">
           <label for="ubicacion">Ubicacion</label>
           <input type="text" [(ngModel)]="estacionamientoSelec.ubicacion" class="form-control" name="ubicacion">
         </div>
 
-        <div class="form-group">
+        <div class="form-group" data-aos="fade-down">
             <label for="totales">Espacios totales</label>
             <input type="number" [(ngModel)]="estacionamientoSelec.espaciosTotales" class="form-control" name="totales">
           </div>
 
-          <div class="form-group">
+          <div class="form-group" data-aos="fade-down">
             <label for="comunes">Espacios comunes</label>
             <input type="number" [(ngModel)]="estacionamientoSelec.espaciosComunes" class="form-control" name="comunes">
           </div>
 
-          <div class="form-group">
+          <div class="form-group" data-aos="fade-down">
             <label for="especiales">Espacios especiales</label>
             <input type="number" [(ngModel)]="estacionamientoSelec.espaciosEspeciales" class="form-control" name="especiales">
           </div>
 
-          <div class="form-group">
+          <div class="form-group" data-aos="fade-down">
             <label for="oficiales">Espacios oficiales</label>
             <input type="number" [(ngModel)]="estacionamientoSelec.espaciosOficiales" class="form-control" name="oficiales">
           </div>
 
 
           <div class="btn-group" role="group" aria-label="Basic example">
-            <label >Tipo de estacionamiento</label>
+            <h2>Tipo de estacionamiento</h2>
             <button type="button" class="btn btn-secondary" (click)="tipoPropio()">Propio</button>
             <button type="button" class="btn btn-secondary" (click)="tipoSubcontratado()">Subcontratado</button>
+            <button type="submit" class="btn btn-primary" (click)="agregarEstacionamiento()">Aceptar</button>
+            <button type="submit" *ngIf="isSelected == true" class="btn btn-danger" (click)="eliminarEstacionamiento()">Borrar</button>
+    
           </div>
 
-        <button type="submit" class="btn btn-primary" (click)="agregarEstacionamiento()">Aceptar</button>
-        <button type="submit" *ngIf="isSelected == true" class="btn btn-danger" (click)="eliminarEstacionamiento()">Borrar</button>
       </form>
+<!--
 </div>
 <p></p>
 <p></p>
@@ -53,4 +55,20 @@
         {{estacionamiento.nombre}}
     </li>
   </ul>
+  -->
+  <h2 class="mt-4">Lista de estacionamientos</h2>
+  <div  class="row mb-3">
+  <div class="col-md-4 themed-grid-col" data-aos="fade-right">Nombre</div>
+  <div class="col-md-4 themed-grid-col" data-aos="fade-right">Ubicacion</div>
+  <div class="col-md-4 themed-grid-col" data-aos="fade-right">Espacios totales</div>
+  </div>
+  <div *ngFor="let estacionamiento of listaEstacionamientos" class="row mb-3">
+    <div (click)="cargarEstacionamientoSelec(estacionamiento)"
+    [class.active]="estacionamiento == estacionamientoSelec" class="col-md-4 themed-grid-col" data-aos="fade-right">{{estacionamiento.nombre}}</div>
+    <div (click)="cargarEstacionamientoSelec(estacionamiento)"
+    [class.active]="estacionamiento == estacionamientoSelec" class="col-md-4 themed-grid-col" data-aos="fade-right">{{estacionamiento.ubicacion}}</div>
+    <div (click)="cargarEstacionamientoSelec(estacionamiento)"
+    [class.active]="estacionamiento == estacionamientoSelec" class="col-md-4 themed-grid-col" data-aos="fade-right">{{estacionamiento.espaciosTotales}}</div>
+  </div>
+  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus maxime iusto, qui libero ut accusantium illo quae eveniet optio autem laboriosam esse assumenda minus amet culpa reiciendis, unde aut facere?</p>
 </div>

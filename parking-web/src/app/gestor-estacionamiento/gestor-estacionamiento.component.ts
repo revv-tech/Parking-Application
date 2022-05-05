@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Estacionamiento, TEstacionamiento } from '../model/estacionamiento';
+import AOS from 'aos'
 
 @Component({
   selector: 'app-gestor-estacionamiento',
@@ -11,6 +12,9 @@ export class GestorEstacionamientoComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+  
+  AOS.init();
+
   }
 
   //Simula la base de datos
