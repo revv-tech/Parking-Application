@@ -24,11 +24,11 @@
         <div class="form-group">
             <!-- <label for="totales">Departamento/Escuela a que pertenece</label> -->
             <div class="btn-group">
-              <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Departamento/Escuela a que pertenece</button>
+              <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Tipo de funcionario</button>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" [routerLink]="'/edit-user'">DOCENTE</a></li>
-                <li ><a class="dropdown-item" [routerLink]="'/edit-user'">ADMINISTRATIVO</a></li>
-                <li ><a class="dropdown-item" [routerLink]="'/edit-user'">JEFATURA</a></li>
+                <li><a class="dropdown-item" *ngFor="let tipo of tiposFuncionarios, index as i"[routerLink]="'/edit-user'">DOCENTE</a></li>
+                <li ><a class="dropdown-item" [routerLink]="'/edit-user'">{{tipo}}</a></li>
+                <!-- <li ><a class="dropdown-item" [routerLink]="'/edit-user'">JEFATURA</a></li> -->
               </ul>
           </div>
           </div>
