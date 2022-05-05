@@ -1,13 +1,28 @@
 <div class="mt-5">
-    <form>
-        <div class="form-group">
-          <label for="usuario">Nombre de usuario</label>
-          <input type="text" [(ngModel)]="receivedUsername" class="form-control" name="usuario" placeholder="Usuario">
-        </div>
-        <div class="form-group">
-          <label for="contraseña">Contraseña</label>
-          <input type="password" [(ngModel)]="receivedPassword" class="form-control" name="contraseña" placeholder="Contraseña">
-        </div>
-        <button type="submit" class="btn btn-primary" (click)="submitLoginData()">Aceptar</button>
-      </form>
+
+      <link href="/docs/5.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+      <body class="text-center">
+        
+        <main class="form-signin">
+          <form>
+            
+            <h1 class="h3 mb-3 fw-normal">Inicie sesión</h1>
+        
+            <div class="form-floating">
+              <label for="floatingInput">Nombre de usuario</label>
+              <input type="text" [(ngModel)]="receivedUsername" class="form-control" id="floatingInput">
+              
+            </div>
+            <div class="form-floating">
+              <label for="floatingPassword">Contraseña</label>
+              <input type="password" [(ngModel)]="receivedPassword" class="form-control" id="floatingPassword">
+              
+            </div>
+        
+            <button class="w-100 btn btn-lg btn-primary" type="submit" (click)="submitLoginData()">Aceptar</button>
+            <p class="mt-5 mb-3 text-muted">&copy; 2017–2021</p>
+          </form>
+        </main>
+        
+          </body>
 </div>
