@@ -1,0 +1,91 @@
+<div class="mt-5" >
+    <h1>Editar mi cuenta</h1>
+    <form>
+        <div class="form-group">
+          <label for="estacionamiento">Identificación</label>
+          <input type="number" [(ngModel)]="identificacion" class="form-control" name="identificacion">
+        </div>
+
+        <div class="form-group">
+          <label for="especiales">¿Presenta alguna discapacidad?</label>
+            <p></p>
+            <input type="radio" id="siPresenta" [(ngModel)]="necesidadEspecial" value=true name="necesidadEspecial">
+            <label for="siPresenta">Sí</label><br>
+            <input type="radio" id="noPresenta" [(ngModel)]="necesidadEspecial" value=false name="necesidadEspecial">
+            <label for="noPresenta">No</label><br>
+        </div>
+
+
+        <div class="form-group">
+          <label for="ubicacion">Nombre Completo</label>
+          <input type="text" [(ngModel)]="nombreCompleto" class="form-control" name="nombreCompleto">
+        </div>
+
+        <div class="form-group">
+            <!-- <label for="totales">Departamento/Escuela a que pertenece</label> -->
+            <div class="btn-group">
+              <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Departamento/Escuela a que pertenece</button>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" [routerLink]="'/edit-user'">DOCENTE</a></li>
+                <li ><a class="dropdown-item" [routerLink]="'/edit-user'">ADMINISTRATIVO</a></li>
+                <li ><a class="dropdown-item" [routerLink]="'/edit-user'">JEFATURA</a></li>
+              </ul>
+          </div>
+          </div>
+
+          <div class="form-group">
+            <label for="comunes">Correo Alterno</label>
+            <input type="text" [(ngModel)]="correoAlterno" class="form-control" name="correoAlterno">
+          </div>
+
+          <div class="form-group">
+            <label for="oficiales">Correo Institucional</label>
+            <input type="text" [(ngModel)]="correoInstitucional" class="form-control" name="correoInstitucional">
+          </div>
+
+          <div class="form-group">
+            <label for="oficiales">Tipo de funcionario</label>
+            <input type="number" [(ngModel)]="tipo" class="form-control" name="tipo">
+            <p></p>
+            <input type="radio" id="docente" [(ngModel)]="tipo" value="DOCENTE" name="necesidadEspecial">
+            <label for="siPresenta">Sí</label><br>
+            <input type="radio" id="administrativo" [(ngModel)]="tipo" value="ADMINISTRATIVO" name="necesidadEspecial">
+            <label for="noPresenta">No</label><br>
+            <input type="radio" id="noPresenta" [(ngModel)]="tipo" value=false name="necesidadEspecial">
+          </div>   
+          <div class="form-group">
+            <label for="oficiales">Vehiculos asignados</label>
+            <input type="number" [(ngModel)]="vehiculos" class="form-control" name="vehiculos">
+          </div>  
+          <div class="form-group">
+            <label for="oficiales">Contraseña</label>
+            <input type="number" [(ngModel)]="contrasena" class="form-control" name="contraseña">
+          </div>
+          <div class="form-group">
+          <label for="oficiales">Celular</label>
+          <input type="number" [(ngModel)]="celular" class="form-control" name="celular">
+        </div>          
+        <div class="form-group">
+          <label for="oficiales">Campus</label>
+          <input type="number" [(ngModel)]="campus" class="form-control" name="campus">
+        </div>
+
+          <!-- <div class="btn-group" role="group" aria-label="Basic example">
+            <label >Tipo de estacionamiento</label>
+            <button type="button" class="btn btn-secondary" (click)="tipoPropio()">Propio</button>
+            <button type="button" class="btn btn-secondary" (click)="tipoSubcontratado()">Subcontratado</button>
+          </div>
+
+        <button type="submit" class="btn btn-primary" (click)="agregarEstacionamiento()">Aceptar</button> -->
+      </form>
+</div>
+<p></p>
+<p></p>
+<label for="list-group">Lista de estacionamientos</label>
+<!-- <div class="container">
+  <ul class="list-group">
+    <li *ngFor="let estacionamiento of listaEstacionamientos" class="list-group-item list-group-item-action">
+        <span class="badge badge-primary">Editar</span>{{estacionamiento.nombre}}
+    </li>
+  </ul>
+</div> -->

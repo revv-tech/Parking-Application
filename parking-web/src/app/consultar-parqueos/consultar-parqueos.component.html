@@ -1,0 +1,30 @@
+<div class="mt-5">
+    <h2>¡Bienvenido!</h2>
+    <p>Selecciona un parqueo:</p>
+    <div class="btn-group">
+        <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Tipo de parqueo</button>
+        <ul class="dropdown-menu">
+          <li ><a class="dropdown-item" [routerLink]="'/consultar-parqueos'">Propio</a></li>
+          <li ><a class="dropdown-item" [routerLink]="'/consultar-parqueos'">subcontratado</a></li>
+        </ul>
+    </div>
+    <p></p>
+    <p></p>
+    <p></p>
+    <div style="width: 700px; height: 400px; overflow-y: scroll;">
+      <ul class="list-group">
+            <li class="list-group-item" *ngFor="let parqueo of parqueos, index as i">
+                <h6>
+                    Nombre: {{parqueo.nombre}}
+                </h6>
+                <h6>
+                    Ubicación: {{parqueo.ubicacion}}
+                </h6>
+                <h6>
+                    {{parqueo.espaciosDisponibles}} de {{parqueo.espaciosTotal}} puestos disponibles
+                </h6>
+                <a [routerLink]="['/un-estacionamiento',i]"> Leer más...</a>
+            </li>
+        </ul>
+    </div>
+</div>
