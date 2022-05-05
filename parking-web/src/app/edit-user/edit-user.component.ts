@@ -22,7 +22,7 @@ export class EditUserComponent implements OnInit {
   tipo:TFuncionario = TFuncionario.DOCENTE
   vehiculos:string[] = []
   tipoUsuario:TUsuario = TUsuario.COMUN
-  contraseña:string = ""
+  contrasena:string = ""
   celular:number = 0
   campus:TCampus = TCampus.SAN_JOSE
   funcionario:any= {}
@@ -33,7 +33,7 @@ export class EditUserComponent implements OnInit {
         this.identificacion = _identificacion,
         this.correoAlterno = _correoAlterno,
         this.vehiculos = _vehiculos,
-        this.contraseña = _contraseña,
+        this.contrasena = _contraseña,
         this.celular = _celular
     }
 

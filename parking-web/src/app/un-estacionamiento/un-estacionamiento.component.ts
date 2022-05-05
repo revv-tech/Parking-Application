@@ -14,7 +14,7 @@ export class UnEstacionamientoComponent implements OnInit {
   constructor(private ruta:ActivatedRoute, _parqueos:EstacionamientosService) { 
     this.ruta.params.subscribe(params=>{
       console.log(params['id']);
-      // this.parqueos.push(_parqueos.getUnParqueo(params['id']));
+      this.parqueos.push(_parqueos.getUnParqueo(params['id']));
     })
   }
 

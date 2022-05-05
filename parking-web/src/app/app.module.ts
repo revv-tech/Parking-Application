@@ -30,7 +30,9 @@ const routes: Routes = [
   { path: 'edit-user', component: EditUserComponent },
   { path: 'manageParking', component: GestorEstacionamientoComponent },
   { path: '', component: LoginComponent, pathMatch:'full' },
-  { path: '**', redirectTo: '/login', pathMatch:'full' }
+  { path: '**', redirectTo: '/login', pathMatch:'full' },
+  { path: 'consultar-parqueos/:tipo', component: ConsultarParqueosComponent },
+
 ];
 
 @NgModule({
