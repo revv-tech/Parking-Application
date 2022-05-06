@@ -1,5 +1,131 @@
-<div class="mt-5" >
-    <h1>Editar mi cuenta</h1>
+<!-- <div class="mt-5" *ngIf="tipo==tipoFuncionario.DOCENTE; else elseBlock"> -->
+  <div class="mt-5">
+    <h1>Editar mi cuenta - VISTA USUARIO</h1>
+    <form>
+        <div class="form-group">
+          <label for="estacionamiento">Identificación</label>
+          <input id="campoid" type="number" [(ngModel)]="identificacion" readonly=»readonly» class="form-control" name="identificacion" value="{{identificacion}}">
+        </div>
+        <button type="button" class="btn btn-secondary" (click)="prueba()">probar</button>
+        <div class="form-group">
+          <label for="especiales" >¿Presenta alguna discapacidad?</label>
+            <p></p>
+            <div *ngIf="necesidadEspecial; else elseBlockSpecialNeed">
+                <input type="radio" id="siPresenta" disabled="disabled"  name="necesidadEspecial" value="Sí" checked>
+                <label for="siPresenta">Sí</label><br>
+                <input type="radio" id="noPresenta" disabled="disabled"  value="No" name="necesidadEspecial">
+                <label for="noPresenta">No</label><br>
+            </div>
+            <ng-template #elseBlockSpecialNeed>
+                <input type="radio" id="siPresenta" disabled="disabled" name="necesidadEspecial" value="Sí" >
+               <label for="siPresenta">Sí</label><br>
+                <input type="radio" id="noPresenta" disabled="disabled"  name="necesidadEspecial" value="No" checked>
+              <label for="noPresenta">No</label><br>
+          </ng-template>
+        </div>
+        <div class="form-group">
+          <label for="nombreCompleto">Nombre Completo</label>
+          <input type="text" readonly=»readonly» [(ngModel)]="nombreCompleto" class="form-control" name="nombreCompleto">
+        </div>
+
+        <div class="form-group">
+            <!-- <label for="totales">Departamento/Escuela a que pertenece<> -->
+            <div class="btn-group">
+              <label>Tipo de funcionario: </label>
+              <select id="dropdown" disabled>
+                  <!-- <option value="A" *ngFor="let tipo of tiposFuncionarios,index as i">{{tipo}}</option> -->
+                    <option value="A" >{{tipo}}</option>
+            </select>
+            <!-- <div id="textBoxContainer"></div>
+              <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">tipos</button>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" *ngFor="let tipo of tiposFuncionarios, index as i "[routerLink]="'/edit-user'">{{tipo}}</a></li>
+                <li ><a class="dropdown-item" [routerLink]="'/edit-user'">{{tipo}}</a></li>
+                <li ><a class="dropdown-item" [routerLink]="'/edit-user'">JEFATURA</a></li>
+              </ul>-->
+          </div>
+          </div>
+
+          <div class="form-group">
+            <label for="correoAlterno">Correo Alterno</label>
+            <input type="text" [(ngModel)]="correoAlterno" class="form-control" name="correoAlterno">
+          </div>
+
+          <div class="form-group">
+            <label for="correoInstitucional" >Correo Institucional</label>
+            <input type="text" readonly=»readonly» [(ngModel)]="correoInstitucional" class="form-control" name="correoInstitucional">
+          </div>
+
+          <div class="form-group">
+            <label for="esJefe">¿Es jefatura?</label>
+            <p></p>
+            <div *ngIf="tipo==tipoFuncionario.JEFATURA; else elseBlockJefatura">
+              <input type="radio" id="siEsJefe" disabled="disabled"  name="esJefe" value="Sí" checked>
+              <label for="siEsJefe">Sí</label><br>
+              <input type="radio" id="noEsJefe" disabled="disabled"  name="esJefe" value="No">
+              <label for="noEsJefe">No</label><br>
+          </div>
+          <ng-template #elseBlockJefatura>
+              <input type="radio" id="siEsJefe" disabled="disabled"  value="Sí" name="esJefe" value="Sí" >
+             <label for="siEsJefe">Sí</label><br>
+              <input type="radio" id="noEsJefe" disabled="disabled"  value="No" name="esJefe" checked>
+            <label for="noEsJefe">No</label><br>
+        </ng-template>
+            <!-- <p></p>
+            <input readonly=»readonly» type="radio" id="docente" [(ngModel)]="tipo" value="DOCENTE" name="necesidadEspecial">
+            <label for="siPresenta">Sí</label><br>
+            <input readonly=»readonly» type="radio" id="administrativo" [(ngModel)]="tipo" value="ADMINISTRATIVO" name="necesidadEspecial">
+            <label for="noPresenta">No</label><br> -->
+          </div>   
+          <div class="form-group">
+            <label for="oficiales">Vehiculos asignados</label>
+            <input type="text" [(ngModel)]="nuevoVehiculo" class="form-control" name="vehiculos">
+            <button type="button" class="btn btn-secondary" (click)="agregarVehiculo()">agregar</button>
+            <div style="width: 400px; height: 200px; overflow-y: scroll;">
+              <ul class="list-group">
+                    <li class="list-group-item" *ngFor="let placa of vehiculos, index as i">
+                        <h6>
+                            {{i}}: {{placa}}
+                        </h6>
+                        <button type="button" class="btn btn-secondary" (click)="quitarVehiculo(i)">eliminarPlaca</button>
+                    </li>
+                </ul>
+            </div>
+          </div>  
+          <div class="form-group">
+            <label for="contrasena">Contraseña</label>
+            <input type="text" [(ngModel)]="contrasena" class="form-control" name="contrasena">
+          </div>
+          <div class="form-group">
+          <label for="celular">Celular</label>
+          <input type="number" [(ngModel)]="celular" class="form-control" name="celular">
+        </div>          
+        <div class="btn-group">
+          <label>Campus al que pertenece: </label>
+          <select id="dropdown2" disabled>
+              <!-- <option value="A" *ngFor="let tipo of tiposFuncionarios,index as i">{{tipo}}</option> -->
+                <option value="H" >{{campus}}</option>
+        </select>
+        <P></P>
+        <P></P>
+        <button (click)="editarUsuario()" class="btn btn-success">Submit</button>
+    </div>
+    <div *ngIf="submitted">
+      <h4>Tutorial was submitted successfully!</h4>
+      <!-- <button class="btn btn-success" (click)="newTutorial()">Add</button> -->
+    </div>
+  <!-- </div> -->
+<!-- </div> -->
+        <!-- <div id="textBoxContainer"></div>
+          <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">tipos</button>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" *ngFor="let tipo of tiposFuncionarios, index as i "[routerLink]="'/edit-user'">{{tipo}}</a></li>
+            <li ><a class="dropdown-item" [routerLink]="'/edit-user'">{{tipo}}</a></li>
+            <li ><a class="dropdown-item" [routerLink]="'/edit-user'">JEFATURA</a></li>
+          </ul>-->
+  <!-- </div> -->
+<!-- <ng-template #elseBlock>
+  <h1>Editar mi cuenta - VISTA ADMIN</h1>
     <form>
         <div class="form-group">
           <label for="estacionamiento">Identificación</label>
@@ -22,13 +148,11 @@
         </div>
 
         <div class="form-group">
-            <!-- <label for="totales">Departamento/Escuela a que pertenece</label> -->
             <div class="btn-group">
               <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Tipo de funcionario</button>
               <ul class="dropdown-menu">
                 <li><a class="dropdown-item" *ngFor="let tipo of tiposFuncionarios, index as i"[routerLink]="'/edit-user'">DOCENTE</a></li>
                 <li ><a class="dropdown-item" [routerLink]="'/edit-user'">{{tipo}}</a></li>
-                <!-- <li ><a class="dropdown-item" [routerLink]="'/edit-user'">JEFATURA</a></li> -->
               </ul>
           </div>
           </div>
@@ -69,23 +193,5 @@
           <label for="oficiales">Campus</label>
           <input type="number" [(ngModel)]="campus" class="form-control" name="campus">
         </div>
-
-          <!-- <div class="btn-group" role="group" aria-label="Basic example">
-            <label >Tipo de estacionamiento</label>
-            <button type="button" class="btn btn-secondary" (click)="tipoPropio()">Propio</button>
-            <button type="button" class="btn btn-secondary" (click)="tipoSubcontratado()">Subcontratado</button>
-          </div>
-
-        <button type="submit" class="btn btn-primary" (click)="agregarEstacionamiento()">Aceptar</button> -->
       </form>
-</div>
-<p></p>
-<p></p>
-<label for="list-group">Lista de estacionamientos</label>
-<!-- <div class="container">
-  <ul class="list-group">
-    <li *ngFor="let estacionamiento of listaEstacionamientos" class="list-group-item list-group-item-action">
-        <span class="badge badge-primary">Editar</span>{{estacionamiento.nombre}}
-    </li>
-  </ul>
-</div> -->
+</ng-template> -->
