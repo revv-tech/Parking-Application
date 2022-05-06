@@ -9,6 +9,7 @@ import { EstacionamientosService } from '../servicios/estacionamientos.service';
 export class ConsultarParqueosComponent implements OnInit {
 
   parqueos:any=[]
+  
 
   constructor(private _servicioParqueo:EstacionamientosService) {
     this.parqueos=_servicioParqueo.getParqueos();

@@ -35,35 +35,36 @@ import { Estacionamiento } from '../model/estacionamiento';
 // }
 
 export class EstacionamientosService {
-  private baseUrl:string = 'http://localhost:8080/api/parqueos/consultar-parqueos'
+  private baseUrl:string = 'http://localhost:8080/api/parqueos'
 
-  parqueos:any=[
-    {
-    "idEstacionamiento":2,
-    "ubicacion":"Parqueo 101, Del Tecnológico, Av 9, Amón, San José, 10102",
-    "nombre":"Parqueo 101",
-    "espaciosTotal":10,
-    "tipo":"PROPIO",
-    "espaciosDisponibles":10,
-    "espaciosComunes":3,
-    "espaciosOficiales": 5,
-    "espaciosEspeciales": 2,
-    "imagen": "https://res.cloudinary.com/dhoxfrbt2/image/upload/v1650575995/E2.jpg"
-    },
-    {
-      "idEstacionamiento":4,
-      "ubicacion":"Parqueo Tata, De Torre Mercedes 100 este, 100 sur, 50 oeste, San José, 10103",
-      "nombre":"Busca Cajón",
-      "espaciosTotal":15,
-      "tipo":"SUBCONTRATADO",
-      "espaciosDisponibles":15,
-      "espaciosComunes":13,
-      "espaciosOficiales": 0,
-      "espaciosEspeciales": 2,
-      "imagen": "https://res.cloudinary.com/dhoxfrbt2/image/upload/v1650575995/E4.jpg"   
-  }
+  parqueos:any=[]
+  // parqueos:any=[
+  //   {
+  //   "idEstacionamiento":2,
+  //   "ubicacion":"Parqueo 101, Del Tecnológico, Av 9, Amón, San José, 10102",
+  //   "nombre":"Parqueo 101",
+  //   "espaciosTotal":10,
+  //   "tipo":"PROPIO",
+  //   "espaciosDisponibles":10,
+  //   "espaciosComunes":3,
+  //   "espaciosOficiales": 5,
+  //   "espaciosEspeciales": 2,
+  //   "imagen": "https://res.cloudinary.com/dhoxfrbt2/image/upload/v1650575995/E2.jpg"
+  //   },
+  //   {
+  //     "idEstacionamiento":4,
+  //     "ubicacion":"Parqueo Tata, De Torre Mercedes 100 este, 100 sur, 50 oeste, San José, 10103",
+  //     "nombre":"Busca Cajón",
+  //     "espaciosTotal":15,
+  //     "tipo":"SUBCONTRATADO",
+  //     "espaciosDisponibles":15,
+  //     "espaciosComunes":13,
+  //     "espaciosOficiales": 0,
+  //     "espaciosEspeciales": 2,
+  //     "imagen": "https://res.cloudinary.com/dhoxfrbt2/image/upload/v1650575995/E4.jpg"   
+  // }
   
-  ]
+  // ]
 
   constructor(private http: HttpClient) { 
     console.log("funcionando el servicio de estacionamientos")
@@ -76,15 +77,15 @@ export class EstacionamientosService {
 
   getParqueos(): Observable<any[]> {
     console.log("Results:")
-    this.http.get(this.baseUrl).subscribe(_parqueos => {
+    this.http.get(this.baseUrl+"/consultar-parqueos").subscribe(_parqueos => {
       this.parqueos = _parqueos
       console.log(_parqueos)
     })
     return this.parqueos;
   }
 
-  // getUnParqueo(index:number){
-  //   this.parqueos = this.getparqueos();
-  //   return this.parqueos[index];
-  // }
+  getUnParqueo(index:number){
+    this.parqueos = this.getParqueos();
+    return this.parqueos[index];
+  }
 }
