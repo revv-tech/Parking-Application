@@ -21,6 +21,7 @@ import { GestorEstacionamientoComponent } from './gestor-estacionamiento/gestor-
 import { EditUserComponent } from './edit-user/edit-user.component';
 import { ConsultarParqueosComponent } from './consultar-parqueos/consultar-parqueos.component';
 import { UnEstacionamientoComponent } from './un-estacionamiento/un-estacionamiento.component';
+import { FuncionariosService } from './servicios/funcionarios.service';
 
 // Nueva ruta agregada
 const routes: Routes = [
@@ -54,7 +55,8 @@ const routes: Routes = [
     HttpClientModule
   ],
   providers: [
-    EstacionamientosService
+    EstacionamientosService,
+    FuncionariosService
   ],
   bootstrap: [AppComponent]
 })
