@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Estacionamiento, TEstacionamiento } from '../model/estacionamiento';
 import AOS from 'aos'
+import { EstacionamientosService } from '../servicios/estacionamientos.service';
 
 @Component({
   selector: 'app-gestor-estacionamiento',
@@ -9,46 +10,47 @@ import AOS from 'aos'
 })
 export class GestorEstacionamientoComponent implements OnInit {
 
-  constructor() { }
+  constructor(private _servicioEstacionamiento:EstacionamientosService) { }
 
   ngOnInit(): void {
   
   AOS.init();
-
+  
   }
 
   //Simula la base de datos
   listaEstacionamientos:Estacionamiento[] = []
   estacionamiento:any
-  estacionamientoSelec:Estacionamiento = new Estacionamiento("", "", 0, 0, 0, 0, 0)
+  estacionamientoSelec:Estacionamiento = new Estacionamiento("", "", 0, 0, 0, 0, TEstacionamiento.CAMPUS)
+
   isEditing:boolean = false
   isSelected:boolean = false
+  addResult:any
 
 
   agregarEstacionamiento(){
 
+    var sumaEspaciosTotales = this.estacionamientoSelec.espaciosComunes + this.estacionamientoSelec.espaciosEspeciales 
+                + this.estacionamientoSelec.espaciosOficiales
 
+    let body = {nombre :              this.estacionamientoSelec.nombre,
+                ubicacion :           this.estacionamientoSelec.ubicacion,
+                espaciosTotal :       sumaEspaciosTotales,
+                espaciosComunes :     this.estacionamientoSelec.espaciosComunes,
+                espaciosEspeciales :  this.estacionamientoSelec.espaciosEspeciales,
+                espaciosOficiales :   this.estacionamientoSelec.espaciosOficiales,
+                tipo :                this.estacionamientoSelec.tipo}
 
-    if(this.isEditing){
-      this.isEditing = false
-    }
-
-    else{
-      this.estacionamiento = this.estacionamientoSelec
-
-      this.listaEstacionamientos.push(this.estacionamiento)
-      console.log(this.listaEstacionamientos)
-      this.printEstacionamiento(this.estacionamiento)
-    }
-    this.estacionamientoSelec = new Estacionamiento("", "", 0, 0, 0, 0, 0)
-    this.isSelected = false
+    this.addResult = this._servicioEstacionamiento.addParking(body)
+    console.log(this.addResult)
   }
+  
 
   eliminarEstacionamiento(){
 
     if(confirm('Estas seguro de que deseas eliminar ese estacionamiento?')){
       this.listaEstacionamientos = this.listaEstacionamientos.filter(x => x != this.estacionamientoSelec)
-      this.estacionamientoSelec = new Estacionamiento("", "", 0, 0, 0, 0, 0)
+      this.estacionamientoSelec = new Estacionamiento("", "", 0, 0, 0, 0, TEstacionamiento.CAMPUS)
       this.isEditing = false
       this.isSelected = false
     }
