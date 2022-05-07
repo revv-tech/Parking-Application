@@ -6,20 +6,21 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class FuncionariosService {
+
+
+
   private baseUrl:string = 'http://localhost:8080/api/funcionarios'
-    usuarioLoggeado: any;
-    mail: any;
-    password: any;
+  usuarioLoggeado: any;
+  mail: any;
+  password: any;
+
     constructor(private http: HttpClient) {
       console.log("Funcionando el servicio de funcionarios")
     }
 
-    login(): Observable<any[]> {
+    login(mail : string, password : string): Observable<any> {
       console.log("Results:")
-      this.http.get(this.baseUrl+"/login").subscribe(usuario => {
-        this.usuarioLoggeado = usuario
-        console.log(usuario)
-      })
+      this.usuarioLoggeado = this.http.put(this.baseUrl+'/login',password)
       return this.usuarioLoggeado;
     }
 
