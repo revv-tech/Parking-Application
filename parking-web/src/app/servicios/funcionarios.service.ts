@@ -30,9 +30,7 @@ export class FuncionariosService {
       
     }
 
-    prueba(){
-      return this.usuario;
-    }
+    
 
     login = async (mail : string, password : string)  =>  {
       console.log("Results:")
