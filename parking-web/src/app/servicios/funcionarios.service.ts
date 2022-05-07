@@ -10,11 +10,13 @@ export class FuncionariosService {
 
 
   private baseUrl:string = 'http://localhost:8080/api/funcionarios'
+  // Usuario obtenido del Login
   usuarioLoggeado: any;
   mail: any;
   password: any;
+  
 
-    constructor(private http: HttpClient) {
+  constructor(private http: HttpClient) {
       console.log("Funcionando el servicio de funcionarios")
     }
 
@@ -25,6 +27,7 @@ export class FuncionariosService {
         correoInstitucional : mail}).subscribe (data => {
           // Iguala usuario con usuario recibido de consulta
           this.usuarioLoggeado = data;
+          
           console.log(data)
         })
       return this.usuarioLoggeado;

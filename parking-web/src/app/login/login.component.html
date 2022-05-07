@@ -5,7 +5,12 @@
         
         <main class="form-signin">
           <form>
-            
+            <div class="alert alert-success" role="alert" *ngIf= "logged">
+              Has iniciado sesión!
+            </div>
+            <div class="alert alert-fail" role="alert" *ngIf= "failedPassword">
+              Contraseña Incorrecta!
+            </div>
             <h1 class="h3 mb-3 fw-normal">Inicie sesión</h1>
         
             <div class="form-floating">
@@ -22,6 +27,8 @@
             <button class="w-100 btn btn-lg btn-primary" type="submit" (click)="submitLoginData()">Aceptar</button>
             <p class="mt-5 mb-3 text-muted">&copy; 2017–2021</p>
           </form>
+          
+          
         </main>
         
           </body>
