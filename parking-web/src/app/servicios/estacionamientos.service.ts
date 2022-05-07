@@ -88,4 +88,12 @@ export class EstacionamientosService {
     this.parqueos = this.getParqueos();
     return this.parqueos[index];
   }
+
+  addParking = async (estacionamiento:any) => {
+    this.http.put(this.baseUrl + "/manageParking/addParking", estacionamiento)
+    .subscribe(_result => {
+        return  _result
+    })
+  }
 }
+

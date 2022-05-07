@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Funcionario, TFuncionario, TUsuario, TCampus} from '../model/funcionario'
-
+import { FuncionariosService } from '../servicios/funcionarios.service';
 @Component({
   selector: 'app-edit-user',
   templateUrl: './edit-user.component.html',
@@ -10,10 +10,15 @@ import {Funcionario, TFuncionario, TUsuario, TCampus} from '../model/funcionario
 
 export class EditUserComponent implements OnInit {
 
-  constructor() { }
+  constructor(private _servicioUsuario:FuncionariosService) { 
+      this.setTipos();
+  }
 
   ngOnInit(): void {
   }
+  public tipoFuncionario = TFuncionario
+  public nuevoVehiculo:string=""
+  submitted = false;
   tiposFuncionarios:any[]=[]
   tiposUsuarios:any[]=[]
   TCampus:any[]=[]
@@ -21,31 +26,54 @@ export class EditUserComponent implements OnInit {
   nombreCompleto:string = ""
   codigo:string = ""
   correoAlterno:string =""
-  necesidadEspecial:boolean = true
+  necesidadEspecial:boolean = false
   correoInstitucional:string = ""
-  tipo:TFuncionario = TFuncionario.DOCENTE
+  tipo:TFuncionario = TFuncionario.VISITANTE
   vehiculos:string[] = []
   tipoUsuario:TUsuario = TUsuario.COMUN
   contrasena:string = ""
   celular:number = 0
-  campus:TCampus = TCampus.SAN_JOSE
+  campus:TCampus = TCampus.CARTAGO
   funcionario:any= {}
   listaFuncionarios:Funcionario[] = []
+  usuario:any;
 
   //Vista del usuario
-  editarUsuario(_identificacion:number,_correoAlterno:string,_vehiculos:string[],_contraseña:string,_celular:number){
-        this.identificacion = _identificacion,
-        this.correoAlterno = _correoAlterno,
-        this.vehiculos = _vehiculos,
-        this.contrasena = _contraseña,
-        this.celular = _celular
-        this.setTipos();
+  editarUsuario(){
+      let body = {
+        identificacion:this.identificacion,
+        nombreCompleto:this.nombreCompleto,
+        codigo:this.codigo,
+        correoAlterno:this.correoAlterno,
+        necesidadEspecial:this.necesidadEspecial,
+        correoInstitucional:this.correoInstitucional,
+        tipo:this.tipo,
+        vehiculos:this.vehiculos,
+        tipoUsuario:this.tipoUsuario,
+        contrasena:this.contrasena,
+        celular:this.celular,
+        campus:this.campus
+      }
+      this._servicioUsuario.editarUsuario(body);
+      console.log(body)
+      this.submitted = true;
     }
 
+  
   setTipos(){
     this.tiposFuncionarios.push(TFuncionario.ADMINISTRATIVO)
     this.tiposFuncionarios.push(TFuncionario.DOCENTE)
-    this.tiposFuncionarios.push(TFuncionario.JEFATURA)
+    console.log(this.tiposFuncionarios)
+    console.log("no")
   };
 
+  agregarVehiculo(){
+    if(this.nuevoVehiculo!=""){
+      this.vehiculos.push(this.nuevoVehiculo)
+    }
+  }
+
+  quitarVehiculo(index:number){
+    this.vehiculos.splice(index,1);
+  }
 }

@@ -15,4 +15,4 @@ export class Usuario {
 }
 
 //Enumerable para definir el tipo de usuario
-export enum TUsuario {COMUN, ADMIN}
+export enum TUsuario {COMUN="comun", ADMIN="administrador"}

@@ -25,4 +25,4 @@ export class Estacionamiento {
 }
 
 //Enumerable para definir el tipo del estacionamiento
-export enum TEstacionamiento {CAMPUS, SUBCONTRATADO} 
+export enum TEstacionamiento  {CAMPUS="PROPIO", SUBCONTRATADO="SUBCONTRATADO"} 
