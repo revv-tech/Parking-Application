@@ -20,15 +20,12 @@ export class LoginComponent implements OnInit {
   receivedPassword:any
 
   submitLoginData() {
-    
-    this.funcionarioService.login(this.receivedUsername, this.receivedPassword).subscribe( response => {
-      if (!response) {
-        console.log("Usuario " + this.receivedUsername + "no registrado!")
-      }
-      this.user = response;
-      console.log("Usuario encontrado(?)" )
-
-    } )
+    let response = this.funcionarioService.login(this.receivedUsername, this.receivedPassword);
+    if (!response) {
+      console.log("Usuario " + this.receivedUsername + "no registrado!")
+    }
+    this.user = response;
+    console.log("Usuario encontrado(?)" )
     console.log("Usuario " + this.receivedUsername + " Contraseña " + this.receivedPassword)
     
   }

@@ -18,9 +18,15 @@ export class FuncionariosService {
       console.log("Funcionando el servicio de funcionarios")
     }
 
-    login(mail : string, password : string): Observable<any> {
+    login = async (mail : string, password : string)  =>  {
       console.log("Results:")
-      this.usuarioLoggeado = this.http.put(this.baseUrl+'/login',password)
+      // Login con body de contrasena y email
+      this.http.put(this.baseUrl+'/login',{contraseña : password, 
+        correoInstitucional : mail}).subscribe (data => {
+          // Iguala usuario con usuario recibido de consulta
+          this.usuarioLoggeado = data;
+          console.log(data)
+        })
       return this.usuarioLoggeado;
     }
 
