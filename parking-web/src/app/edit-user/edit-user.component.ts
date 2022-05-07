@@ -59,21 +59,7 @@ export class EditUserComponent implements OnInit {
       this.submitted = true;
     }
 
-  prueba(){
-    this.usuario= this._servicioUsuario.prueba();
-    console.log(this.usuario);
-    this.identificacion = this.usuario["identificacion"]
-    this.necesidadEspecial = this.usuario["necesidadEspecial"]
-    this.correoAlterno = this.usuario["correoAlterno"],
-    this.vehiculos = this.usuario["vehiculos"],
-    this.contrasena = this.usuario["contraseña"],
-    this.celular = this.usuario["celular"],
-    this.tipoUsuario = this.usuario["tipoUsuario"],
-    this.nombreCompleto = this.usuario["nombreCompleto"],
-    this.tipo = this.usuario["tipo"],
-    this.correoInstitucional = this.usuario["correoInstitucional"],
-    this.campus = this.usuario["campus"]
-  }
+  
   setTipos(){
     this.tiposFuncionarios.push(TFuncionario.ADMINISTRATIVO)
     this.tiposFuncionarios.push(TFuncionario.DOCENTE)
