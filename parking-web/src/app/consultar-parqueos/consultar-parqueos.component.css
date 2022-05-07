@@ -1,0 +1,13 @@
+.App {
+    background-color: rgb(187, 187, 187);
+    /* background-image: url(".\assets\imagen 3.png"); */
+    background-repeat: no-repeat;
+    /*background-attachment: fixed;*/
+  }
+  
+  html,
+  head,
+  body {
+    margin: 0;
+    padding: 0;
+  }
