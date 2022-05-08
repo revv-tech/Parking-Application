@@ -1,17 +1,14 @@
 <div class="mt-5">
 
-      <link href="/docs/5.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-      <body class="text-center">
-        
+      <body class="text-center" *ngIf="funcionarioService.isLoggedInBool == false">
+         
         <main class="form-signin">
           <form>
-            <div class="alert alert-success" role="alert" *ngIf= "logged">
-              Has iniciado sesión!
-            </div>
+            
             <div class="alert alert-fail" role="alert" *ngIf= "failedPassword">
               Contraseña Incorrecta!
             </div>
-            <h1 class="h3 mb-3 fw-normal">Inicie sesión</h1>
+            <h1 class="h3 mb-3 fw-normal">Inicio de sesión</h1>
         
             <div class="form-floating">
               <label for="floatingInput">Nombre de usuario</label>
@@ -24,12 +21,28 @@
               
             </div>
         
-            <button class="w-100 btn btn-lg btn-primary" type="submit" (click)="submitLoginData()">Aceptar</button>
+            <button class="w-100 btn btn-lg btn-primary" type="submit" (click)="submitLoginData()" >Aceptar</button>
             <p class="mt-5 mb-3 text-muted">&copy; 2017–2021</p>
           </form>
           
           
         </main>
         
+        </body>
+        <body class="text-center" *ngIf="funcionarioService.isLoggedInBool == true">
+          <div class="mt-5">
+            <h2 class="text-center">¡Bienvenido!</h2>
+        </div>
+          
+          
           </body>
+         <!-- ALERT  WARNING START -->
+         <div class="alert alert-warning alert-dismissible fade show" role="alert" *ngIf="funcionarioService.failedPassword">
+          <strong>El correo o contraseña no son correctos!</strong> Revisa los espacios de abajo.
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <!-- ALERT  WARNING END -->
+        
 </div>
