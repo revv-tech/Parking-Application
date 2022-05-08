@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable, of } from 'rxjs';
-import { TCampus, TFuncionario, TUsuario } from '../model/funcionario';
+import { Funcionario, TCampus, TFuncionario, TUsuario } from '../model/funcionario';
 import { Router } from '@angular/router';
 
 @Injectable({
@@ -16,6 +16,7 @@ export class FuncionariosService {
   password: any;
   isLoggedInBool = false;
   failedPassword = false;
+  isAdmin = false;
   exito:any;
   
   
@@ -39,6 +40,9 @@ export class FuncionariosService {
           if (data != null) {
             // Iguala usuario con usuario recibido de consulta
             this.usuarioLoggeado = data;
+            if (this.usuarioLoggeado["tipoUsuario"] == "Administrador" ){
+              this.isAdmin = true;
+            }
             console.log(data)
             this.isLoggedInBool = true;
           }else{
@@ -55,7 +59,10 @@ export class FuncionariosService {
     }
 
     getUsuarioLoggeado = () => {
+      
       return this.usuarioLoggeado
     }
+
+    
 
 }

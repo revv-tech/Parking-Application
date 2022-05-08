@@ -1,27 +1,33 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     
     <div class="collapse navbar-collapse" id="navbarSupportedContent" >
-      <ul class="navbar-nav mr-auto" >
-        
-        <li class="nav-item" routerLinkActive="active"*ngIf="funcionarioService.isLoggedInBool == false">
-          <a class="nav-link" [routerLink]="['/login']" >Inicio de Sesión <span class="sr-only">(current)</span></a>
-        </li>
+      <ul class="navbar-nav mr-auto" *ngIf="funcionarioService.isLoggedInBool == false">
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" [routerLink]="['/login']" >Inicio de Sesión <span class="sr-only">(current)</span></a>
+      </li>
+      </ul>
+      <ul class="navbar-nav mr-auto" *ngIf="funcionarioService.isLoggedInBool  == true">
+
         <li class="nav-item" routerLinkActive="active" *ngIf="funcionarioService.isLoggedInBool  == true">
           <a class="nav-link" [routerLink]="['/dashboard']" >Inicio<span class="sr-only">(current)</span></a>
         </li>
-        <li class="nav-item" routerLinkActive="active" *ngIf="funcionarioService.isLoggedInBool  == true">
+        <li class="nav-item" routerLinkActive="active" *ngIf="funcionarioService.isAdmin  == true">
           <a class="nav-link"  [routerLink]="['/manageParking']" >Estacionamientos</a>
         </li>
-        <li class="nav-item" routerLinkActive="active" *ngIf="funcionarioService.isLoggedInBool  == true">
-          <a class="nav-link" [routerLink]="['/editar-cuenta']">Editar usuario</a>
+        <li class="nav-item" routerLinkActive="active" *ngIf="funcionarioService.isAdmin  == true">
+          <a class="nav-link" [routerLink]="['/editar-cuenta']">Editar mi información</a>
         </li>
+        <!--
         <li class="nav-item" routerLinkActive="active" *ngIf="funcionarioService.isLoggedInBool  == true">
           <a class="nav-link" [routerLink]="['/editar-cuenta']">Editar mi información</a>
         </li>
-        <li class="nav-item" routerLinkActive="active" *ngIf="funcionarioService.isLoggedInBool  == true">
+        -->
+        <li class="nav-item" routerLinkActive="active" *ngIf="funcionarioService.isAdmin  == true">
           <a class="nav-link" [routerLink]="['/gestorFuncionarios']">Consultar funcionarios</a>
         </li>
+        
       </ul>
+      
       <form class="form-inline my-2 my-lg-0">
         <div class="nav-item" routerLinkActive="active"*ngIf="funcionarioService.isLoggedInBool == true">
           <a class="nav-link" [routerLink]="['/login']" (click)="logout()" >Salir  <span class="sr-only">(current)</span></a>

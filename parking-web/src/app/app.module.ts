@@ -33,7 +33,6 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'consultar-parqueos', component: ConsultarParqueosComponent },
   { path: 'un-estacionamiento/:id', component: UnEstacionamientoComponent },
-  // { path: 'edit-user', component: EditUserComponent },
   { path: 'editar-cuenta', component: EditarCuentaComponent },
   { path: 'cambiar-contrasena', component: CambiarContrasenaComponent },
   { path: 'editar-funcionario', component: EditarFuncionarioComponent },
