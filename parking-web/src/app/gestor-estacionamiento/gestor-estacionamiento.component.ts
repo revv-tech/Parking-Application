@@ -10,23 +10,22 @@ import { EstacionamientosService } from '../servicios/estacionamientos.service';
 })
 export class GestorEstacionamientoComponent implements OnInit {
 
-  constructor(private _servicioEstacionamiento:EstacionamientosService) { }
-
-  ngOnInit(): void {
-  
-  AOS.init();
-  
-  }
 
   //Simula la base de datos
-  listaEstacionamientos:Estacionamiento[] = []
+  listaEstacionamientos:any = [] 
   estacionamiento:any
-  estacionamientoSelec:Estacionamiento = new Estacionamiento("", "", 0, 0, 0, 0, TEstacionamiento.CAMPUS)
+  estacionamientoSelec:Estacionamiento = new Estacionamiento(0, "", "", 0, 0, 0, 0, TEstacionamiento.CAMPUS)
 
   isEditing:boolean = false
   isSelected:boolean = false
   addResult:any
 
+  constructor(private _servicioEstacionamiento:EstacionamientosService) { }
+
+  ngOnInit(): void {
+  AOS.init();
+  this.listaEstacionamientos = this._servicioEstacionamiento.getParqueos()
+  }
 
   agregarEstacionamiento(){
 
@@ -47,14 +46,11 @@ export class GestorEstacionamientoComponent implements OnInit {
   
 
   eliminarEstacionamiento(){
+    this._servicioEstacionamiento.deleteParking(this.estacionamientoSelec.idEstacionamiento)
+  }
 
-    if(confirm('Estas seguro de que deseas eliminar ese estacionamiento?')){
-      this.listaEstacionamientos = this.listaEstacionamientos.filter(x => x != this.estacionamientoSelec)
-      this.estacionamientoSelec = new Estacionamiento("", "", 0, 0, 0, 0, TEstacionamiento.CAMPUS)
-      this.isEditing = false
-      this.isSelected = false
-    }
-
+  actualizarEstacionamiento(){
+    this._servicioEstacionamiento.updateParking(this.estacionamientoSelec)
   }
 
   tipoPropio(){
