@@ -1,33 +1,39 @@
-<div class="bg-dark text-white py-5">
-    <h1>Header</h1>
-</div>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">Navbar</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-  
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item" routerLinkActive="active">
-          <a class="nav-link" [routerLink]="['/login']">Login <span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item" routerLinkActive="active">
-          <a class="nav-link" [routerLink]="['/manageParking']">Estacionamientos</a>
-        </li>
-        <li class="nav-item" routerLinkActive="active">
-          <a class="nav-link" [routerLink]="['/']">Funcionarios</a>
-        </li>
-        <li class="nav-item" routerLinkActive="active">
-          <a class="nav-link" [routerLink]="['/edit-user']">Editar usuario</a>
-        </li>
-        <li class="nav-item" routerLinkActive="active">
-          <a class="nav-link" [routerLink]="['/consultar-parqueos']">Consultar estacionamientos</a>
-        </li>
+    
+    <div class="collapse navbar-collapse" id="navbarSupportedContent" >
+      <ul class="navbar-nav mr-auto" *ngIf="funcionarioService.isLoggedInBool == false">
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" [routerLink]="['/login']" >Inicio de Sesión <span class="sr-only">(current)</span></a>
+      </li>
       </ul>
+      <ul class="navbar-nav mr-auto" *ngIf="funcionarioService.isLoggedInBool  == true">
+
+        <li class="nav-item" routerLinkActive="active" *ngIf="funcionarioService.isLoggedInBool  == true">
+          <a class="nav-link" [routerLink]="['/dashboard']" >Inicio<span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item" routerLinkActive="active" *ngIf="funcionarioService.isAdmin  == true">
+          <a class="nav-link"  [routerLink]="['/manageParking']" >Estacionamientos</a>
+        </li>
+        <li class="nav-item" routerLinkActive="active" *ngIf="funcionarioService.isAdmin  == true">
+          <a class="nav-link" [routerLink]="['/editar-cuenta']">Editar mi información</a>
+        </li>
+        <!--
+        <li class="nav-item" routerLinkActive="active" *ngIf="funcionarioService.isLoggedInBool  == true">
+          <a class="nav-link" [routerLink]="['/editar-cuenta']">Editar mi información</a>
+        </li>
+        -->
+        <li class="nav-item" routerLinkActive="active" *ngIf="funcionarioService.isAdmin  == true">
+          <a class="nav-link" [routerLink]="['/gestorFuncionarios']">Consultar funcionarios</a>
+        </li>
+        
+      </ul>
+      
       <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        <div class="nav-item" routerLinkActive="active"*ngIf="funcionarioService.isLoggedInBool == true">
+          <a class="nav-link" [routerLink]="['/login']" (click)="logout()" >Salir  <span class="sr-only">(current)</span></a>
+        </div>
       </form>
     </div>
   </nav>
+  
+  <!-- ALERT  WARNING END -->

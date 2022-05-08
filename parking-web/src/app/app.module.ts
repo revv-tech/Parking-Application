@@ -18,22 +18,30 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { LoginComponent } from './login/login.component';
 import { GestorEstacionamientoComponent } from './gestor-estacionamiento/gestor-estacionamiento.component';
-import { EditUserComponent } from './edit-user/edit-user.component';
 import { ConsultarParqueosComponent } from './consultar-parqueos/consultar-parqueos.component';
 import { UnEstacionamientoComponent } from './un-estacionamiento/un-estacionamiento.component';
 import { FuncionariosService } from './servicios/funcionarios.service';
+import { EditarCuentaComponent } from './editar-cuenta/editar-cuenta.component';
+import { EditarFuncionarioComponent } from './editar-funcionario/editar-funcionario.component';
+import { CambiarContrasenaComponent } from './cambiar-contrasena/cambiar-contrasena.component';
+import { GlobalsComponent } from './globals/globals.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { GestorFuncionariosComponent } from './gestor-funcionarios/gestor-funcionarios.component';
 
 // Nueva ruta agregada
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'consultar-parqueos', component: ConsultarParqueosComponent },
   { path: 'un-estacionamiento/:id', component: UnEstacionamientoComponent },
-  { path: 'edit-user', component: EditUserComponent },
+  { path: 'editar-cuenta', component: EditarCuentaComponent },
+  { path: 'cambiar-contrasena', component: CambiarContrasenaComponent },
+  { path: 'editar-funcionario', component: EditarFuncionarioComponent },
+  { path: 'dashboard', component: DashboardComponent },
   { path: 'manageParking', component: GestorEstacionamientoComponent },
   { path: '', component: LoginComponent, pathMatch:'full' },
   { path: '**', redirectTo: '/login', pathMatch:'full' },
   { path: 'consultar-parqueos/:tipo', component: ConsultarParqueosComponent },
-
+  { path: 'gestorFuncionarios', component: GestorEstacionamientoComponent },
 ];
 
 @NgModule({
@@ -43,9 +51,13 @@ const routes: Routes = [
     FooterComponent,
     LoginComponent,
     GestorEstacionamientoComponent,
-    EditUserComponent,
     ConsultarParqueosComponent,
     UnEstacionamientoComponent,
+    EditarCuentaComponent,
+    EditarFuncionarioComponent,
+    CambiarContrasenaComponent,
+    DashboardComponent,
+    GestorFuncionariosComponent,
   ],
   imports: [
     BrowserModule,
