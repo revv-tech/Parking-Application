@@ -75,7 +75,7 @@ export class EstacionamientosService {
   //   // return this.parqueos;
   // }
 
-  getParqueos(): Observable<any[]> {
+  getParqueos(): Observable<Estacionamiento[]> {
     console.log("Results:")
     this.http.get(this.baseUrl+"/consultar-parqueos").subscribe(_parqueos => {
       this.parqueos = _parqueos
@@ -91,6 +91,20 @@ export class EstacionamientosService {
 
   addParking = async (estacionamiento:any) => {
     this.http.put(this.baseUrl + "/manageParking/addParking", estacionamiento)
+    .subscribe(_result => {
+        return  _result
+    })
+  }
+
+  deleteParking = async (id:any) => {
+    this.http.put(this.baseUrl + "/manageParking/deleteParking", {idEstacionamiento:id})
+    .subscribe(_result => {
+        return  _result
+    })
+  }
+
+  updateParking = async (estacionamiento:any) => {
+    this.http.put(this.baseUrl + "/manageParking/updateParking", estacionamiento)
     .subscribe(_result => {
         return  _result
     })
