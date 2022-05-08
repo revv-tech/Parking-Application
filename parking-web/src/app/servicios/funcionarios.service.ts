@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { TCampus, TFuncionario, TUsuario } from '../model/funcionario';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -45,6 +46,11 @@ export class FuncionariosService {
          
         })
     
+    }
+
+    logout(){
+      this.isLoggedInBool = false;
+      
     }
 
     getUsuarioLoggeado = () => {
