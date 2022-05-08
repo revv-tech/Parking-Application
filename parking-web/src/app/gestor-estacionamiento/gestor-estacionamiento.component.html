@@ -6,7 +6,19 @@
           <label for="estacionamiento">Nombre del estacionamiento</label>
           <input type="text" [(ngModel)]="estacionamientoSelec.nombre" class="form-control" name="estacionamiento">
         </div>
-
+        <div class="col-log-4 mx-auto">
+          <div class="card">
+            <div class="class-header">
+                Subir imagen
+            </div>
+            <div class="class-body">
+              <div class="form-group">
+                <input (change)="onPhotoSelected($event)" type="file" name="imagen1" accept=".jpg,.jpeg,.png" class="d-none" #photoImput/>
+                <img [src]="photoSelected || '../../assets/ParqueoBase.jpg'" alt="No Image" (click)="photoImput.click()" class="img-fluid"/>
+              </div>
+            </div>
+          </div>
+        </div>
         <div class="form-group">
           <label for="ubicacion">Ubicacion</label>
           <input type="text" [(ngModel)]="estacionamientoSelec.ubicacion" class="form-control" name="ubicacion">
