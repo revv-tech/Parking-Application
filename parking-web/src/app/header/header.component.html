@@ -13,10 +13,13 @@
           <a class="nav-link"  [routerLink]="['/manageParking']" >Estacionamientos</a>
         </li>
         <li class="nav-item" routerLinkActive="active" *ngIf="funcionarioService.isLoggedInBool  == true">
-          <a class="nav-link" [routerLink]="['/editar-cuenta']">Editar usuario</a>
+          <a class="nav-link"  [routerLink]="['/consultar-parqueos']">Consultar estacionamientos</a>
         </li>
         <li class="nav-item" routerLinkActive="active" *ngIf="funcionarioService.isLoggedInBool  == true">
-          <a class="nav-link"  [routerLink]="['/consultar-parqueos']">Consultar estacionamientos</a>
+          <a class="nav-link" [routerLink]="['/editar-cuenta']">Editar mi información</a>
+        </li>
+        <li class="nav-item" routerLinkActive="active" *ngIf="funcionarioService.isLoggedInBool  == true">
+          <a class="nav-link" [routerLink]="['/gestorFuncionarios']">Consultar funcionarios</a>
         </li>
       </ul>
       <form class="form-inline my-2 my-lg-0">
