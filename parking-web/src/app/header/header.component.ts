@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { Observable } from 'rxjs';
+import { LoginComponent } from '../login/login.component';
+import { FuncionariosService } from '../servicios/funcionarios.service';
 
 @Component({
   selector: 'app-header',
@@ -6,10 +9,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-
-  constructor() { }
-
+  
+  constructor(public funcionarioService : FuncionariosService) {
+   }
+  
   ngOnInit(): void {
   }
+  
+  logout(){
+    this.funcionarioService.isLoggedInBool = false;
+  }
+
+ 
+
+  
 
 }

@@ -24,6 +24,8 @@ import { FuncionariosService } from './servicios/funcionarios.service';
 import { EditarCuentaComponent } from './editar-cuenta/editar-cuenta.component';
 import { EditarFuncionarioComponent } from './editar-funcionario/editar-funcionario.component';
 import { CambiarContrasenaComponent } from './cambiar-contrasena/cambiar-contrasena.component';
+import { GlobalsComponent } from './globals/globals.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 // Nueva ruta agregada
 const routes: Routes = [
@@ -34,11 +36,12 @@ const routes: Routes = [
   { path: 'editar-cuenta', component: EditarCuentaComponent },
   { path: 'cambiar-contrasena', component: CambiarContrasenaComponent },
   { path: 'editar-funcionario', component: EditarFuncionarioComponent },
+  { path: 'edit-user', component: EditUserComponent },
+  { path: 'dashboard', component: DashboardComponent },
   { path: 'manageParking', component: GestorEstacionamientoComponent },
   { path: '', component: LoginComponent, pathMatch:'full' },
   { path: '**', redirectTo: '/login', pathMatch:'full' },
   { path: 'consultar-parqueos/:tipo', component: ConsultarParqueosComponent },
-
 ];
 
 @NgModule({
@@ -53,6 +56,8 @@ const routes: Routes = [
     EditarCuentaComponent,
     EditarFuncionarioComponent,
     CambiarContrasenaComponent,
+    GlobalsComponent,
+    DashboardComponent,
   ],
   imports: [
     BrowserModule,
