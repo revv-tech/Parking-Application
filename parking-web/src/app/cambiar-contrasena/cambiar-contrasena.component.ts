@@ -21,7 +21,7 @@ export class CambiarContrasenaComponent implements OnInit {
   }
 
   cambiarContrasena = async () => {
-    this.exito = this._servicioUsuario.cambiarContraseña(this.oldPassword, this.newPassword,this.identificacion);
+    //this.exito = this._servicioUsuario.cambiarContraseña(this.oldPassword, this.newPassword,this.identificacion);
   }
 
 }

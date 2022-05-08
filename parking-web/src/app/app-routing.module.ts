@@ -7,7 +7,7 @@ import { EditarFuncionarioComponent } from './editar-funcionario/editar-funciona
 import { GestorEstacionamientoComponent } from './gestor-estacionamiento/gestor-estacionamiento.component';
 import { LoginComponent } from './login/login.component';
 import { UnEstacionamientoComponent } from './un-estacionamiento/un-estacionamiento.component';
-
+import { GestorFuncionariosComponent } from './gestor-funcionarios/gestor-funcionarios.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -17,8 +17,10 @@ const routes: Routes = [
   { path: 'editar-funcionario', component: EditarFuncionarioComponent },
   { path: 'editar-cuenta', component: EditarCuentaComponent },
   { path: 'manageParking', component: GestorEstacionamientoComponent },
+  { path: 'gestorFuncionarios', component: GestorFuncionariosComponent },
   { path: '', component: LoginComponent, pathMatch:'full' },
-  { path: '**', redirectTo: '/login', pathMatch:'full' }
+  { path: '**', redirectTo: '/login', pathMatch:'full' },
+  
 ];
 
 @NgModule({
