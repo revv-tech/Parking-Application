@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Estacionamiento } from '../model/estacionamiento';
+import { response } from 'express';
 
 @Injectable({
   providedIn: 'root'
@@ -89,10 +90,15 @@ export class EstacionamientosService {
     return this.parqueos[index];
   }
 
-  addParking = async (estacionamiento:any) => {
-    this.http.put(this.baseUrl + "/manageParking/addParking", estacionamiento)
-    .subscribe(_result => {
-        return  _result
+  addParking = async (estacionamiento:any,data:any) => {
+    this.http.post("https://api.cloudinary.com/v1_1/dhoxfrbt2/image/upload",data).subscribe(async (response:any)=>{
+      estacionamiento.imagen = await response["secure_url"]
+      estacionamiento["imagen"] = await response["secure_url"]
+      console.log("imagen url: " + estacionamiento["imagen"])
+      this.http.put(this.baseUrl + "/manageParking/addParking", estacionamiento)
+      .subscribe(_result => {
+          return  _result
+      })
     })
   }
 

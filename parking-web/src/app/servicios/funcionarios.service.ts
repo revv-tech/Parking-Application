@@ -14,9 +14,10 @@ export class FuncionariosService {
   public usuarioLoggeado: any;
   mail: any;
   password: any;
-  exito:any;
   isLoggedInBool = false;
   failedPassword = false;
+  exito:any;
+  
   
   constructor(private http: HttpClient) {
       console.log("Funcionando el servicio de funcionarios")
@@ -56,13 +57,5 @@ export class FuncionariosService {
     getUsuarioLoggeado = () => {
       return this.usuarioLoggeado
     }
-
-    cambiarContraseña = async (oldPassword: string, newPassword: string,identificacion:number) => {
-      this.http.put(`${this.baseUrl}/cambiarContrasena`,{vieja:oldPassword,nueva:newPassword,id:identificacion}).subscribe(data => {
-        this.exito = data
-      });
-      return await this.exito
-    }
-  
 
 }
