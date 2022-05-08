@@ -1,0 +1,206 @@
+<div class="mt-5" *ngIf="usuarioLoggeado['tipoUsuario']==tUsuario.COMUN; else elseBlock">
+        <h1>Editar mi cuenta - VISTA USUARIO</h1>
+        <div>
+            <div class="form-group">
+              <label for="estacionamiento">Identificación</label>
+              <input id="campoid" type="number" [(ngModel)]="identificacion" readonly=»readonly» class="form-control" name="identificacion" value="{{identificacion}}">
+            </div>
+            
+            <div class="form-group">
+              <label for="especiales" >¿Presenta alguna discapacidad?</label>
+                <p></p>
+                <div *ngIf="necesidadEspecial; else elseBlockSpecialNeed">
+                    <input type="radio" id="siPresenta" disabled="disabled"  name="necesidadEspecial" value="Sí" checked>
+                    <label for="siPresenta">Sí</label><br>
+                    <input type="radio" id="noPresenta" disabled="disabled"  value="No" name="necesidadEspecial">
+                    <label for="noPresenta">No</label><br>
+                </div>
+                <ng-template #elseBlockSpecialNeed>
+                    <input type="radio" id="siPresenta" disabled="disabled" name="necesidadEspecial" value="Sí" >
+                   <label for="siPresenta">Sí</label><br>
+                    <input type="radio" id="noPresenta" disabled="disabled"  name="necesidadEspecial" value="No" checked>
+                  <label for="noPresenta">No</label><br>
+              </ng-template>
+            </div>
+            <div class="form-group">
+              <label for="nombreCompleto">Nombre Completo</label>
+              <input type="text" readonly=»readonly» [(ngModel)]="nombreCompleto" class="form-control" name="nombreCompleto">
+            </div>
+    
+            <div class="form-group">
+                <div class="btn-group">
+                  <label>Tipo de funcionario: </label>
+                  <select id="dropdown" disabled>
+                        <option [(ngModel)]="tipo" value="A" >{{tipo}}</option>
+                </select>
+              </div>
+              </div>
+    
+              <div class="form-group">
+                <label for="correoAlterno">Correo Alterno</label>
+                <input type="text" [(ngModel)]="correoAlterno" class="form-control" name="correoAlterno">
+              </div>
+    
+              <div class="form-group">
+                <label for="correoInstitucional" >Correo Institucional</label>
+                <input type="text" readonly=»readonly» [(ngModel)]="correoInstitucional" class="form-control" name="correoInstitucional">
+              </div>
+    
+              <div class="form-group">
+                <label for="esJefe">¿Es jefatura?</label>
+                <p></p>
+                <div *ngIf="tipo==tFuncionario.JEFATURA; else elseBlockJefatura">
+                  <input type="radio" id="siEsJefe" disabled="disabled"  name="esJefe" value="Sí" checked>
+                  <label for="siEsJefe">Sí</label><br>
+                  <input type="radio" id="noEsJefe" disabled="disabled"  name="esJefe" value="No">
+                  <label for="noEsJefe">No</label><br>
+              </div>
+              <ng-template #elseBlockJefatura>
+                  <input type="radio" id="siEsJefe" disabled="disabled"  value="Sí" name="esJefe" value="Sí" >
+                 <label for="siEsJefe">Sí</label><br>
+                  <input type="radio" id="noEsJefe" disabled="disabled"  value="No" name="esJefe" checked>
+                <label for="noEsJefe">No</label><br>
+            </ng-template>
+              </div>   
+              <div class="form-group">
+                <label for="oficiales">Vehiculos asignados</label>
+                <input type="text" [(ngModel)]="nuevoVehiculo" class="form-control" name="vehiculos">
+                <button type="button" class="btn btn-secondary" (click)="agregarVehiculo()">agregar</button>
+                <div style="width: 400px; height: 200px; overflow-y: scroll;">
+                  <ul class="list-group">
+                        <li class="list-group-item" *ngFor="let placa of vehiculos, index as i">
+                            <h6>
+                                {{i}}: {{placa}}
+                            </h6>
+                            <button type="button" class="btn btn-secondary" (click)="quitarVehiculo(i)">eliminarPlaca</button>
+                        </li>
+                    </ul>
+                </div>
+              </div>  
+              <div class="form-group">
+                <label for="contrasena">Contraseña</label>
+                <a [routerLink]="['/cambiar-contrasena']"> Cambiar Contraseña...</a>
+              </div>
+              <div class="form-group">
+              <label for="celular">Celular</label>
+              <input type="number" [(ngModel)]="celular" class="form-control" name="celular">
+            </div>          
+            <div class="btn-group">
+              <label>Campus al que pertenece: </label>
+              <select id="dropdown2" disabled>
+                    <option [(ngModel)]="campus" value="H" >{{campus}}</option>
+            </select>
+            <P></P>
+            <P></P>
+            <button (click)="editarUsuario()" class="btn btn-success">Submit</button>
+        </div>
+        <div *ngIf="submitted">
+          <h4>Información actualizada!</h4>
+        </div>
+    </div>
+</div>
+
+<ng-template #elseBlock>
+    <div class="mt-5">
+        <h1>Editar mi cuenta - VISTA ADMINISTRADOR</h1>
+            <div class="form-group">
+              <label for="estacionamiento">Identificación</label>
+              <input id="campoid" type="number" [(ngModel)]="identificacion" readonly=»readonly» class="form-control" name="identificacion" value="{{identificacion}}">
+            </div>
+            
+            <div class="form-group">
+              <label for="especiales" >¿Presenta alguna discapacidad?</label>
+                <p></p>
+                <div *ngIf="necesidadEspecial; else elseBlockSpecialNeed">
+                    <input [(ngModel)]="necesidadEspecial" type="radio" id="siPresenta"  name="necesidadEspecial" [value]="true" checked>
+                    <label for="siPresenta">Sí</label><br>
+                    <input [(ngModel)]="necesidadEspecial" type="radio" id="noPresenta"  [value]="false" name="necesidadEspecial">
+                    <label for="noPresenta">No</label><br>
+                </div>
+                <ng-template #elseBlockSpecialNeed>
+                    <input [(ngModel)]="necesidadEspecial" type="radio" id="siPresenta" name="necesidadEspecial" [value]="true" >
+                   <label for="siPresenta">Sí</label><br>
+                    <input [(ngModel)]="necesidadEspecial" type="radio" id="noPresenta" name="necesidadEspecial" [value]="false" checked>
+                  <label for="noPresenta">No</label><br>
+              </ng-template>
+            </div>
+            <div class="form-group">
+              <label for="nombreCompleto">Nombre Completo</label>
+              <input type="text" [(ngModel)]="nombreCompleto" class="form-control" name="nombreCompleto">
+            </div>
+    
+            <div class="form-group">
+                <div class="btn-group">
+                  <label>Tipo de funcionario: </label>
+                  <select [(ngModel)]="tipo" id="dropdown">
+                        <option>{{tipo2}}</option>
+                        <option *ngFor="let func of tiposFuncionarios,index as i">{{func}}</option>
+                </select>
+              </div>
+              </div>
+    
+              <div class="form-group">
+                <label for="correoAlterno">Correo Alterno</label>
+                <input type="text" [(ngModel)]="correoAlterno" class="form-control" name="correoAlterno">
+              </div>
+    
+              <div class="form-group">
+                <label for="correoInstitucional" >Correo Institucional</label>
+                <input type="text" [(ngModel)]="correoInstitucional" class="form-control" name="correoInstitucional">
+              </div>
+    
+              <div class="form-group">
+                <label for="esJefe">¿Es jefatura? </label>
+                <p></p>
+                <div *ngIf="tipo==tFuncionario.JEFATURA; else elseBlockJefatura">
+                  <input disabled type="radio" id="siEsJefe"  name="esJefe" value="Sí" checked>
+                  <label for="siEsJefe">Sí</label><br>
+                  <input disabled type="radio" id="noEsJefe"  name="esJefe" value="No">
+                  <label for="noEsJefe">No</label><br>
+              </div>
+              <ng-template #elseBlockJefatura>
+                  <input disabled type="radio" id="siEsJefe" value="Sí" name="esJefe" value="Sí" >
+                 <label for="siEsJefe">Sí</label><br>
+                  <input disabled type="radio" id="noEsJefe" value="No" name="esJefe" checked>
+                <label for="noEsJefe">No</label><br>
+            </ng-template>
+              </div>   
+              <div class="form-group">
+                <label for="oficiales">Vehiculos asignados</label>
+                <input type="text" [(ngModel)]="nuevoVehiculo" class="form-control" name="vehiculos">
+                <button type="button" class="btn btn-secondary" (click)="agregarVehiculo()">agregar</button>
+                <div style="width: 400px; height: 200px; overflow-y: scroll;">
+                  <ul class="list-group">
+                        <li class="list-group-item" *ngFor="let placa of vehiculos, index as i">
+                            <h6>
+                                {{i}}: {{placa}}
+                            </h6>
+                            <button type="button" class="btn btn-secondary" (click)="quitarVehiculo(i)">eliminarPlaca</button>
+                        </li>
+                    </ul>
+                </div>
+              </div>  
+              <div class="form-group">
+                <label for="contrasena">Contraseña</label>
+                <a [routerLink]="'/cambiar-contrasena'"> Cambiar Contraseña...</a>
+                <!-- <input type="password" [(ngModel)]="contrasena" class="form-control" name="contrasena"> -->
+              </div>
+              <div class="form-group">
+              <label for="celular">Celular</label>
+              <input type="number" [(ngModel)]="celular" class="form-control" name="celular">
+            </div>          
+            <div class="btn-group">
+              <label>Campus al que pertenece: </label>
+              <select [(ngModel)]="campus" id="dropdown2">
+                  <option>{{campus2}}</option>
+                  <option *ngFor="let tipo of tiposCampus">{{tipo}}</option>
+            </select>
+            <P></P>
+            <P></P>
+            <button (click)="editarUsuario()" class="btn btn-success">Submit</button>
+        </div>
+        <div *ngIf="submitted">
+          <h4>Información actualizada!</h4>
+        </div>   
+    </div> 
+</ng-template>

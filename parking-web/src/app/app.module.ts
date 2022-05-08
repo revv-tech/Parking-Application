@@ -18,11 +18,12 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { LoginComponent } from './login/login.component';
 import { GestorEstacionamientoComponent } from './gestor-estacionamiento/gestor-estacionamiento.component';
-import { EditUserComponent } from './edit-user/edit-user.component';
 import { ConsultarParqueosComponent } from './consultar-parqueos/consultar-parqueos.component';
 import { UnEstacionamientoComponent } from './un-estacionamiento/un-estacionamiento.component';
 import { FuncionariosService } from './servicios/funcionarios.service';
-import { GlobalsComponent } from './globals/globals.component';
+import { EditarCuentaComponent } from './editar-cuenta/editar-cuenta.component';
+import { EditarFuncionarioComponent } from './editar-funcionario/editar-funcionario.component';
+import { CambiarContrasenaComponent } from './cambiar-contrasena/cambiar-contrasena.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 
 // Nueva ruta agregada
@@ -30,7 +31,6 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'consultar-parqueos', component: ConsultarParqueosComponent },
   { path: 'un-estacionamiento/:id', component: UnEstacionamientoComponent },
-  { path: 'edit-user', component: EditUserComponent },
   { path: 'dashboard', component: DashboardComponent },
   { path: 'manageParking', component: GestorEstacionamientoComponent },
   { path: '', component: LoginComponent, pathMatch:'full' },
@@ -45,10 +45,11 @@ const routes: Routes = [
     FooterComponent,
     LoginComponent,
     GestorEstacionamientoComponent,
-    EditUserComponent,
     ConsultarParqueosComponent,
     UnEstacionamientoComponent,
-    GlobalsComponent,
+    EditarCuentaComponent,
+    EditarFuncionarioComponent,
+    CambiarContrasenaComponent,
     DashboardComponent,
   ],
   imports: [
