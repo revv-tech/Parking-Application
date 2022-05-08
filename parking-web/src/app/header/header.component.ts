@@ -1,4 +1,5 @@
 import { AfterViewInit, Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { LoginComponent } from '../login/login.component';
 import { FuncionariosService } from '../servicios/funcionarios.service';
@@ -15,10 +16,12 @@ export class HeaderComponent implements OnInit {
   
   ngOnInit(): void {
   }
-  
-  logout(){
+
+  logout () {
     this.funcionarioService.isLoggedInBool = false;
   }
+  
+  
 
  
 
