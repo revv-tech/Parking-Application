@@ -56,8 +56,6 @@ const routes: Routes = [
     EditarCuentaComponent,
     EditarFuncionarioComponent,
     CambiarContrasenaComponent,
-    GlobalsComponent,
-    DashboardComponent,
   ],
   imports: [
     BrowserModule,

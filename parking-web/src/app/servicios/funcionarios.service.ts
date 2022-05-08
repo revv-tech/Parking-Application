@@ -17,6 +17,8 @@ export class FuncionariosService {
   isLoggedInBool = false;
   failedPassword = false;
   exito:any;
+  isLoggedInBool = false;
+  failedPassword = false;
   
   constructor(private http: HttpClient) {
       console.log("Funcionando el servicio de funcionarios")
@@ -35,10 +37,15 @@ export class FuncionariosService {
       // Login con body de contrasena y email
       this.http.put(this.baseUrl+'/login',{contraseña : password, 
         correoInstitucional : mail}).subscribe (data => {
-          // Iguala usuario con usuario recibido de consulta
-          this.usuarioLoggeado = data;
-          
-          console.log(data)
+          if (data != null) {
+            // Iguala usuario con usuario recibido de consulta
+            this.usuarioLoggeado = data;
+            console.log(data)
+            this.isLoggedInBool = true;
+          }else{
+            this.failedPassword = true;
+          }
+         
         })
     
     }
