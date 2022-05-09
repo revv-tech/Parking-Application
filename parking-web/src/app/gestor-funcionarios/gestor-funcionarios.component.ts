@@ -12,40 +12,87 @@ export class GestorFuncionariosComponent implements OnInit {
   //Simula la base de datos
   listaFuncionarios:any = [] 
   funcionario:any
-  funcionarioSelec:Funcionario = new Funcionario(0,"","","",false,"",TFuncionario.DOCENTE,[],TUsuario.COMUN,"",0,TCampus.CARTAGO);
+  funcionarioSelec:Funcionario = new Funcionario(0,"","","",false,"",TFuncionario.DOCENTE,[],TUsuario.COMUN,"","",TCampus.CARTAGO);
   isEditing:boolean = false
   isSelected:boolean = false
   addResult:any
 
-  constructor(public funcionarioService : FuncionariosService) { }
+  constructor(public _servicioFuncionario : FuncionariosService) { }
 
   ngOnInit(): void {
+    AOS.init();
+    this.listaFuncionarios= this._servicioFuncionario.getFuncionarios()
   }
 
   agregarFuncionario(){
 
+
+    let body = {identificacion :      this.funcionarioSelec.identificacion,
+                nombreCompleto :      this.funcionarioSelec.nombreCompleto,
+                codigo :              this.funcionarioSelec.codigo,
+                correoAlterno :       this.funcionarioSelec.correoAlterno,
+                necesidadEspecial :   this.funcionarioSelec.necesidadEspecial,
+                correoInstitucional : this.funcionarioSelec.correoInstitucional,
+                contraseña :          this.funcionarioSelec.contraseña,
+                tipoUsuario:          this.funcionarioSelec.tipoUsuario,
+                campus :              this.funcionarioSelec.campus,
+                tipo :                this.funcionarioSelec.tipo,
+                celular :             this.funcionarioSelec.celular}
+
+    this.addResult = this._servicioFuncionario.addFuncionario(body)
     
   }
   
 
-  eliminarEstacionamiento(){
-    
+  eliminarFuncionario(){
+    this._servicioFuncionario.deleteFuncionario(this.funcionarioSelec.identificacion)
   }
 
-  actualizarEstacionamiento(){
-    
+  actualizarFuncionario(){
+    this._servicioFuncionario.updateFuncionario(this.funcionarioSelec)
   }
 
-  tipoFuncionario(){
+  tipoFuncionario(tipo:any){
     
+    if(tipo == 1){
+      this.funcionarioSelec.tipo = TFuncionario.ADMINISTRATIVO
+    }
+    else if(tipo == 2){
+      this.funcionarioSelec.tipo = TFuncionario.DOCENTE
+    }
+    else if(tipo == 3){
+      this.funcionarioSelec.tipo = TFuncionario.JEFATURA
+    }
+    else if(tipo == 4){
+      this.funcionarioSelec.tipo = TFuncionario.VISITANTE
+    }
   }
 
-  tipoUsuario(){
-    
+  tipoUsuario(tipo:any){
+    if(tipo == 1){
+      this.funcionarioSelec.tipoUsuario = TUsuario.ADMIN
+    }
+    else if(tipo == 2){
+      this.funcionarioSelec.tipoUsuario = TUsuario.COMUN
+    }  
   }
 
-  campusFuncionario(){
-    
+  campusFuncionario(campus:any){
+    if(campus == 1){
+      this.funcionarioSelec.campus = TCampus.SAN_JOSE
+    }
+    else if(campus == 2){
+      this.funcionarioSelec.campus = TCampus.CARTAGO
+    }
+    else if(campus == 3){
+      this.funcionarioSelec.campus = TCampus.ALAJUELA
+    }
+    else if(campus == 4){
+      this.funcionarioSelec.campus = TCampus.SAN_CARLOS
+    } 
+    else if(campus == 5){
+      this.funcionarioSelec.campus = TCampus.LIMON
+    } 
   }
 
   printFuncionario(funcionario:Funcionario){

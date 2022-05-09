@@ -18,11 +18,22 @@ export class FuncionariosService {
   failedPassword = false;
   isAdmin = false;
   exito:any;
+  funcionarios:any=[]
   
   
   constructor(private http: HttpClient) {
       console.log("Funcionando el servicio de funcionarios")
     }
+
+    getFuncionarios(): Observable<Funcionario[]> {
+      console.log("Results:")
+      this.http.get(this.baseUrl+"/consultar-Funcionarios").subscribe(_funcionarios => {
+        this.funcionarios = _funcionarios
+        console.log(_funcionarios)
+      })
+      return this.funcionarios;
+    }
+  
 
     editarUsuario = async (_body:any)  => {  
       return this.http.put<any>(`${this.baseUrl}/editarUsuario`,_body)
@@ -63,6 +74,25 @@ export class FuncionariosService {
       return this.usuarioLoggeado
     }
 
-    
+    addFuncionario= async (funcionario:any) => {
 
+        this.http.put(this.baseUrl + "/agregarFuncionario", funcionario)
+        .subscribe(_result => {
+            return  _result
+        })
+      
+    }   
+    deleteFuncionario = async (id:any) => {
+      this.http.put(this.baseUrl + "/eliminarFuncionario", {identificacion:id})
+      .subscribe(_result => {
+          return  _result
+      })
+    }
+
+    updateFuncionario = async (funcionario:any) => {
+      this.http.put(this.baseUrl + "/actualizarFuncionario", funcionario)
+      .subscribe(_result => {
+          return  _result
+      })
+    }
 }
