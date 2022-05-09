@@ -47,24 +47,43 @@
         </div>
 
           <div class="btn-group" role="group" aria-label="Basic example">
-            <label>Tipo de funcionario</label>
-            <button type="button" class="btn btn-secondary" (click)="tipoFuncionario(2)">Docente</button>
-            <button type="button" class="btn btn-secondary" (click)="tipoFuncionario(1)">Administrativo</button>
-            <button type="button" class="btn btn-secondary" (click)="tipoFuncionario(3)">Jefatura</button>
-            <button type="button" class="btn btn-secondary" (click)="tipoFuncionario(4)">Visitante</button>
+            
+            <div class="template-tabs-container">
+             
+              <label>Tipo de funcionario</label>
+               <div class="buttons" tile color="secondary" group>
+                <button type="button" class="btn btn-secondary" (click)="tipoFuncionario(2)">Docente</button>&nbsp;&nbsp;&nbsp;
+                <button type="button" class="btn btn-secondary" (click)="tipoFuncionario(1)">Administrativo</button>&nbsp;&nbsp;&nbsp;
+                <button type="button" class="btn btn-secondary" (click)="tipoFuncionario(3)">Jefatura</button>&nbsp;&nbsp;&nbsp;
+                <button type="button" class="btn btn-secondary" (click)="tipoFuncionario(4)">Visitante</button>&nbsp;&nbsp;&nbsp;
+              </div>
+              
+            
             <label>Tipo de usuario</label>
-            <button type="button" class="btn btn-secondary" (click)="tipoUsuario(2)">Comun</button>
-            <button type="button" class="btn btn-secondary" (click)="tipoUsuario(1)">Administrador</button>
+            <div class="buttons" tile color="secondary" group>
+              <button type="button" class="btn btn-secondary" (click)="tipoUsuario(2)">Comun</button>&nbsp;&nbsp;&nbsp;
+              <button type="button" class="btn btn-secondary" (click)="tipoUsuario(1)">Administrador</button>&nbsp;&nbsp;&nbsp;
+            </div>
+          
+            
             <label>Campus al que pertenece</label>
-            <button type="button" class="btn btn-secondary" (click)="campusFuncionario(1)">San Jose</button>
-            <button type="button" class="btn btn-secondary" (click)="campusFuncionario(2)">Cartago</button>
-            <button type="button" class="btn btn-secondary" (click)="campusFuncionario(3)">Alajuela</button>
-            <button type="button" class="btn btn-secondary" (click)="campusFuncionario(4)">San Carlos</button>
-            <button type="button" class="btn btn-secondary" (click)="campusFuncionario(5)">Limon</button>
-            <button type="submit" class="btn btn-primary" (click)="agregarFuncionario()">Agregar</button>
-            <button type="submit" *ngIf="isEditing == true" class="btn btn-primary" (click)="actualizarFuncionario()">Editar</button>
-            <button type="submit" *ngIf="isSelected == true" class="btn btn-danger" (click)="eliminarFuncionario()">Borrar</button>
+            <div class="buttons" tile color="secondary" group>
+            <button type="button" class="btn btn-secondary" (click)="campusFuncionario(1)">San Jose</button>&nbsp;&nbsp;&nbsp;
+            
+            <button type="button" class="btn btn-secondary" (click)="campusFuncionario(2)">Cartago</button>&nbsp;&nbsp;&nbsp;
+            <button type="button" class="btn btn-secondary" (click)="campusFuncionario(3)">Alajuela</button>&nbsp;&nbsp;&nbsp;
+            <button type="button" class="btn btn-secondary" (click)="campusFuncionario(4)">San Carlos</button>&nbsp;&nbsp;&nbsp;
+            <button type="button" class="btn btn-secondary" (click)="campusFuncionario(5)">Limon</button>&nbsp;&nbsp;&nbsp;
+            </div>
+            <p></p>
+            <p></p>
+            <p></p>
+            <label>Por realizar: </label>
+            <button type="submit" class="btn btn-primary" (click)="agregarFuncionario()">Agregar</button>&nbsp;&nbsp;&nbsp;
+            <button type="submit" *ngIf="isEditing == true" class="btn btn-primary" (click)="actualizarFuncionario()">Editar</button>&nbsp;&nbsp;&nbsp;
+            <button type="submit" *ngIf="isSelected == true" class="btn btn-danger" (click)="eliminarFuncionario()">Borrar</button>&nbsp;&nbsp;&nbsp;
           </div>
+        </div>
         
       </form>
 

@@ -29,7 +29,7 @@
     
             <div class="form-group">
                 <div class="btn-group">
-                  <label>Tipo de funcionario: </label>
+                  <label>Tipo de funcionario: </label>&nbsp;&nbsp;&nbsp;
                   <select id="dropdown" disabled>
                         <option [(ngModel)]="tipo" value="A" >{{tipo}}</option>
                 </select>
@@ -65,7 +65,11 @@
               <div class="form-group">
                 <label for="oficiales">Vehiculos asignados</label>
                 <input type="text" [(ngModel)]="nuevoVehiculo" class="form-control" name="vehiculos">
-                <button type="button" class="btn btn-secondary" (click)="agregarVehiculo()">agregar</button>
+                <p></p>
+                <p></p>
+                <button type="button" class="btn btn-secondary" (click)="agregarVehiculo()">Agregar</button>
+                <p></p>
+                <p></p>
                 <div style="width: 400px; height: 200px; overflow-y: scroll;">
                   <ul class="list-group">
                         <li class="list-group-item" *ngFor="let placa of vehiculos, index as i">
@@ -78,18 +82,19 @@
                 </div>
               </div>  
               <div class="form-group">
-                <label for="contrasena">Contraseña</label>
-                <a [routerLink]="['/cambiar-contrasena']"> Cambiar Contraseña...</a>
+                <label for="contrasena">Contraseña </label>&nbsp;&nbsp;&nbsp;
+                <button [routerLink]="'/cambiar-contrasena'" class="btn btn-success"> Cambiar Contraseña</button>
+                <!-- <input type="password" [(ngModel)]="contrasena" class="form-control" name="contrasena"> -->
               </div>
               <div class="form-group">
               <label for="celular">Celular</label>
               <input type="number" [(ngModel)]="celular" class="form-control" name="celular">
             </div>          
             <div class="btn-group">
-              <label>Campus al que pertenece: </label>
+              <label>Campus al que pertenece: </label>&nbsp;&nbsp;&nbsp;
               <select id="dropdown2" disabled>
-                    <option [(ngModel)]="campus" value="H" >{{campus}}</option>
-            </select>
+                    <option [(ngModel)]="campus" value="H" >{{campus}}</option>&nbsp;&nbsp;&nbsp;
+            </select>&nbsp;&nbsp;&nbsp;
             <P></P>
             <P></P>
             <button (click)="editarUsuario()" class="btn btn-success">Submit</button>
@@ -131,7 +136,7 @@
     
             <div class="form-group">
                 <div class="btn-group">
-                  <label>Tipo de funcionario: </label>
+                  <label>Tipo de funcionario: </label>&nbsp;&nbsp;&nbsp;
                   <select [(ngModel)]="tipo" id="dropdown">
                         <option>{{tipo2}}</option>
                         <option *ngFor="let func of tiposFuncionarios,index as i">{{func}}</option>
@@ -168,7 +173,13 @@
               <div class="form-group">
                 <label for="oficiales">Vehiculos asignados</label>
                 <input type="text" [(ngModel)]="nuevoVehiculo" class="form-control" name="vehiculos">
-                <button type="button" class="btn btn-secondary" (click)="agregarVehiculo()">agregar</button>
+                <p></p>
+                <p></p>
+                <p></p>
+                <button type="button" class="btn btn-secondary" (click)="agregarVehiculo()">Agregar</button>
+                <p></p>
+                <p></p>
+                <p></p>
                 <div style="width: 400px; height: 200px; overflow-y: scroll;">
                   <ul class="list-group">
                         <li class="list-group-item" *ngFor="let placa of vehiculos, index as i">
@@ -181,8 +192,8 @@
                 </div>
               </div>  
               <div class="form-group">
-                <label for="contrasena">Contraseña</label>
-                <a [routerLink]="'/cambiar-contrasena'"> Cambiar Contraseña...</a>
+                <label for="contrasena">Contraseña </label>&nbsp;&nbsp;&nbsp;
+                <button [routerLink]="'/cambiar-contrasena'" class="btn btn-success"> Cambiar Contraseña</button>
                 <!-- <input type="password" [(ngModel)]="contrasena" class="form-control" name="contrasena"> -->
               </div>
               <div class="form-group">
@@ -190,14 +201,15 @@
               <input type="number" [(ngModel)]="celular" class="form-control" name="celular">
             </div>          
             <div class="btn-group">
-              <label>Campus al que pertenece: </label>
+              <label>Campus al que pertenece: </label>&nbsp;&nbsp;&nbsp;
               <select [(ngModel)]="campus" id="dropdown2">
                   <option>{{campus2}}</option>
-                  <option *ngFor="let tipo of tiposCampus">{{tipo}}</option>
-            </select>
+                  <option *ngFor="let tipo of tiposCampus">{{tipo}}</option>&nbsp;&nbsp;&nbsp;
+            </select>&nbsp;&nbsp;&nbsp;
             <P></P>
             <P></P>
-            <button (click)="editarUsuario()" class="btn btn-success">Submit</button>
+            
+            <button (click)="editarUsuario()" class="btn btn-success">Subir</button>
         </div>
         <div *ngIf="submitted">
           <h4>Información actualizada!</h4>
