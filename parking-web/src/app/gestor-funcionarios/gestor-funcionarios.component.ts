@@ -44,12 +44,12 @@ export class GestorFuncionariosComponent implements OnInit {
   }
   
 
-  eliminarEstacionamiento(){
+  eliminarFuncionario(){
     this._servicioFuncionario.deleteFuncionario(this.funcionarioSelec.identificacion)
   }
 
-  actualizarEstacionamiento(){
-    
+  actualizarFuncionario(){
+    this._servicioFuncionario.updateFuncionario(this.funcionarioSelec)
   }
 
   tipoFuncionario(tipo:any){

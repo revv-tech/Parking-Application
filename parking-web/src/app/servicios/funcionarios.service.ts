@@ -88,4 +88,11 @@ export class FuncionariosService {
           return  _result
       })
     }
+
+    updateFuncionario = async (funcionario:any) => {
+      this.http.put(this.baseUrl + "/actualizarFuncionario", funcionario)
+      .subscribe(_result => {
+          return  _result
+      })
+    }
 }
