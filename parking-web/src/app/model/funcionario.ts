@@ -8,7 +8,7 @@ export class Funcionario {
     tipo:TFuncionario
     vehiculos:string[]
     tipoUsuario:TUsuario
-    contraseña:string
+    contrasena:string
     celular:string
     campus:TCampus
 
@@ -23,7 +23,7 @@ export class Funcionario {
             this.tipo = _tipo,
             this.vehiculos = _vehiculos,
             this.tipoUsuario = _tipoUsuario,
-            this.contraseña = _contraseña,
+            this.contrasena = _contraseña,
             this.celular = _celular,
             this.campus = _campus
         }
