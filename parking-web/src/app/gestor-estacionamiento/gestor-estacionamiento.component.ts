@@ -69,17 +69,26 @@ export class GestorEstacionamientoComponent implements OnInit {
 
     this.addResult = this._servicioEstacionamiento.addParking(body,data)
     this.listaEstacionamientos = this._servicioEstacionamiento.getParqueos()
+    window.alert("Estacionamiento Agregado!")
   }
   
 
   eliminarEstacionamiento(){
-    this._servicioEstacionamiento.deleteParking(this.estacionamientoSelec.idEstacionamiento)
-    this.listaEstacionamientos = this._servicioEstacionamiento.getParqueos()
+    if (confirm("¿Esta seguro que desea borrar?")){
+      this._servicioEstacionamiento.deleteParking(this.estacionamientoSelec.idEstacionamiento)
+      this.listaEstacionamientos = this._servicioEstacionamiento.getParqueos()
+      this.estacionamientoSelec = new Estacionamiento(0, "", "", 0, 0, 0, 0, TEstacionamiento.CAMPUS)
+      this.photoSelected = null;
+    }
+    
   }
 
   actualizarEstacionamiento(){
     this._servicioEstacionamiento.updateParking(this.estacionamientoSelec)
     this.listaEstacionamientos = this._servicioEstacionamiento.getParqueos()
+    this.estacionamientoSelec = new Estacionamiento(0, "", "", 0, 0, 0, 0, TEstacionamiento.CAMPUS)
+    this.photoSelected = null;
+    window.alert("Estacionamiento Actualizado!")
   }
 
   tipoPropio(){

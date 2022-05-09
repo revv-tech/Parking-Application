@@ -85,6 +85,8 @@ export class EditarCuentaComponent implements OnInit {
     this._servicioUsuario.editarUsuario(body);
     console.log(body)
     this.submitted = true;
+    //this._servicioUsuario.login(cor)
+    
   }
 
 
