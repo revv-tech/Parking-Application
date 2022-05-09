@@ -1,17 +1,17 @@
 <div class="mt-5">
     <h2>¡Bienvenido!</h2>
     <p>Selecciona un parqueo:</p>
-    <label>Tipo de parqueo: </label>
+    <label>Tipo de parqueo: </label>&nbsp;&nbsp;&nbsp;
         <select [(ngModel)]="tipoParqueo" id="dropdown2">
-            <option [(ngModel)]="tipoParqueo">Cualquiera</option>
+            <option [(ngModel)]="tipoParqueo">Cualquiera</option>&nbsp;&nbsp;&nbsp;
             <option [(ngModel)]="tipoParqueo" *ngFor="let tipo of tiposParqueos,index as i">{{tipo}}</option>
-        </select>
+        </select>&nbsp;&nbsp;&nbsp;
     <!-- <div class="btn-group">
         <button [(ngModel)]="tipoParqueo" type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Tipo de parqueo</button>
         <ul class="dropdown-menu" [(ngModel)]="tipoParqueo">
             <li ><a *ngFor="let tipo of tiposParqueos" class="dropdown-item" [routerLink]="'/consultar-parqueos'">{{tipo}}</a></li>
         </ul> -->
-        <button (click)="filtrarPorTipo()" class="btn btn-success">filtrar</button>
+        <button (click)="filtrarPorTipo()" class="btn btn-success">Filtrar</button>
     <!-- </div> -->
     <p></p>
     <p></p>
