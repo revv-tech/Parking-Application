@@ -27,11 +27,13 @@ export class GestorEstacionamientoComponent implements OnInit {
   public archivo: any;
   photoSelected: string | ArrayBuffer | null= "";
 
-  constructor(private _servicioEstacionamiento:EstacionamientosService) { }
+  constructor(private _servicioEstacionamiento:EstacionamientosService) { 
+    this.listaEstacionamientos = this._servicioEstacionamiento.getParqueos()
+
+  }
 
   ngOnInit(): void {
   AOS.init();
-  this.listaEstacionamientos = this._servicioEstacionamiento.getParqueos()
   }
 
   onPhotoSelected(evento:any):void{
@@ -66,15 +68,18 @@ export class GestorEstacionamientoComponent implements OnInit {
                 tipo :                this.estacionamientoSelec.tipo}
 
     this.addResult = this._servicioEstacionamiento.addParking(body,data)
+    this.listaEstacionamientos = this._servicioEstacionamiento.getParqueos()
   }
   
 
   eliminarEstacionamiento(){
     this._servicioEstacionamiento.deleteParking(this.estacionamientoSelec.idEstacionamiento)
+    this.listaEstacionamientos = this._servicioEstacionamiento.getParqueos()
   }
 
   actualizarEstacionamiento(){
     this._servicioEstacionamiento.updateParking(this.estacionamientoSelec)
+    this.listaEstacionamientos = this._servicioEstacionamiento.getParqueos()
   }
 
   tipoPropio(){
@@ -100,5 +105,6 @@ export class GestorEstacionamientoComponent implements OnInit {
     this.isSelected = true
     this.estacionamientoSelec = estacionamiento;
     this.isEditing = true
+    this.photoSelected = this.estacionamientoSelec["imagen"];
   }
 }
