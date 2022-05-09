@@ -25,6 +25,14 @@ export class FuncionariosService {
       console.log("Funcionando el servicio de funcionarios")
     }
 
+    cambiarContraseña = async (oldPassword: string, newPassword: string,identificacion:number) => {
+      this.http.put(`${this.baseUrl}/cambiarContrasena`,{vieja:oldPassword,nueva:newPassword,id:identificacion}).subscribe(data => {
+        this.exito = data
+      });
+      return await this.exito
+    }
+
+
     getFuncionarios(): Observable<Funcionario[]> {
       console.log("Results:")
       this.http.get(this.baseUrl+"/consultar-Funcionarios").subscribe(_funcionarios => {
