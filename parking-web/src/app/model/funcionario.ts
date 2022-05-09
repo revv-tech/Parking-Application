@@ -9,11 +9,11 @@ export class Funcionario {
     vehiculos:string[]
     tipoUsuario:TUsuario
     contraseña:string
-    celular:number
+    celular:string
     campus:TCampus
 
     constructor(_identificacion:number,_nombreCompleto:string,_codigo:string,_correoAlterno:string,_necesidadEspecial:boolean,
-        _correoInstitucional:string,_tipo:TFuncionario,_vehiculos:string[],_tipoUsuario:TUsuario,_contraseña:string,_celular:number,_campus:TCampus){
+        _correoInstitucional:string,_tipo:TFuncionario,_vehiculos:string[],_tipoUsuario:TUsuario,_contraseña:string,_celular:string,_campus:TCampus){
             this.identificacion = _identificacion,
             this.nombreCompleto = _nombreCompleto,
             this.codigo = _codigo,
