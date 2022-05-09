@@ -1,4 +1,6 @@
-<div class="mt-5">
+
+
+<div class="content">
 
       <body class="text-center" *ngIf="funcionarioService.isLoggedInBool == false">
          
@@ -21,21 +23,22 @@
               
             </div>
         
-            <button class="w-100 btn btn-lg btn-primary" type="submit" (click)="submitLoginData()" >Aceptar</button>
+            <button class="w-100 btn btn-lg btn-primary" type="submit"  (click)="submitLoginData()" >Aceptar</button>
             <p class="mt-5 mb-3 text-muted">&copy; 2017–2021</p>
           </form>
           
           
         </main>
         
-        </body>
-        <body class="text-center" *ngIf="funcionarioService.isLoggedInBool == true">
-          <div class="mt-5">
-            <h2 class="text-center">¡Bienvenido!</h2>
-        </div>
-          
-          
+      
           </body>
+          <p></p>
+          <p></p>
+          <p></p>
+          <div class="dashboardContent" *ngIf="funcionarioService.isLoggedInBool == true">
+            <h1 class="text-center">¡Bienvenido!</h1>
+          </div>
+          
          <!-- ALERT  WARNING START -->
          <div class="alert alert-warning alert-dismissible fade show" role="alert" *ngIf="funcionarioService.failedPassword">
           <strong>El correo o contraseña no son correctos!</strong> Revisa los espacios de abajo.
