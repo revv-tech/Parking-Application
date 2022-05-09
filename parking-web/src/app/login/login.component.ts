@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
       this.user = response;
       this.logged = true;
       console.log("Usuario encontrado")
-      console.log("Usuario " + this.receivedUsername + " Contraseña " + this.receivedPassword)
+      console.log("Usuario " + this.user["nombreCompleto"] + " Contraseña " + this.user["contraseña"])
     
     }
   }
