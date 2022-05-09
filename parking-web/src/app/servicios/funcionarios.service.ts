@@ -25,6 +25,14 @@ export class FuncionariosService {
       console.log("Funcionando el servicio de funcionarios")
     }
 
+    cambiarContraseña = async (oldPassword: string, newPassword: string,identificacion:number) => {
+      this.http.put(`${this.baseUrl}/cambiarContrasena`,{vieja:oldPassword,nueva:newPassword,id:identificacion}).subscribe(data => {
+        this.exito = data
+      });
+      return await this.exito
+    }
+
+
     getFuncionarios(): Observable<Funcionario[]> {
       console.log("Results:")
       this.http.get(this.baseUrl+"/consultar-Funcionarios").subscribe(_funcionarios => {
@@ -51,8 +59,12 @@ export class FuncionariosService {
           if (data != null) {
             // Iguala usuario con usuario recibido de consulta
             this.usuarioLoggeado = data;
-            if (this.usuarioLoggeado["tipoUsuario"] == "Administrador" ){
+            console.log(data)
+            if (this.usuarioLoggeado["tipoUsuario"] == "Administrativo"){
               this.isAdmin = true;
+            }
+            if (this.usuarioLoggeado["tipoUsuario"] == "Común"){
+              this.isAdmin = false;
             }
             console.log(data)
             this.isLoggedInBool = true;
@@ -66,7 +78,9 @@ export class FuncionariosService {
 
     logout(){
       this.isLoggedInBool = false;
-      
+      this.isAdmin = false;
+      this.failedPassword = false;
+      this.usuarioLoggeado = undefined;
     }
 
     getUsuarioLoggeado = () => {

@@ -8,11 +8,16 @@
       <label for="floatingPassword">Ingrese su nueva contraseña</label>
       <input type="password" [(ngModel)]="newPassword" class="form-control" id="floatingPassword" name="Password">
     </div>
-
+    <p></p>
+    <p></p>
+    <p></p>
     <button class="w-100 btn btn-lg btn-primary" type="submit" (click)="cambiarContrasena()">Cambiar contraseña</button>
+    <p></p>
+    <p></p>
+    <p></p>
     <!-- <p class="mt-5 mb-3 text-muted">&copy; 2017–2021</p> -->
     <div class="alert alert-success" role="alert" *ngIf= "exito">
-        contraseña cambiada!
+        Contraseña Cambiada!
       </div>
       <div class="alert alert-success" role="alert" *ngIf= "!   exito">
         ***

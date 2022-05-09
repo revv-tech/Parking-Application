@@ -16,6 +16,9 @@ export class GestorFuncionariosComponent implements OnInit {
   isEditing:boolean = false
   isSelected:boolean = false
   addResult:any
+  camposContrasenas:boolean=false;
+  confirmar:string=""
+  todobien: boolean = true;
 
   constructor(public _servicioFuncionario : FuncionariosService) { }
 
@@ -25,7 +28,11 @@ export class GestorFuncionariosComponent implements OnInit {
   }
 
   agregarFuncionario(){
-
+    if(this.funcionarioSelec.contrasena != this.confirmar || this.funcionarioSelec.contrasena == ""){
+      this.todobien = false
+      return
+    }
+    this.todobien = true
 
     let body = {identificacion :      this.funcionarioSelec.identificacion,
                 nombreCompleto :      this.funcionarioSelec.nombreCompleto,
@@ -33,22 +40,30 @@ export class GestorFuncionariosComponent implements OnInit {
                 correoAlterno :       this.funcionarioSelec.correoAlterno,
                 necesidadEspecial :   this.funcionarioSelec.necesidadEspecial,
                 correoInstitucional : this.funcionarioSelec.correoInstitucional,
-                contraseña :          this.funcionarioSelec.contraseña,
+                contraseña :          this.funcionarioSelec.contrasena,
                 tipoUsuario:          this.funcionarioSelec.tipoUsuario,
                 campus :              this.funcionarioSelec.campus,
                 tipo :                this.funcionarioSelec.tipo,
                 celular :             this.funcionarioSelec.celular}
 
     this.addResult = this._servicioFuncionario.addFuncionario(body)
-    
+    this.listaFuncionarios= this._servicioFuncionario.getFuncionarios()
   }
   
 
   eliminarFuncionario(){
     this._servicioFuncionario.deleteFuncionario(this.funcionarioSelec.identificacion)
+    this.listaFuncionarios= this._servicioFuncionario.getFuncionarios()
+
   }
 
   actualizarFuncionario(){
+    if(this.funcionarioSelec.contrasena != this.confirmar){
+      this.todobien = false
+      return
+    }
+    this.todobien = true
+    this.funcionarioSelec.contrasena = this.confirmar
     this._servicioFuncionario.updateFuncionario(this.funcionarioSelec)
   }
 
@@ -113,7 +128,9 @@ export class GestorFuncionariosComponent implements OnInit {
   cargarFuncionarioSelec(funcionario:Funcionario){
     this.isSelected = true
     this.funcionarioSelec = funcionario;
+    this.funcionarioSelec.contrasena =""
     this.isEditing = true
+    this.camposContrasenas=true
   }
 
 }

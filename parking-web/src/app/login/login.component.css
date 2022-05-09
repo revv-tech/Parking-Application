@@ -37,3 +37,11 @@ body {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
+
+.dashboardContent
+{
+  position: absolute;
+  top: 20%;
+  left: 53%;
+  transform: translate(-50%, -50%);
+}

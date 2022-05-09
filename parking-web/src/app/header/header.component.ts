@@ -16,6 +16,8 @@ export class HeaderComponent implements OnInit {
 
   logout () {
     this.funcionarioService.isLoggedInBool = false;
+    this.funcionarioService.isAdmin = false;
+    this.funcionarioService.usuarioLoggeado = null;
   }
   
   

@@ -14,7 +14,7 @@
             <div class="class-body">
               <div class="form-group">
                 <input (change)="onPhotoSelected($event)" type="file" name="imagen1" accept=".jpg,.jpeg,.png" class="d-none" #photoImput/>
-                <img [src]="photoSelected || '../../assets/ParqueoBase.jpg'" alt="No Image" (click)="photoImput.click()" class="img-fluid"/>
+                <img [src]="photoSelected || '../../assets/ParqueoBase.jpg'" alt="No Image" (click)="photoImput.click()" height="200"/>
               </div>
             </div>
           </div>
@@ -39,15 +39,25 @@
             <input type="number" [(ngModel)]="estacionamientoSelec.espaciosOficiales" class="form-control" name="oficiales">
           </div>
 
-
-          <div class="btn-group" role="group" aria-label="Basic example">
+          
+          
             <label>Tipo de estacionamiento</label>
-            <button type="button" class="btn btn-secondary" (click)="tipoPropio()">Propio</button>
-            <button type="button" class="btn btn-secondary" (click)="tipoSubcontratado()">Subcontratado</button>
-            <button type="submit" class="btn btn-primary" (click)="agregarEstacionamiento()">Agregar</button>
-            <button type="submit" *ngIf="isEditing == true" class="btn btn-primary" (click)="actualizarEstacionamiento()">Editar</button>
-            <button type="submit" *ngIf="isSelected == true" class="btn btn-danger" (click)="eliminarEstacionamiento()">Borrar</button>
-          </div>
+            <div class="buttons" tile color="secondary" group>
+              <button type="button" class="btn btn-secondary" (click)="tipoPropio()">Propio</button>&nbsp;&nbsp;&nbsp;
+              <button type="button" class="btn btn-secondary" (click)="tipoSubcontratado()">Subcontratado</button>&nbsp;&nbsp;&nbsp;
+            </div>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <label>Por realizar: </label>
+            <div class="buttons" tile color="secondary" group>
+              <button type="submit" class="btn btn-primary" (click)="agregarEstacionamiento()">Agregar</button>&nbsp;&nbsp;&nbsp;
+              <button type="submit" *ngIf="isEditing == true" class="btn btn-primary" (click)="actualizarEstacionamiento()">Editar</button>&nbsp;&nbsp;&nbsp;
+              <button type="submit" *ngIf="isSelected == true" class="btn btn-danger" (click)="eliminarEstacionamiento()">Borrar</button>&nbsp;&nbsp;&nbsp;
+            </div>
+          
 
       </form>
 

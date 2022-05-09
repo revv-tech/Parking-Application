@@ -1,5 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    
+  
+  <img src="assets/tec.jpg" width="30" height="30" alt="">
+
     <div class="collapse navbar-collapse" id="navbarSupportedContent" >
       <ul class="navbar-nav mr-auto" *ngIf="funcionarioService.isLoggedInBool == false">
       <li class="nav-item" routerLinkActive="active">
@@ -11,19 +13,18 @@
         <li class="nav-item" routerLinkActive="active" *ngIf="funcionarioService.isLoggedInBool  == true">
           <a class="nav-link" [routerLink]="['/dashboard']" >Inicio<span class="sr-only">(current)</span></a>
         </li>
+        <li class="nav-item" routerLinkActive="active" *ngIf="funcionarioService.isLoggedInBool  == true">
+          <a class="nav-link" [routerLink]="['/consultar-parqueos']">Consultar parqueos</a>
+        </li>
         <li class="nav-item" routerLinkActive="active" *ngIf="funcionarioService.isAdmin  == true">
           <a class="nav-link"  [routerLink]="['/manageParking']" >Estacionamientos</a>
         </li>
+
         <li class="nav-item" routerLinkActive="active" *ngIf="funcionarioService.isAdmin  == true">
-          <a class="nav-link" [routerLink]="['/editar-cuenta']">Editar mi información</a>
+          <a class="nav-link" [routerLink]="['/gestorFuncionarios']">Funcionarios</a>
         </li>
-        <!--
-        <li class="nav-item" routerLinkActive="active" *ngIf="funcionarioService.isLoggedInBool  == true">
+        <li class="nav-item" routerLinkActive="active" >
           <a class="nav-link" [routerLink]="['/editar-cuenta']">Editar mi información</a>
-        </li>
-        -->
-        <li class="nav-item" routerLinkActive="active" *ngIf="funcionarioService.isAdmin  == true">
-          <a class="nav-link" [routerLink]="['/gestorFuncionarios']">Consultar funcionarios</a>
         </li>
         
       </ul>
