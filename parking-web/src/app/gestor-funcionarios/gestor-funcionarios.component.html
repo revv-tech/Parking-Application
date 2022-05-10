@@ -1,6 +1,9 @@
 <div class="mt-5" >
     <h1>Gestionar Funcionarios</h1>
+    <p></p><p></p><p></p>
     <h3>Agregar un nuevo funcionario</h3>
+    <p></p>
+    <p></p>
     <form>
 
 <div class="form-group">
@@ -16,14 +19,19 @@
           <label for="identificacion">Identificación</label>
           <input type="text" [(ngModel)]="funcionarioSelec.identificacion" class="form-control" name="identificacion">
         </ng-template>
-          <h4>Cambiar contraseña...</h4>
+        <p></p>
+          <h4>Cambiar contraseña</h4>
+          <p></p><p></p><p></p><p></p>
           <label for="contrasena">Escriba su nueva contraseña</label>
           <input type="password" [(ngModel)]="funcionarioSelec.contrasena" class="form-control" name="contrasena">
+          <p></p><p></p>
           <label for="contrasena">Confirme su nueva contraseña</label>
           <input type="password" [(ngModel)]="confirmar" class="form-control" name="contrasena">
+          <p></p><p></p><p></p>
           <div class="alert alert-fail" role="alert" *ngIf= "!todobien">
             Las contraseñas no coinciden o no ha creado una
           </div>
+          <p></p><p></p><p></p>
 
 
         <div class="form-group">
@@ -52,36 +60,34 @@
              
               <label>Tipo de funcionario</label>
                <div class="buttons" tile color="secondary" group>
-                <button type="button" class="btn btn-secondary" (click)="tipoFuncionario(2)">Docente</button>&nbsp;&nbsp;&nbsp;
-                <button type="button" class="btn btn-secondary" (click)="tipoFuncionario(1)">Administrativo</button>&nbsp;&nbsp;&nbsp;
-                <button type="button" class="btn btn-secondary" (click)="tipoFuncionario(3)">Jefatura</button>&nbsp;&nbsp;&nbsp;
-                <button type="button" class="btn btn-secondary" (click)="tipoFuncionario(4)">Visitante</button>&nbsp;&nbsp;&nbsp;
+                <button type="button" class="btn btn-secondary" (click)="tipoFuncionario(2)" [class.btn-success]="tipofuncionarioSelec == 2">Docente</button>&nbsp;&nbsp;&nbsp;
+                <button type="button" class="btn btn-secondary" (click)="tipoFuncionario(1)" [class.btn-success]="tipofuncionarioSelec == 1">Administrativo</button>&nbsp;&nbsp;&nbsp;
+                <button type="button" class="btn btn-secondary" (click)="tipoFuncionario(3)" [class.btn-success]="tipofuncionarioSelec == 3">Jefatura</button>&nbsp;&nbsp;&nbsp;
+                <button type="button" class="btn btn-secondary" (click)="tipoFuncionario(4)" [class.btn-success]="tipofuncionarioSelec == 4">Visitante</button>&nbsp;&nbsp;&nbsp;
               </div>
               
             
             <label>Tipo de usuario</label>
             <div class="buttons" tile color="secondary" group>
-              <button type="button" class="btn btn-secondary" (click)="tipoUsuario(2)">Comun</button>&nbsp;&nbsp;&nbsp;
-              <button type="button" class="btn btn-secondary" (click)="tipoUsuario(1)">Administrador</button>&nbsp;&nbsp;&nbsp;
+              <button type="button" class="btn btn-secondary" (click)="tipoUsuario(2)" [class.btn-success]="usuarioSelec == 2">Comun</button>&nbsp;&nbsp;&nbsp;
+              <button type="button" class="btn btn-secondary" (click)="tipoUsuario(1)" [class.btn-success]="usuarioSelec == 1">Administrador</button>&nbsp;&nbsp;&nbsp;
             </div>
-          
-            
             <label>Campus al que pertenece</label>
             <div class="buttons" tile color="secondary" group>
-            <button type="button" class="btn btn-secondary" (click)="campusFuncionario(1)">San Jose</button>&nbsp;&nbsp;&nbsp;
+            <button type="button" class="btn btn-secondary" (click)="campusFuncionario(1)" [class.btn-success]="campusSelec == 1">San Jose</button>&nbsp;&nbsp;&nbsp;
             
-            <button type="button" class="btn btn-secondary" (click)="campusFuncionario(2)">Cartago</button>&nbsp;&nbsp;&nbsp;
-            <button type="button" class="btn btn-secondary" (click)="campusFuncionario(3)">Alajuela</button>&nbsp;&nbsp;&nbsp;
-            <button type="button" class="btn btn-secondary" (click)="campusFuncionario(4)">San Carlos</button>&nbsp;&nbsp;&nbsp;
-            <button type="button" class="btn btn-secondary" (click)="campusFuncionario(5)">Limon</button>&nbsp;&nbsp;&nbsp;
+            <button type="button" class="btn btn-secondary" (click)="campusFuncionario(2)" [class.btn-success]="campusSelec == 2">Cartago</button>&nbsp;&nbsp;&nbsp;
+            <button type="button" class="btn btn-secondary" (click)="campusFuncionario(3)" [class.btn-success]="campusSelec == 3">Alajuela</button>&nbsp;&nbsp;&nbsp;
+            <button type="button" class="btn btn-secondary" (click)="campusFuncionario(4)" [class.btn-success]="campusSelec == 4">San Carlos</button>&nbsp;&nbsp;&nbsp;
+            <button type="button" class="btn btn-secondary" (click)="campusFuncionario(5)" [class.btn-success]="campusSelec == 5">Limon</button>&nbsp;&nbsp;&nbsp;
             </div>
             <p></p>
             <p></p>
             <p></p>
-            <label>Por realizar: </label>
-            <button type="submit" class="btn btn-primary" (click)="agregarFuncionario()">Agregar</button>&nbsp;&nbsp;&nbsp;
-            <button type="submit" *ngIf="isEditing == true" class="btn btn-primary" (click)="actualizarFuncionario()">Editar</button>&nbsp;&nbsp;&nbsp;
-            <button type="submit" *ngIf="isSelected == true" class="btn btn-danger" (click)="eliminarFuncionario()">Borrar</button>&nbsp;&nbsp;&nbsp;
+            <label>Por realizar: </label>&nbsp;&nbsp;&nbsp;
+            <button type="submit" class="btn btn-primary" (click)="agregarFuncionario()">Agregar funcionario</button>&nbsp;&nbsp;&nbsp;
+            <button type="submit" *ngIf="isEditing == true" class="btn btn-primary" (click)="actualizarFuncionario()">Editar funcionario</button>&nbsp;&nbsp;&nbsp;
+            <button type="submit" *ngIf="isSelected == true" class="btn btn-danger" (click)="eliminarFuncionario()">Borrar funcionario</button>&nbsp;&nbsp;&nbsp;
           </div>
         </div>
         

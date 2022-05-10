@@ -1,5 +1,5 @@
 <div class="mt-5" *ngIf="usuarioLoggeado['tipoUsuario']==tUsuario.COMUN; else elseBlock">
-        <h1>Editar mi cuenta - VISTA USUARIO</h1>
+        <h1>Editar mi la Información de mi cuenta</h1>
         <div>
             <div class="form-group">
               <label for="estacionamiento">Identificación</label>
@@ -104,6 +104,11 @@
               <button (click)="editarUsuario()" class="btn btn-success">Actualizar</button>
             </ng-template>
         </div>
+        <div class="col text-center">
+          <ul id="redbutton">
+            <button (click)="editarUsuario()" class="btn btn-success"> Actualizar tu Información </button>
+          </ul>
+        </div>
         <div *ngIf="submitted">
           <p></p>
             <p></p>
@@ -116,7 +121,7 @@
 
 <ng-template #elseBlock>
     <div class="mt-5">
-        <h1>Editar mi cuenta - VISTA ADMINISTRADOR</h1>
+        <h1>Editar mi la Información de mi cuenta Administrador</h1>
             <div class="form-group">
               <label for="estacionamiento">Identificación</label>
               <input id="campoid" type="number" [(ngModel)]="identificacion" readonly=»readonly» class="form-control" name="identificacion" value="{{identificacion}}">
@@ -229,6 +234,12 @@
             <p></p>
             <p></p>
         </div>
+        <div class="col text-center">
+          <ul id="redbutton">
+            <button (click)="editarUsuario()" class="btn btn-success"> Actualizar tu Información </button>
+          </ul>
+        </div>
+        
         <div *ngIf="submitted">
           <p></p>
             <p></p>

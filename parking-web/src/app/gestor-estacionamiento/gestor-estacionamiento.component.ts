@@ -27,6 +27,8 @@ export class GestorEstacionamientoComponent implements OnInit {
   public archivo: any;
   photoSelected: string | ArrayBuffer | null= "";
 
+  tipoSelec:any = 0
+
   constructor(private _servicioEstacionamiento:EstacionamientosService) { 
     this.listaEstacionamientos = this._servicioEstacionamiento.getParqueos()
 
@@ -69,25 +71,36 @@ export class GestorEstacionamientoComponent implements OnInit {
 
     this.addResult = this._servicioEstacionamiento.addParking(body,data)
     this.listaEstacionamientos = this._servicioEstacionamiento.getParqueos()
+    window.alert("Estacionamiento Agregado!")
+    this.tipoSelec = 0
   }
   
 
   eliminarEstacionamiento(){
-    this._servicioEstacionamiento.deleteParking(this.estacionamientoSelec.idEstacionamiento)
-    this.listaEstacionamientos = this._servicioEstacionamiento.getParqueos()
+    if (confirm("¿Esta seguro que desea borrar?")){
+      this._servicioEstacionamiento.deleteParking(this.estacionamientoSelec.idEstacionamiento)
+      this.listaEstacionamientos = this._servicioEstacionamiento.getParqueos()
+      this.estacionamientoSelec = new Estacionamiento(0, "", "", 0, 0, 0, 0, TEstacionamiento.CAMPUS)
+      this.photoSelected = null;
+    }
+    
+    this.tipoSelec = 0
   }
 
   actualizarEstacionamiento(){
     this._servicioEstacionamiento.updateParking(this.estacionamientoSelec)
     this.listaEstacionamientos = this._servicioEstacionamiento.getParqueos()
+    this.tipoSelec = 0
   }
 
   tipoPropio(){
     this.estacionamientoSelec.tipo = TEstacionamiento.CAMPUS
+    this.tipoSelec = 1
   }
 
   tipoSubcontratado(){
     this.estacionamientoSelec.tipo = TEstacionamiento.SUBCONTRATADO
+    this.tipoSelec = 2
   }
 
   printEstacionamiento(estacionamiento:Estacionamiento){
