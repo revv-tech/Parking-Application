@@ -97,7 +97,12 @@
             </select>&nbsp;&nbsp;&nbsp;
             <p></p>
             <p></p>
-            
+            <div *ngIf="submitted1; else elseSubmit">
+              <button (click)="editarUsuario()" class="btn btn-success">Actualizado</button>
+            </div>
+            <ng-template #elseSubmit>
+              <button (click)="editarUsuario()" class="btn btn-success">Actualizar</button>
+            </ng-template>
         </div>
         <div class="col text-center">
           <ul id="redbutton">
@@ -218,7 +223,12 @@
             <P></P>
             <P></P>
             
-            
+            <div *ngIf="submitted1; else elseSubmit">
+              <button (click)="editarUsuario()" class="btn btn-success">Actualizado</button>
+            </div>
+            <ng-template #elseSubmit>
+              <button (click)="editarUsuario()" class="btn btn-success">Actualizar</button>
+            </ng-template>
             <p></p>
             <p></p>
             <p></p>
