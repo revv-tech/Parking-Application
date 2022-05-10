@@ -82,9 +82,13 @@ export class EditarCuentaComponent implements OnInit {
       celular:this.celular,
       campus:this.campus
     }
-    this._servicioUsuario.editarUsuario(body);
-    console.log(body)
+    this._servicioUsuario.editarUsuario(body)
+    .then( () => {
+      this.usuarioLoggeado = this._servicioUsuario.getOneUserLog(this.usuarioLoggeado["identificacion"])
+      }
+    );
     this.submitted = true;
+
   }
 
 
