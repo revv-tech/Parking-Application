@@ -110,13 +110,8 @@ export class FuncionariosService {
       })
     }
 
-    getOneUserLog = async (idUser:any) => {
-      this.http.put(this.baseUrl + "/obtenerUsuario", {identificacion: idUser})
-      .subscribe(response =>{
-        console.log("resultado nn:" + response)
-        this.usuarioLoggeado = response
-        return this.usuarioLoggeado
-      })
+    setUsuarioLoggeado = async (usuarioLoggeadoNuevaInfo:any) => {
+      this.usuarioLoggeado = usuarioLoggeadoNuevaInfo
     }
 
     actualInfo = async (usuario:any) => {

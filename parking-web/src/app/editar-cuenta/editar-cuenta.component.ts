@@ -14,6 +14,7 @@ export class EditarCuentaComponent implements OnInit {
   public usuarioLoggeado;
   public nuevoVehiculo:string=""
   submitted = false;
+  submitted1 = false;
   tiposFuncionarios:any[]=[]
   tiposUsuarios:any[]=[]
   tiposCampus:any[]=[]
@@ -67,7 +68,7 @@ export class EditarCuentaComponent implements OnInit {
 
   
   //Vista del usuario
-  editarUsuario(){
+  editarUsuario = async () => {
     let body = {
       identificacion:this.identificacion,
       nombreCompleto:this.nombreCompleto,
@@ -82,12 +83,10 @@ export class EditarCuentaComponent implements OnInit {
       celular:this.celular,
       campus:this.campus
     }
-    this._servicioUsuario.editarUsuario(body)
-    .then( () => {
-      this.usuarioLoggeado = this._servicioUsuario.getOneUserLog(this.usuarioLoggeado["identificacion"])
-      }
-    );
+    await this._servicioUsuario.editarUsuario(body)
+    await this._servicioUsuario.setUsuarioLoggeado(body)
     this.submitted = true;
+    this.submitted1 = true
 
   }
 
@@ -103,10 +102,12 @@ agregarVehiculo(){
   if(this.nuevoVehiculo!=""){
     this.vehiculos.push(this.nuevoVehiculo)
   }
+  this.submitted1 = false
 }
 
 quitarVehiculo(index:number){
   this.vehiculos.splice(index,1);
+  this.submitted1 = false
 }
 
 }
