@@ -60,25 +60,26 @@
              
               <label>Tipo de funcionario</label>
                <div class="buttons" tile color="secondary" group>
-                <button type="button" class="btn btn-secondary" (click)="tipoFuncionario(2)">Docente</button>&nbsp;&nbsp;&nbsp;
-                <button type="button" class="btn btn-secondary" (click)="tipoFuncionario(1)">Administrativo</button>&nbsp;&nbsp;&nbsp;
-                <button type="button" class="btn btn-secondary" (click)="tipoFuncionario(3)">Jefatura</button>&nbsp;&nbsp;&nbsp;
-                <button type="button" class="btn btn-secondary" (click)="tipoFuncionario(4)">Visitante</button>&nbsp;&nbsp;&nbsp;
+                <button type="button" class="btn btn-secondary" (click)="tipoFuncionario(2)" [class.btn-success]="tipofuncionarioSelec == 2">Docente</button>&nbsp;&nbsp;&nbsp;
+                <button type="button" class="btn btn-secondary" (click)="tipoFuncionario(1)" [class.btn-success]="tipofuncionarioSelec == 1">Administrativo</button>&nbsp;&nbsp;&nbsp;
+                <button type="button" class="btn btn-secondary" (click)="tipoFuncionario(3)" [class.btn-success]="tipofuncionarioSelec == 3">Jefatura</button>&nbsp;&nbsp;&nbsp;
+                <button type="button" class="btn btn-secondary" (click)="tipoFuncionario(4)" [class.btn-success]="tipofuncionarioSelec == 4">Visitante</button>&nbsp;&nbsp;&nbsp;
               </div>
               
             
             <label>Tipo de usuario</label>
             <div class="buttons" tile color="secondary" group>
-              <button type="button" class="btn btn-secondary" (click)="tipoUsuario(2)">Comun</button>&nbsp;&nbsp;&nbsp;
-              <button type="button" class="btn btn-secondary" (click)="tipoUsuario(1)">Administrador</button>&nbsp;&nbsp;&nbsp;
+              <button type="button" class="btn btn-secondary" (click)="tipoUsuario(2)" [class.btn-success]="usuarioSelec == 2">Comun</button>&nbsp;&nbsp;&nbsp;
+              <button type="button" class="btn btn-secondary" (click)="tipoUsuario(1)" [class.btn-success]="usuarioSelec == 1">Administrador</button>&nbsp;&nbsp;&nbsp;
             </div>
             <label>Campus al que pertenece</label>
             <div class="buttons" tile color="secondary" group>
-            <button type="button" class="btn btn-secondary" (click)="campusFuncionario(1)">San Jose</button>&nbsp;&nbsp;&nbsp;
-            <button type="button" class="btn btn-secondary" (click)="campusFuncionario(2)">Cartago</button>&nbsp;&nbsp;&nbsp;
-            <button type="button" class="btn btn-secondary" (click)="campusFuncionario(3)">Alajuela</button>&nbsp;&nbsp;&nbsp;
-            <button type="button" class="btn btn-secondary" (click)="campusFuncionario(4)">San Carlos</button>&nbsp;&nbsp;&nbsp;
-            <button type="button" class="btn btn-secondary" (click)="campusFuncionario(5)">Limon</button>&nbsp;&nbsp;&nbsp;
+            <button type="button" class="btn btn-secondary" (click)="campusFuncionario(1)" [class.btn-success]="campusSelec == 1">San Jose</button>&nbsp;&nbsp;&nbsp;
+            
+            <button type="button" class="btn btn-secondary" (click)="campusFuncionario(2)" [class.btn-success]="campusSelec == 2">Cartago</button>&nbsp;&nbsp;&nbsp;
+            <button type="button" class="btn btn-secondary" (click)="campusFuncionario(3)" [class.btn-success]="campusSelec == 3">Alajuela</button>&nbsp;&nbsp;&nbsp;
+            <button type="button" class="btn btn-secondary" (click)="campusFuncionario(4)" [class.btn-success]="campusSelec == 4">San Carlos</button>&nbsp;&nbsp;&nbsp;
+            <button type="button" class="btn btn-secondary" (click)="campusFuncionario(5)" [class.btn-success]="campusSelec == 5">Limon</button>&nbsp;&nbsp;&nbsp;
             </div>
             <p></p>
             <p></p>

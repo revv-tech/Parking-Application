@@ -20,6 +20,10 @@ export class GestorFuncionariosComponent implements OnInit {
   confirmar:string=""
   todobien: boolean = true;
 
+  usuarioSelec:any = 0
+  tipofuncionarioSelec:any = 0
+  campusSelec:any = 0
+
   constructor(public _servicioFuncionario : FuncionariosService) { }
 
   ngOnInit(): void {
@@ -49,6 +53,9 @@ export class GestorFuncionariosComponent implements OnInit {
     this.addResult = this._servicioFuncionario.addFuncionario(body)
     this.listaFuncionarios= this._servicioFuncionario.getFuncionarios()
     window.alert("Funcionario Agregado!")
+    this.tipofuncionarioSelec = 0
+    this.usuarioSelec = 0
+    this.campusSelec = 0
   }
   
 
@@ -57,6 +64,9 @@ export class GestorFuncionariosComponent implements OnInit {
       this._servicioFuncionario.deleteFuncionario(this.funcionarioSelec.identificacion)
       this.listaFuncionarios= this._servicioFuncionario.getFuncionarios()
     }
+    this.tipofuncionarioSelec = 0
+    this.usuarioSelec = 0
+    this.campusSelec = 0
   }
 
   actualizarFuncionario(){
@@ -69,9 +79,14 @@ export class GestorFuncionariosComponent implements OnInit {
     this._servicioFuncionario.updateFuncionario(this.funcionarioSelec)
     window.alert("Funcionario Actualizado!")
     
+    this.tipofuncionarioSelec = 0
+    this.usuarioSelec = 0
+    this.campusSelec = 0
   }
 
   tipoFuncionario(tipo:any){
+
+    this.tipofuncionarioSelec = tipo
     
     if(tipo == 1){
       this.funcionarioSelec.tipo = TFuncionario.ADMINISTRATIVO
@@ -88,6 +103,9 @@ export class GestorFuncionariosComponent implements OnInit {
   }
 
   tipoUsuario(tipo:any){
+
+    this.usuarioSelec = tipo
+    
     if(tipo == 1){
       this.funcionarioSelec.tipoUsuario = TUsuario.ADMIN
     }
@@ -97,6 +115,9 @@ export class GestorFuncionariosComponent implements OnInit {
   }
 
   campusFuncionario(campus:any){
+
+    this.campusSelec = campus
+
     if(campus == 1){
       this.funcionarioSelec.campus = TCampus.SAN_JOSE
     }

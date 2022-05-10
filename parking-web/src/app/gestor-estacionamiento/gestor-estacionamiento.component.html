@@ -44,8 +44,8 @@
           
             <label>Tipo de estacionamiento</label>
             <div class="buttons" tile color="secondary" group>
-              <button type="button" class="btn btn-secondary" (click)="tipoPropio()">Propio</button>&nbsp;&nbsp;&nbsp;
-              <button type="button" class="btn btn-secondary" (click)="tipoSubcontratado()">Subcontratado</button>&nbsp;&nbsp;&nbsp;
+              <button type="button" class="btn btn-secondary" (click)="tipoPropio()" [class.btn-success]="tipoSelec == 1">Propio</button>&nbsp;&nbsp;&nbsp;
+              <button type="button" class="btn btn-secondary" (click)="tipoSubcontratado()" [class.btn-success]="tipoSelec == 2">Subcontratado</button>&nbsp;&nbsp;&nbsp;
             </div>
             <p></p>
             <p></p>
