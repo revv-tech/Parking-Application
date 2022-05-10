@@ -52,6 +52,7 @@ export class GestorFuncionariosComponent implements OnInit {
 
     this.addResult = this._servicioFuncionario.addFuncionario(body)
     this.listaFuncionarios= this._servicioFuncionario.getFuncionarios()
+    window.alert("Funcionario Agregado!")
     this.tipofuncionarioSelec = 0
     this.usuarioSelec = 0
     this.campusSelec = 0
@@ -59,12 +60,13 @@ export class GestorFuncionariosComponent implements OnInit {
   
 
   eliminarFuncionario(){
-    this._servicioFuncionario.deleteFuncionario(this.funcionarioSelec.identificacion)
-    this.listaFuncionarios= this._servicioFuncionario.getFuncionarios()
+    if (confirm("¿Esta seguro que desea borrar?")){
+      this._servicioFuncionario.deleteFuncionario(this.funcionarioSelec.identificacion)
+      this.listaFuncionarios= this._servicioFuncionario.getFuncionarios()
+    }
     this.tipofuncionarioSelec = 0
     this.usuarioSelec = 0
     this.campusSelec = 0
-
   }
 
   actualizarFuncionario(){
@@ -75,6 +77,8 @@ export class GestorFuncionariosComponent implements OnInit {
     this.todobien = true
     this.funcionarioSelec.contrasena = this.confirmar
     this._servicioFuncionario.updateFuncionario(this.funcionarioSelec)
+    window.alert("Funcionario Actualizado!")
+    
     this.tipofuncionarioSelec = 0
     this.usuarioSelec = 0
     this.campusSelec = 0

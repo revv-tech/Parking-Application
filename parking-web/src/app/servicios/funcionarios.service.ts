@@ -59,14 +59,14 @@ export class FuncionariosService {
           if (data != null) {
             // Iguala usuario con usuario recibido de consulta
             this.usuarioLoggeado = data;
-            console.log(data)
+            
             if (this.usuarioLoggeado["tipoUsuario"] == "Administrativo"){
               this.isAdmin = true;
             }
             if (this.usuarioLoggeado["tipoUsuario"] == "Común"){
               this.isAdmin = false;
             }
-            console.log(data)
+            
             this.isLoggedInBool = true;
           }else{
             this.failedPassword = true;

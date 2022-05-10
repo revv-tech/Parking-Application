@@ -85,10 +85,11 @@ export class EditarCuentaComponent implements OnInit {
     this._servicioUsuario.editarUsuario(body)
     .then( () => {
       this.usuarioLoggeado = this._servicioUsuario.getOneUserLog(this.usuarioLoggeado["identificacion"])
+      
       }
     );
     this.submitted = true;
-
+    //this._servicioUsuario.login(cor)
   }
 
 
