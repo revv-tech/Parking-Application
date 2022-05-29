@@ -41,7 +41,111 @@
           </div>
 
           
-          
+              <h3>Registro de horarios: </h3>
+          <p></p><p></p>
+            
+          <div class="horariosForm">
+              <!--
+              Lunes
+              -->
+              <h5>Lunes</h5>
+              <p></p><p></p>
+              <small>Hora de Entrada: </small>
+              <p></p><p></p>
+              <input type="time" id="horaLunesEntrada" name="horaLunesEntrada" min="00:00" max="24:00">
+              <p></p>
+              <small>Hora de Salida: </small>
+              <p></p>
+              <input type="time" id="horaLunesSalida" name="horaLunesSalida" min="00:00" max="24:00">
+              <span class="input-group-btn" 
+                  style="width:0px;"></span> 
+          </div>
+          <div class="horariosForm">
+            <!--
+            Martes
+            -->
+            <h5>Martes</h5>
+            <p></p><p></p>
+            <small>Hora de Entrada: </small>
+            <p></p><p></p>
+            <input type="time" id="horaMartesEntrada" name="horaMartesEntrada" min="00:00" max="24:00">
+            <p></p>
+            <small>Hora de Salida: </small>
+            <p></p>
+            <input type="time" id="horaMartesSalida" name="horaMartesSalida" min="00:00" max="24:00">
+        </div>
+        
+        <div class="horariosForm">
+          <!--
+          Miercoles
+          -->
+          <h5>Miercoles</h5>
+          <p></p><p></p>
+          <small>Hora de Entrada: </small>
+          <p></p><p></p>
+          <input type="time" id="horaMiercolesEntrada" name="horaMiercolesEntrada" min="00:00" max="24:00">
+          <p></p>
+          <small>Hora de Salida: </small>
+          <p></p>
+          <input type="time" id="horaMiercolesSalida" name="horaMiercolesSalida" min="00:00" max="24:00">
+      </div>
+      <div class="horariosForm">
+        <!--
+        Jueves
+        -->
+        <h5>Jueves</h5>
+        <p></p><p></p>
+        <small>Hora de Entrada: </small>
+        <p></p><p></p>
+        <input type="time" id="horaJuevesEntrada" name="horaJuevesEntrada" min="00:00" max="24:00">
+        <p></p>
+        <small>Hora de Salida: </small>
+        <p></p>
+        <input type="time" id="horaJuevesSalida" name="horaJuevesSalida" min="00:00" max="24:00">
+    </div>
+
+    <div class="horariosForm">
+      <!--
+      Viernes
+      -->
+      <h5>Viernes</h5>
+      <p></p><p></p>
+      <small>Hora de Entrada: </small>
+      <p></p><p></p>
+      <input type="time" id="horaViernesEntrada" name="horaViernesEntrada" min="00:00" max="24:00">
+      <p></p>
+      <small>Hora de Salida: </small>
+      <p></p>
+      <input type="time" id="horaViernesSalida" name="horaViernesSalida" min="00:00" max="24:00">
+    </div>
+    <div class="horariosForm">
+      <!--
+      Sabado
+      -->
+      <h5>Sabado</h5>
+      <p></p><p></p>
+      <small>Hora de Entrada: </small>
+      <p></p><p></p>
+      <input type="time" id="horaSabadoEntrada" name="horaSabadoEntrada" min="00:00" max="24:00">
+      <p></p>
+      <small>Hora de Salida: </small>
+      <p></p>
+      <input type="time" id="horaSabadoSalida" name="horaSabadoSalida" min="00:00" max="24:00">
+    </div>
+    <div class="horariosForm">
+      <!--
+      Domingo
+      -->
+      <h5>Domingo</h5>
+      <p></p><p></p>
+      <small>Hora de Entrada: </small>
+      <p></p><p></p>
+      <input type="time" id="horaDomingoEntrada" name="horaDomingoEntrada" min="00:00" max="24:00">
+      <p></p>
+      <small>Hora de Salida: </small>
+      <p></p>
+      <input type="time" id="horaDomingoSalida" name="horaDomingoSalida" min="00:00" max="24:00">
+    </div>
             <label>Tipo de estacionamiento</label>
             <div class="buttons" tile color="secondary" group>
               <button type="button" class="btn btn-secondary" (click)="tipoPropio()" [class.btn-success]="tipoSelec == 1">Propio</button>&nbsp;&nbsp;&nbsp;
