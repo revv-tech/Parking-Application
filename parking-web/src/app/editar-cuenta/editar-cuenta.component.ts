@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Funcionario, TCampus, TFuncionario, TUsuario } from '../model/funcionario';
 import { FuncionariosService } from '../servicios/funcionarios.service';
+import {Horario, THorario, TDia} from '../model/horario';
 
 @Component({
   selector: 'app-editar-cuenta',
@@ -24,7 +25,7 @@ export class EditarCuentaComponent implements OnInit {
   correoAlterno:string =""
   necesidadEspecial:boolean = false
   correoInstitucional:string = ""
-  tipo:TFuncionario = TFuncionario.VISITANTE
+  tipo:TFuncionario = TFuncionario.ADMINISTRATIVO
   vehiculos:string[] = []
   tipoUsuario:TUsuario = TUsuario.COMUN
   contrasena:string = ""
@@ -35,6 +36,17 @@ export class EditarCuentaComponent implements OnInit {
   usuario:any;
   tipo2:any;
   campus2: TCampus;
+  horarios: Horario[] = [];
+  horarioDia: TDia = TDia.DOMINGO;
+  horarioInicio: number=12;
+  horarioFin: number=12;
+  dias: any[];
+  horas: any[];
+  esJefatura:boolean=true;
+  inicioTiempo:String="am";
+  finTiempo:String="pm";
+  tipoHoras:any[]=["am","pm"]
+
 
   constructor(private _servicioUsuario:FuncionariosService) {
       this.setTipos();
@@ -55,10 +67,15 @@ export class EditarCuentaComponent implements OnInit {
       this.celular = this.usuarioLoggeado["celular"]
       this.campus = this.usuarioLoggeado["campus"]
       this.funcionario = this.usuarioLoggeado["funcionario"]
+      this.esJefatura = this.usuarioLoggeado["esJefatura"]
+      this.horarios = this.usuarioLoggeado["horarios"]
+      console.log(this.usuarioLoggeado["horarios"])
       this.tiposFuncionarios = this.tiposFuncionarios.filter(value=>value != this.tipo)
       this.tiposCampus = this.tiposCampus.filter(value=>value != this.campus)
       this.tipo2 = this.tipo
       this.campus2 = this.campus
+      this.dias = [TDia.DOMINGO, TDia.LUNES, TDia.MARTES, TDia.MIERCOLES, TDia.JUEVES, TDia.VIERNES, TDia.SABADO]
+      this.horas = [1,2,3,4,5,6,7,8,9,10,11,12]
       // this.listaFuncionarios = this.usuarioLoggeado[""]
       // this.usuario = this.usuarioLoggeado[""]
    }
@@ -81,7 +98,9 @@ export class EditarCuentaComponent implements OnInit {
       tipoUsuario:this.tipoUsuario,
       contrasena:this.contrasena,
       celular:this.celular,
-      campus:this.campus
+      campus:this.campus,
+      horarios: this.horarios,
+      esJefatura: this.esJefatura
     }
     await this._servicioUsuario.editarUsuario(body)
     await this._servicioUsuario.setUsuarioLoggeado(body)
@@ -107,6 +126,30 @@ agregarVehiculo(){
 
 quitarVehiculo(index:number){
   this.vehiculos.splice(index,1);
+  this.submitted1 = false
+}
+
+agregarHorario(){
+  if (this.horarioInicio >= this.horarioFin && this.inicioTiempo=="pm"){
+    window.alert("El horario de inicio debe ser antes que el final")
+  }
+  else{
+    let horario:Horario = {
+      dia: this.horarioDia, inicio: this.horarioInicio, fin:this.horarioFin
+    };
+    if(this.horarios.filter(e => (e.dia == horario.dia && e.inicio == horario.inicio && e.fin == horario.fin)).length > 0){
+      window.alert("El horario ya está agregado")
+    }
+    else{
+      this.horarios.push(horario)
+      this.submitted1 = false
+    }
+    
+  }
+}
+
+eliminarHorario(i:number){
+  this.horarios.splice(i,1);
   this.submitted1 = false
 }
 

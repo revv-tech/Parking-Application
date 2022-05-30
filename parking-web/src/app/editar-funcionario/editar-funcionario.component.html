@@ -49,7 +49,7 @@
           <div class="form-group">
             <label for="esJefe">¿Es jefatura?</label>
             <p></p>
-            <div *ngIf="tipo==tFuncionario.JEFATURA; else elseBlockJefatura">
+            <div *ngIf="esJefatura; else elseBlockJefatura">
               <input type="radio" id="siEsJefe"  name="esJefe" value="Sí" checked>
               <label for="siEsJefe">Sí</label><br>
               <input type="radio" id="noEsJefe"  name="esJefe" value="No">
