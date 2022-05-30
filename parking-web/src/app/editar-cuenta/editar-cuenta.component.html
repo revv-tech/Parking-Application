@@ -10,17 +10,17 @@
               <label for="especiales" >¿Presenta alguna discapacidad?</label>
                 <p></p>
                 <div *ngIf="necesidadEspecial; else elseBlockSpecialNeed">
-                    <input type="radio" id="siPresenta" disabled="disabled"  name="necesidadEspecial" value="Sí" checked>
-                    <label for="siPresenta">Sí</label><br>
-                    <input type="radio" id="noPresenta" disabled="disabled"  value="No" name="necesidadEspecial">
-                    <label for="noPresenta">No</label><br>
-                </div>
-                <ng-template #elseBlockSpecialNeed>
-                    <input type="radio" id="siPresenta" disabled="disabled" name="necesidadEspecial" value="Sí" >
-                   <label for="siPresenta">Sí</label><br>
-                    <input type="radio" id="noPresenta" disabled="disabled"  name="necesidadEspecial" value="No" checked>
+                  <input disabled [(ngModel)]="necesidadEspecial" type="radio" id="siPresenta"  name="necesidadEspecial" [value]="true" checked>
+                  <label for="siPresenta">Sí</label><br>
+                  <input disabled [(ngModel)]="necesidadEspecial" type="radio" id="noPresenta"  [value]="false" name="necesidadEspecial">
                   <label for="noPresenta">No</label><br>
-              </ng-template>
+              </div>
+              <ng-template #elseBlockSpecialNeed>
+                  <input disabled [(ngModel)]="necesidadEspecial" type="radio" id="siPresenta" name="necesidadEspecial" [value]="true" >
+                 <label for="siPresenta">Sí</label><br>
+                  <input disabled [(ngModel)]="necesidadEspecial" type="radio" id="noPresenta" name="necesidadEspecial" [value]="false" checked>
+                <label for="noPresenta">No</label><br>
+            </ng-template>
             </div>
             <div class="form-group">
               <label for="nombreCompleto">Nombre Completo</label>
@@ -49,16 +49,16 @@
               <div class="form-group">
                 <label for="esJefe">¿Es jefatura?</label>
                 <p></p>
-                <div *ngIf="tipo==tFuncionario.JEFATURA; else elseBlockJefatura">
-                  <input type="radio" id="siEsJefe" disabled="disabled"  name="esJefe" value="Sí" checked>
+                <div *ngIf="esJefatura; else elseBlockJefatura">
+                  <input disabled [(ngModel)]="esJefatura" type="radio" id="siEsJefe" disabled="disabled"  name="esJefe" [value]="true" checked>
                   <label for="siEsJefe">Sí</label><br>
-                  <input type="radio" id="noEsJefe" disabled="disabled"  name="esJefe" value="No">
+                  <input disabled [(ngModel)]="esJefatura" type="radio" id="noEsJefe" disabled="disabled"  name="esJefe" [value]="false">
                   <label for="noEsJefe">No</label><br>
               </div>
               <ng-template #elseBlockJefatura>
-                  <input type="radio" id="siEsJefe" disabled="disabled"  value="Sí" name="esJefe" value="Sí" >
+                  <input disabled [(ngModel)]="esJefatura" type="radio" id="siEsJefe" disabled="disabled"  value="Sí" name="esJefe" [value]="true" >
                  <label for="siEsJefe">Sí</label><br>
-                  <input type="radio" id="noEsJefe" disabled="disabled"  value="No" name="esJefe" checked>
+                  <input disabled [(ngModel)]="esJefatura" type="radio" id="noEsJefe" disabled="disabled"  [value]="false" name="esJefe" checked>
                 <label for="noEsJefe">No</label><br>
             </ng-template>
               </div>   
@@ -82,6 +82,50 @@
                 </div>
               </div>  
               <div class="form-group">
+                <p></p>
+                <p></p>
+              </div>
+              <div>
+                <label for="oficiales">Agregar horarios</label>
+              </div>
+              <div >
+                <label>Día </label>&nbsp;&nbsp;&nbsp;
+                <select [(ngModel)]="horarioDia" id="dropdown">
+                  <option *ngFor="let func of dias,index as i">{{func}}</option>
+                </select>
+              </div>
+              <div>
+                <label>Hora de inicio </label>&nbsp;&nbsp;&nbsp;
+                <select [(ngModel)]="horarioInicio" id="dropdown">
+                  <option *ngFor="let func of horas,index as i">{{func}}</option>
+                </select>
+                <select [(ngModel)]="inicioTiempo" id="dropdown">
+                  <option *ngFor="let func of tipoHoras,index as i">{{func}}</option>
+                </select>
+              </div>
+              <div>
+                <label>Hora de finalización </label>&nbsp;&nbsp;&nbsp;
+                <select [(ngModel)]="horarioFin" id="dropdown">
+                  <option *ngFor="let func of horas,index as i">{{func}}</option>
+                </select>
+                <select [(ngModel)]="finTiempo" id="dropdown">
+                  <option *ngFor="let func of tipoHoras,index as i">{{func}}</option>
+                </select>
+              </div>
+              <div>
+                <button type="button" class="btn btn-secondary" (click)="agregarHorario()">Agregar</button>
+                <div style="width: 400px; height: 200px; overflow-y: scroll;">
+                  <ul class="list-group">
+                        <li class="list-group-item" *ngFor="let horario of horarios, index as i">
+                            <h6>
+                                {{horario.dia}} desde {{horario.inicio}}{{inicioTiempo}} hasta {{horario.fin}}{{finTiempo}}
+                            </h6>
+                            <button type="button" class="btn btn-secondary" (click)="eliminarHorario(i)">eliminarHorario</button>
+                        </li>
+                    </ul>
+                </div>
+              </div>    
+              <div class="form-group">
                 <label for="contrasena">Contraseña </label>&nbsp;&nbsp;&nbsp;
                 <button [routerLink]="'/cambiar-contrasena'" class="btn btn-success"> Cambiar Contraseña</button>
                 <!-- <input type="password" [(ngModel)]="contrasena" class="form-control" name="contrasena"> -->
@@ -95,27 +139,29 @@
               <select id="dropdown2" disabled>
                     <option [(ngModel)]="campus" value="H" >{{campus}}</option>&nbsp;&nbsp;&nbsp;
             </select>&nbsp;&nbsp;&nbsp;
-            <p></p>
-            <p></p>
-            <div *ngIf="submitted1; else elseSubmit">
-              <button (click)="editarUsuario()" class="btn btn-success">Actualizado</button>
+          </div>
+          <P></P>
+          <P></P>
+          <div *ngIf="submitted1; else elseSubmit" class="col text-center">
+            <button (click)="editarUsuario()" class="btn btn-success">Actualizado</button>
+          </div>
+          <ng-template #elseSubmit >
+            <div class="col text-center">
+            <button (click)="editarUsuario()" class="btn btn-success">Actualizar</button>
             </div>
-            <ng-template #elseSubmit>
-              <button (click)="editarUsuario()" class="btn btn-success">Actualizar</button>
-            </ng-template>
-        </div>
-        <div class="col text-center">
+          </ng-template>
+        <!-- <div class="col text-center">
           <ul id="redbutton">
             <button (click)="editarUsuario()" class="btn btn-success"> Actualizar tu Información </button>
           </ul>
-        </div>
-        <div *ngIf="submitted">
+        </div> -->
+        <!-- <div *ngIf="submitted">
           <p></p>
             <p></p>
           <h4>Información actualizada!</h4>
           <p></p>
             <p></p>
-        </div>
+        </div> -->
     </div>
 </div>
 
@@ -171,16 +217,16 @@
               <div class="form-group">
                 <label for="esJefe">¿Es jefatura? </label>
                 <p></p>
-                <div *ngIf="tipo==tFuncionario.JEFATURA; else elseBlockJefatura">
-                  <input disabled type="radio" id="siEsJefe"  name="esJefe" value="Sí" checked>
+                <div *ngIf="esJefatura; else elseBlockJefatura">
+                  <input  [(ngModel)]="esJefatura" type="radio" id="siEsJefe"  name="esJefe" [value]="true" checked>
                   <label for="siEsJefe">Sí</label><br>
-                  <input disabled type="radio" id="noEsJefe"  name="esJefe" value="No">
+                  <input  [(ngModel)]="esJefatura" type="radio" id="noEsJefe"  name="esJefe" [value]="false">
                   <label for="noEsJefe">No</label><br>
               </div>
               <ng-template #elseBlockJefatura>
-                  <input disabled type="radio" id="siEsJefe" value="Sí" name="esJefe" value="Sí" >
+                  <input  [(ngModel)]="esJefatura" type="radio" id="siEsJefe" [value]="true" name="esJefe" value="Sí" >
                  <label for="siEsJefe">Sí</label><br>
-                  <input disabled type="radio" id="noEsJefe" value="No" name="esJefe" checked>
+                  <input  [(ngModel)]="esJefatura" type="radio" id="noEsJefe" [value]="false" name="esJefe" checked>
                 <label for="noEsJefe">No</label><br>
             </ng-template>
               </div>   
@@ -204,7 +250,47 @@
                         </li>
                     </ul>
                 </div>
-              </div>  
+              </div>
+              <div>
+                <label for="oficiales">Agregar horarios</label>
+              </div>
+              <div >
+                <label>Día </label>&nbsp;&nbsp;&nbsp;
+                <select [(ngModel)]="horarioDia" id="dropdown">
+                  <option *ngFor="let func of dias,index as i">{{func}}</option>
+                </select>
+              </div>
+              <div>
+                <label>Hora de inicio </label>&nbsp;&nbsp;&nbsp;
+                <select [(ngModel)]="horarioInicio" id="dropdown">
+                  <option *ngFor="let func of horas,index as i">{{func}}</option>
+                </select>
+                <select [(ngModel)]="inicioTiempo" id="dropdown">
+                  <option *ngFor="let func of tipoHoras,index as i">{{func}}</option>
+                </select>
+              </div>
+              <div>
+                <label>Hora de finalización </label>&nbsp;&nbsp;&nbsp;
+                <select [(ngModel)]="horarioFin" id="dropdown">
+                  <option *ngFor="let func of horas,index as i">{{func}}</option>
+                </select>
+                <select [(ngModel)]="finTiempo" id="dropdown">
+                  <option *ngFor="let func of tipoHoras,index as i">{{func}}</option>
+                </select>
+              </div>
+              <div>
+                <button type="button" class="btn btn-secondary" (click)="agregarHorario()">Agregar</button>
+                <div style="width: 400px; height: 200px; overflow-y: scroll;">
+                  <ul class="list-group">
+                        <li class="list-group-item" *ngFor="let horario of horarios, index as i">
+                            <h6>
+                                {{horario.dia}} desde {{horario.inicio}}{{inicioTiempo}} hasta {{horario.fin}}{{finTiempo}}
+                            </h6>
+                            <button type="button" class="btn btn-secondary" (click)="eliminarHorario(i)">eliminarHorario</button>
+                        </li>
+                    </ul>
+                </div>
+              </div>    
               <div class="form-group">
                 <label for="contrasena">Contraseña </label>&nbsp;&nbsp;&nbsp;
                 <button [routerLink]="'/cambiar-contrasena'" class="btn btn-success"> Cambiar Contraseña</button>
@@ -220,14 +306,16 @@
                   <option>{{campus2}}</option>
                   <option *ngFor="let tipo of tiposCampus">{{tipo}}</option>&nbsp;&nbsp;&nbsp;
             </select>&nbsp;&nbsp;&nbsp;
+          </div>
             <P></P>
             <P></P>
-            
-            <div *ngIf="submitted1; else elseSubmit">
+            <div *ngIf="submitted1; else elseSubmit" class="col text-center">
               <button (click)="editarUsuario()" class="btn btn-success">Actualizado</button>
             </div>
-            <ng-template #elseSubmit>
+            <ng-template #elseSubmit >
+              <div class="col text-center">
               <button (click)="editarUsuario()" class="btn btn-success">Actualizar</button>
+              </div>
             </ng-template>
             <p></p>
             <p></p>
@@ -246,6 +334,6 @@
           <h4>Información actualizada!</h4>
           <p></p>
             <p></p>
-        </div>   
+        </div>    -->
     </div> 
 </ng-template>

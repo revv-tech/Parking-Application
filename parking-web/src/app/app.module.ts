@@ -27,6 +27,7 @@ import { CambiarContrasenaComponent } from './cambiar-contrasena/cambiar-contras
 import { GlobalsComponent } from './globals/globals.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { GestorFuncionariosComponent } from './gestor-funcionarios/gestor-funcionarios.component';
+import { ConsultaFuncionarioComponent } from './consulta-funcionario/consulta-funcionario.component';
 
 // Nueva ruta agregada
 const routes: Routes = [
@@ -58,6 +59,7 @@ const routes: Routes = [
     CambiarContrasenaComponent,
     DashboardComponent,
     GestorFuncionariosComponent,
+    ConsultaFuncionarioComponent,
   ],
   imports: [
     BrowserModule,
