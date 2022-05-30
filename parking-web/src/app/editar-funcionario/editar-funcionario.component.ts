@@ -23,7 +23,7 @@ export class EditarFuncionarioComponent implements OnInit {
   correoAlterno:string =""
   necesidadEspecial:boolean = false
   correoInstitucional:string = ""
-  tipo:TFuncionario = TFuncionario.VISITANTE
+  tipo:TFuncionario = TFuncionario.DOCENTE
   vehiculos:string[] = []
   tipoUsuario:TUsuario = TUsuario.COMUN
   contrasena:string = ""
@@ -34,6 +34,7 @@ export class EditarFuncionarioComponent implements OnInit {
   usuario:any;
   campus2: TCampus;
   tipo2: TFuncionario;
+  esJefatura: boolean=true;
   
   
   constructor(private _servicioUsuario:FuncionariosService) {
@@ -61,7 +62,8 @@ export class EditarFuncionarioComponent implements OnInit {
       tipoUsuario:this.tipoUsuario,
       contrasena:this.contrasena,
       celular:this.celular,
-      campus:this.campus
+      campus:this.campus,
+      jefatura:this.esJefatura
     }
     this._servicioUsuario.editarUsuario(body);
     console.log(body)

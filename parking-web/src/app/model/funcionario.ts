@@ -30,6 +30,6 @@ export class Funcionario {
 
 }
 
-export enum TFuncionario { DOCENTE="Docente",ADMINISTRATIVO="Administrativo",JEFATURA="Jefatura",VISITANTE="Visitante"}
+export enum TFuncionario { DOCENTE="Docente",ADMINISTRATIVO="Administrativo"}
 export enum TUsuario {COMUN="Común", ADMIN="Administrador"}
 export enum TCampus {SAN_JOSE="San José", CARTAGO="Cartago", ALAJUELA="Alajuela", LIMON="Limón", SAN_CARLOS="San Carlos"}

@@ -94,12 +94,6 @@ export class GestorFuncionariosComponent implements OnInit {
     else if(tipo == 2){
       this.funcionarioSelec.tipo = TFuncionario.DOCENTE
     }
-    else if(tipo == 3){
-      this.funcionarioSelec.tipo = TFuncionario.JEFATURA
-    }
-    else if(tipo == 4){
-      this.funcionarioSelec.tipo = TFuncionario.VISITANTE
-    }
   }
 
   tipoUsuario(tipo:any){
