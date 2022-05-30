@@ -9,6 +9,7 @@ import { LoginComponent } from './login/login.component';
 import { UnEstacionamientoComponent } from './un-estacionamiento/un-estacionamiento.component';
 import { GestorFuncionariosComponent } from './gestor-funcionarios/gestor-funcionarios.component';
 import { DashboardComponent } from './dashboard/dashboard.component'
+import { GestorreservasComponent } from './gestorreservas/gestorreservas.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -20,6 +21,7 @@ const routes: Routes = [
   { path: 'manageParking', component: GestorEstacionamientoComponent },
   { path: 'gestorFuncionarios', component: GestorFuncionariosComponent },
   { path: 'dashboard', component: DashboardComponent },
+  { path: 'gestorReservas', component: GestorreservasComponent },
   { path: '', component: LoginComponent, pathMatch:'full' },
   { path: '**', redirectTo: '/login', pathMatch:'full' },
   

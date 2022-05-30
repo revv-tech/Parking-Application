@@ -28,6 +28,7 @@ import { GlobalsComponent } from './globals/globals.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { GestorFuncionariosComponent } from './gestor-funcionarios/gestor-funcionarios.component';
 import { ConsultaFuncionarioComponent } from './consulta-funcionario/consulta-funcionario.component';
+import { GestorreservasComponent } from './gestorreservas/gestorreservas.component';
 
 // Nueva ruta agregada
 const routes: Routes = [
@@ -43,6 +44,7 @@ const routes: Routes = [
   { path: '**', redirectTo: '/login', pathMatch:'full' },
   { path: 'consultar-parqueos/:tipo', component: ConsultarParqueosComponent },
   { path: 'gestorFuncionarios', component: GestorEstacionamientoComponent },
+  { path: 'gestorReservas', component: GestorreservasComponent },
 ];
 
 @NgModule({
@@ -60,6 +62,7 @@ const routes: Routes = [
     DashboardComponent,
     GestorFuncionariosComponent,
     ConsultaFuncionarioComponent,
+    GestorreservasComponent,
   ],
   imports: [
     BrowserModule,
