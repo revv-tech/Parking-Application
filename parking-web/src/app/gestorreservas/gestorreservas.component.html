@@ -24,8 +24,21 @@
         </ul>
     </div>
     &nbsp;&nbsp;&nbsp;
+    <h2 style="text-align: center;">Realizar nueva reserva</h2>
+    <h4 for="meeting-time">Seleccione la fecha y hora: </h4>
+    <p></p>&nbsp;&nbsp;&nbsp;
+    <input type="datetime-local" id="horaReserva"
+       name="meeting-time" value="2022-06-12T19:30"
+       min="2018-06-07T00:00" max="2023-06-14T00:00">
+       <p></p>
+    <h4 for="meeting-time">Seleccione el parqueo: </h4>
+    
+    <label>Parqueos disponibles: </label>&nbsp;&nbsp;&nbsp;
+        <select [(ngModel)]="tipoParqueo" id="dropdown2">
+            <option >Seleccione uno...</option>&nbsp;&nbsp;&nbsp;
+            <option  *ngFor="let parqueo of parqueos,index as i">{{parqueo.nombre}}</option>
+        </select>&nbsp;&nbsp;&nbsp;
     <div class="text-center">
         <button class="btnVerInfo" > Realizar nueva reserva </button>&nbsp;&nbsp;&nbsp;
     </div>
-    
 </div>
