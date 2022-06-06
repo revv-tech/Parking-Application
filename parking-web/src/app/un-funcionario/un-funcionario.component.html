@@ -1,0 +1,116 @@
+<div class="mt-5">
+    <h1> {{funcionario.nombreCompleto}} </h1>
+    <div>
+        <div class="form-group">
+          <label for="estacionamiento">Identificación</label>
+          <input id="campoid" type="number" readonly=»readonly» class="form-control" name="identificacion" value="{{funcionario.identificacion}}">
+        </div>
+        
+        <div class="form-group">
+          <label for="especiales" >¿Presenta alguna discapacidad?</label>
+            <p></p>
+            <div *ngIf="funcionario.necesidadEspecial; else elseBlockSpecialNeed">
+              <input disabled type="radio" id="siPresenta"  name="necesidadEspecial" [value]="true" checked>
+              <label for="siPresenta">Sí</label><br>
+              <input disabled type="radio" id="noPresenta"  [value]="false" name="necesidadEspecial">
+              <label for="noPresenta">No</label><br>
+          </div>
+          <ng-template #elseBlockSpecialNeed>
+              <input disabled type="radio" id="siPresenta" name="necesidadEspecial" [value]="true" >
+             <label for="siPresenta">Sí</label><br>
+              <input disabled type="radio" id="noPresenta" name="necesidadEspecial" [value]="false" checked>
+            <label for="noPresenta">No</label><br>
+        </ng-template>
+        </div>
+        <div class="form-group">
+          <label for="nombreCompleto">Nombre Completo</label>
+          <input type="text" readonly=»readonly» class="form-control" name="nombreCompleto" value="{{funcionario.nombreCompleto}}">
+        </div>
+        <div class="btn-group">
+          <label>Departamento: </label>&nbsp;&nbsp;&nbsp;
+          <select  [(ngModel)]="departamentoSelect" id="dropdown" name="departamento" disabled>
+                <option *ngFor="let func of departamentos,index as i">{{func["descripcion"]}}</option>
+          </select>
+        </div>
+        <div class="form-group">
+            <div class="btn-group">
+              <label>Tipo de funcionario: </label>&nbsp;&nbsp;&nbsp;
+              <select id="dropdown" disabled>
+                    <option value="A" >{{funcionario.tipo}}</option>
+            </select>
+          </div>
+          </div>
+
+          <div class="form-group">
+            <label for="correoAlterno">Correo Alterno</label>
+            <input type="text" readonly=»readonly» class="form-control" name="correoAlterno" value="{{funcionario.correoAlterno}}">
+          </div>
+
+          <div class="form-group">
+            <label for="correoInstitucional" >Correo Institucional</label>
+            <input type="text" readonly=»readonly» class="form-control" name="correoInstitucional" value="{{funcionario.correoInstitucional}}">
+          </div>
+
+          <!-- <div class="form-group">
+            <label for="esJefe">¿Es jefatura?</label>
+            <p></p>
+            <div *ngIf="funcionario.esJefatura; else elseBlockJefatura">
+              <input disabled [(ngModel)]="esJefatura" type="radio" id="siEsJefe" disabled="disabled"  name="esJefe" [value]="true" checked>
+              <label for="siEsJefe">Sí</label><br>
+              <input disabled [(ngModel)]="esJefatura" type="radio" id="noEsJefe" disabled="disabled"  name="esJefe" [value]="false">
+              <label for="noEsJefe">No</label><br>
+          </div> -->
+          <!-- <ng-template #elseBlockJefatura>
+              <input disabled [(ngModel)]="esJefatura" type="radio" id="siEsJefe" disabled="disabled"  value="Sí" name="esJefe" [value]="true" >
+             <label for="siEsJefe">Sí</label><br>
+              <input disabled [(ngModel)]="esJefatura" type="radio" id="noEsJefe" disabled="disabled"  [value]="false" name="esJefe" checked>
+            <label for="noEsJefe">No</label><br>
+        </ng-template> -->
+          </div>   
+          <div class="form-group">
+            <label for="oficiales">Vehiculos asignados</label>
+            <p></p>
+            <p></p>
+            <div style="width: 400px; height: 200px; overflow-y: scroll;">
+              <ul class="list-group">
+                    <li class="list-group-item" *ngFor="let placa of funcionario.vehiculos, index as i">
+                        <h6>
+                            {{placa}}
+                        </h6>
+                    </li>
+                </ul>
+            </div>
+          </div>  
+          <div class="form-group">
+            <p></p>
+            <p></p>
+          </div>
+          <div>
+            <label for="oficiales">Horarios</label>
+          </div>
+          <div>
+            <div style="width: 400px; height: 200px; overflow-y: scroll;">
+              <ul class="list-group">
+                    <li class="list-group-item" *ngFor="let horario of funcionario.horarios, index as i">
+                        <h6>
+                            <h5>{{horario.dia}}</h5>
+                            <p></p><p></p>
+                            <small>Hora de Entrada: </small>
+                            <p></p><p></p>
+                            <input readonly=»readonly» type="time" id="horaDomingoEntrada" name="horaDomingoEntrada" min="00:00" max="24:00" value="{{horario.inicio}}">
+                            <p></p>
+                            <small>Hora de Salida: </small>
+                            <p></p>
+                            <input readonly=»readonly» type="time" id="horaDomingoSalida" name="horaDomingoSalida" min="00:00" max="24:00" value="{{horario.fin}}">
+                        </h6>
+                    </li>
+                </ul>
+            </div>
+          </div>    
+          <div class="form-group">
+          <label for="celular">Celular</label>
+          <input type="number" readonly=»readonly» class="form-control" name="celular" value="{{funcionario.celular}}">
+        </div>          
+      <P></P>
+      <P></P>
+</div>

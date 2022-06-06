@@ -26,7 +26,12 @@
               <label for="nombreCompleto">Nombre Completo</label>
               <input type="text" readonly=»readonly» [(ngModel)]="nombreCompleto" class="form-control" name="nombreCompleto">
             </div>
-    
+            <div class="btn-group">
+              <label>Departamento: </label>&nbsp;&nbsp;&nbsp;
+              <select [(ngModel)]="departamentoSelect" id="dropdown" name="departamento" disabled>
+                    <option *ngFor="let func of departamentos,index as i">{{func["descripcion"]}}</option>
+              </select>
+            </div>
             <div class="form-group">
                 <div class="btn-group">
                   <label>Tipo de funcionario: </label>&nbsp;&nbsp;&nbsp;
@@ -134,12 +139,6 @@
               <label for="celular">Celular</label>
               <input type="number" [(ngModel)]="celular" class="form-control" name="celular">
             </div>          
-            <div class="btn-group">
-              <label>Campus al que pertenece: </label>&nbsp;&nbsp;&nbsp;
-              <select id="dropdown2" disabled>
-                    <option [(ngModel)]="campus" value="H" >{{campus}}</option>&nbsp;&nbsp;&nbsp;
-            </select>&nbsp;&nbsp;&nbsp;
-          </div>
           <P></P>
           <P></P>
           <div *ngIf="submitted1; else elseSubmit" class="col text-center">
@@ -150,18 +149,6 @@
             <button (click)="editarUsuario()" class="btn btn-success">Actualizar</button>
             </div>
           </ng-template>
-        <!-- <div class="col text-center">
-          <ul id="redbutton">
-            <button (click)="editarUsuario()" class="btn btn-success"> Actualizar tu Información </button>
-          </ul>
-        </div> -->
-        <!-- <div *ngIf="submitted">
-          <p></p>
-            <p></p>
-          <h4>Información actualizada!</h4>
-          <p></p>
-            <p></p>
-        </div> -->
     </div>
 </div>
 
@@ -193,6 +180,12 @@
               <label for="nombreCompleto">Nombre Completo</label>
               <input type="text" [(ngModel)]="nombreCompleto" class="form-control" name="nombreCompleto">
             </div>
+            <div class="btn-group">
+              <label>Departamento: </label>&nbsp;&nbsp;&nbsp;
+              <select [(ngModel)]="departamentoSelect" id="dropdown" name="departamento">
+                    <option *ngFor="let func of departamentos,index as i">{{func["descripcion"]}}</option>
+              </select>
+            </div>
     
             <div class="form-group">
                 <div class="btn-group">
@@ -200,8 +193,8 @@
                   <select [(ngModel)]="tipo" id="dropdown">
                         <option>{{tipo2}}</option>
                         <option *ngFor="let func of tiposFuncionarios,index as i">{{func}}</option>
-                </select>
-              </div>
+                  </select>
+                </div>
               </div>
     
               <div class="form-group">
@@ -300,13 +293,6 @@
               <label for="celular">Celular</label>
               <input type="number" [(ngModel)]="celular" class="form-control" name="celular">
             </div>          
-            <div class="btn-group">
-              <label>Campus al que pertenece: </label>&nbsp;&nbsp;&nbsp;
-              <select [(ngModel)]="campus" id="dropdown2">
-                  <option>{{campus2}}</option>
-                  <option *ngFor="let tipo of tiposCampus">{{tipo}}</option>&nbsp;&nbsp;&nbsp;
-            </select>&nbsp;&nbsp;&nbsp;
-          </div>
             <P></P>
             <P></P>
             <div *ngIf="submitted1; else elseSubmit" class="col text-center">
@@ -322,18 +308,4 @@
             <p></p>
             <p></p>
         </div>
-        <div class="col text-center">
-          <ul id="redbutton">
-            <button (click)="editarUsuario()" class="btn btn-success"> Actualizar tu Información </button>
-          </ul>
-        </div>
-        
-        <div *ngIf="submitted">
-          <p></p>
-            <p></p>
-          <h4>Información actualizada!</h4>
-          <p></p>
-            <p></p>
-        </div>    -->
-    </div> 
 </ng-template>

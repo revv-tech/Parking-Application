@@ -17,7 +17,8 @@ export class ConsultarParqueosComponent implements OnInit {
   constructor(private _servicioParqueo:EstacionamientosService) {
     this.parqueos=_servicioParqueo.getParqueos();
     this.tiposParqueos= Object.values(this.tParqueo) //.filter(value => value != TEstacionamiento.CAMPUS)
-   }
+    this._servicioParqueo.setParqueoFiltro(this.parqueos)
+    }
 
 
   ngOnInit(): void {
@@ -31,6 +32,7 @@ export class ConsultarParqueosComponent implements OnInit {
       this.parqueos=this._servicioParqueo.getParqueos();
       this.parqueos = this.parqueos.filter((value: any)=>value["tipo"] == this.tipoParqueo)
     }
+    this._servicioParqueo.setParqueoFiltro(this.parqueos)
   }
 
 }

@@ -4,9 +4,9 @@
     <p></p>
     <p></p>
     <label>Tipo de parqueo: </label>&nbsp;&nbsp;&nbsp;
-        <select [(ngModel)]="tipoParqueo" id="dropdown2">
-            <option [(ngModel)]="tipoParqueo">Cualquiera</option>&nbsp;&nbsp;&nbsp;
-            <option [(ngModel)]="tipoParqueo" *ngFor="let tipo of tiposParqueos,index as i">{{tipo}}</option>
+        <select [(ngModel)]="tipoParqueo" id="dropdown2" name="tipoParqueo">
+            <option >Cualquiera</option>&nbsp;&nbsp;&nbsp;
+            <option *ngFor="let tipo of tiposParqueos,index as i">{{tipo}}</option>
         </select>&nbsp;&nbsp;&nbsp;
     <!-- <div class="btn-group">
         <button [(ngModel)]="tipoParqueo" type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Tipo de parqueo</button>

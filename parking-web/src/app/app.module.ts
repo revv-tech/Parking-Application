@@ -28,12 +28,14 @@ import { GlobalsComponent } from './globals/globals.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { GestorFuncionariosComponent } from './gestor-funcionarios/gestor-funcionarios.component';
 import { ConsultaFuncionarioComponent } from './consulta-funcionario/consulta-funcionario.component';
+import { UnFuncionarioComponent } from './un-funcionario/un-funcionario.component';
 
 // Nueva ruta agregada
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'consultar-parqueos', component: ConsultarParqueosComponent },
   { path: 'un-estacionamiento/:id', component: UnEstacionamientoComponent },
+  { path: 'un-funcionario/:id', component: UnFuncionarioComponent },
   { path: 'editar-cuenta', component: EditarCuentaComponent },
   { path: 'cambiar-contrasena', component: CambiarContrasenaComponent },
   { path: 'editar-funcionario', component: EditarFuncionarioComponent },
@@ -43,6 +45,7 @@ const routes: Routes = [
   { path: '**', redirectTo: '/login', pathMatch:'full' },
   { path: 'consultar-parqueos/:tipo', component: ConsultarParqueosComponent },
   { path: 'gestorFuncionarios', component: GestorEstacionamientoComponent },
+  { path: 'consulta-funcionario', component: ConsultaFuncionarioComponent },
 ];
 
 @NgModule({
@@ -60,6 +63,7 @@ const routes: Routes = [
     DashboardComponent,
     GestorFuncionariosComponent,
     ConsultaFuncionarioComponent,
+    UnFuncionarioComponent,
   ],
   imports: [
     BrowserModule,

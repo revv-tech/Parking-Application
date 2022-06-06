@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FuncionariosService } from '../servicios/funcionarios.service';
 
 @Component({
   selector: 'app-consulta-funcionario',
@@ -7,9 +8,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ConsultaFuncionarioComponent implements OnInit {
 
-  constructor() { }
+  encontrado: boolean=false;
+  id:String="";
+  listaFuncionarios:any[]=[]
+  listaFuncionarios2:any[]=[]
+  funcionario: any={}
+
+  constructor(private _servicioUsuario:FuncionariosService) {
+    this.listaFuncionarios = _servicioUsuario.getFuncionarios();
+    this.listaFuncionarios2 = this.listaFuncionarios
+    _servicioUsuario.setFuncionarioFiltro(this.listaFuncionarios2)
+   }
 
   ngOnInit(): void {
+  }
+
+  buscar = async () => {
+    this.listaFuncionarios = this.listaFuncionarios2.filter((val) => val["identificacion"].toString().includes(this.id))
+    this._servicioUsuario.setFuncionarioFiltro(this.listaFuncionarios)
   }
 
 }
