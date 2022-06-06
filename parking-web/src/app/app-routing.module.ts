@@ -9,6 +9,8 @@ import { LoginComponent } from './login/login.component';
 import { UnEstacionamientoComponent } from './un-estacionamiento/un-estacionamiento.component';
 import { GestorFuncionariosComponent } from './gestor-funcionarios/gestor-funcionarios.component';
 import { DashboardComponent } from './dashboard/dashboard.component'
+import { ConsultaFuncionarioComponent } from './consulta-funcionario/consulta-funcionario.component';
+import { UnFuncionarioComponent } from './un-funcionario/un-funcionario.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -16,9 +18,11 @@ const routes: Routes = [
   { path: 'consultar-parqueos', component: ConsultarParqueosComponent },
   { path: 'un-estacionamiento/:id', component: UnEstacionamientoComponent },
   { path: 'editar-funcionario', component: EditarFuncionarioComponent },
+  { path: 'un-funcionario/:id', component: UnFuncionarioComponent },
   { path: 'editar-cuenta', component: EditarCuentaComponent },
   { path: 'manageParking', component: GestorEstacionamientoComponent },
   { path: 'gestorFuncionarios', component: GestorFuncionariosComponent },
+  { path: 'consulta-funcionario', component: ConsultaFuncionarioComponent },
   { path: 'dashboard', component: DashboardComponent },
   { path: '', component: LoginComponent, pathMatch:'full' },
   { path: '**', redirectTo: '/login', pathMatch:'full' },

@@ -1,1 +1,20 @@
-<p>consulta-funcionario works!</p>
+<div>
+    <input placeholder="Bucar por identificación" type="text" [(ngModel)]="id" (change)="buscar()" name="search">
+    <!-- <button (click)="buscar()">buscar</button> -->
+</div>
+<div class ="scrollmenu" style="width: 1100px; height: 500px; overflow-y: scroll;">
+  <ul class="list-group">
+        <li class="list-group-item" *ngFor="let persona of listaFuncionarios, index as i">
+            <h4>
+                Nombre: {{persona.nombreCompleto}}
+            </h4>
+            <h6>
+                ID: {{persona.identificacion}}
+            </h6>
+            <h6>
+                Correo: {{persona.correoInstitucional}}
+            </h6>
+            <a [routerLink]="['/un-funcionario',i]"> Ver más información </a>
+        </li>
+    </ul>
+</div>

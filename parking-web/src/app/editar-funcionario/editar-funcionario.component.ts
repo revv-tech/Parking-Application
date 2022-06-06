@@ -66,7 +66,6 @@ export class EditarFuncionarioComponent implements OnInit {
       jefatura:this.esJefatura
     }
     this._servicioUsuario.editarUsuario(body);
-    console.log(body)
     this.submitted = true;
   }
 
@@ -74,8 +73,6 @@ export class EditarFuncionarioComponent implements OnInit {
 setTipos(){
   this.tiposFuncionarios.push(TFuncionario.ADMINISTRATIVO)
   this.tiposFuncionarios.push(TFuncionario.DOCENTE)
-  console.log(this.tiposFuncionarios)
-  console.log("no")
 };
 
 agregarVehiculo(){

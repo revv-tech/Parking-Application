@@ -39,6 +39,7 @@ export class EstacionamientosService {
   private baseUrl:string = 'http://localhost:8080/api/parqueos'
 
   parqueos:any=[]
+  parqueosFiltro:any=[]
   // parqueos:any=[
   //   {
   //   "idEstacionamiento":2,
@@ -68,7 +69,6 @@ export class EstacionamientosService {
   // ]
 
   constructor(private http: HttpClient) { 
-    console.log("funcionando el servicio de estacionamientos")
   }
 
   // getparqueos(): Observable<any>{
@@ -77,10 +77,8 @@ export class EstacionamientosService {
   // }
 
   getParqueos(): Observable<Estacionamiento[]> {
-    console.log("Results:")
     this.http.get(this.baseUrl+"/consultar-parqueos").subscribe(_parqueos => {
       this.parqueos = _parqueos
-      console.log(_parqueos)
     })
     return this.parqueos;
   }
@@ -90,11 +88,18 @@ export class EstacionamientosService {
     return this.parqueos[index];
   }
 
+  getParqueoSelect(index:number){
+    return this.parqueosFiltro[index];
+  }
+
+  setParqueoFiltro(parqueos:any[]){
+    this.parqueosFiltro = parqueos
+  }
+
   addParking = async (estacionamiento:any,data:any) => {
     this.http.post("https://api.cloudinary.com/v1_1/dhoxfrbt2/image/upload",data).subscribe(async (response:any)=>{
       estacionamiento.imagen = await response["secure_url"]
       estacionamiento["imagen"] = await response["secure_url"]
-      console.log("imagen url: " + estacionamiento["imagen"])
       this.http.put(this.baseUrl + "/manageParking/addParking", estacionamiento)
       .subscribe(_result => {
           return  _result
