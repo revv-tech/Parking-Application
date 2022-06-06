@@ -39,7 +39,6 @@ export class GestorEstacionamientoComponent implements OnInit {
   }
 
   onPhotoSelected(evento:any):void{
-    // console.log(evento)
     if (evento.target.files && evento.target.files[0]){
       this.archivo = <File>evento.target.files[0]
       const reader = new FileReader();
@@ -49,9 +48,6 @@ export class GestorEstacionamientoComponent implements OnInit {
   }
 
   agregarEstacionamiento(){
-    console.log("archivo a guardar")
-    console.log(this.archivo)
-
     const file_data = this.archivo;
     const data = new FormData();
     data.append("file",file_data);
@@ -101,17 +97,6 @@ export class GestorEstacionamientoComponent implements OnInit {
   tipoSubcontratado(){
     this.estacionamientoSelec.tipo = TEstacionamiento.SUBCONTRATADO
     this.tipoSelec = 2
-  }
-
-  printEstacionamiento(estacionamiento:Estacionamiento){
-
-    console.log("--ESTACIONAMIENTO--" + estacionamiento.nombre)
-    console.log(estacionamiento.ubicacion)
-    console.log("Espacios totales: " + estacionamiento.espaciosTotales)
-    console.log("Espacios comunes: " + estacionamiento.espaciosComunes)
-    console.log("Espacios especiales: " + estacionamiento.espaciosEspeciales)
-    console.log("Espacios oficiales: " + estacionamiento.espaciosOficiales)
-    console.log("Tipo: " + estacionamiento.tipo)
   }
 
   cargarEstacionamientoSelec(estacionamiento:Estacionamiento){

@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 })
 export class FuncionariosService {
 
+
   private baseUrl:string = 'http://localhost:8080/api/funcionarios'
   // Usuario obtenido del Login
   public usuarioLoggeado: any;
@@ -19,10 +20,26 @@ export class FuncionariosService {
   isAdmin = false;
   exito:any;
   funcionarios:any=[]
+  funcionario: any= {}
+  funcionarioSelect:any[]=[]
+  departamentos: any =[]
   
   
   constructor(private http: HttpClient) {
-      console.log("Funcionando el servicio de funcionarios")
+    }
+
+
+    getUnUsuario(index:number): Funcionario {
+      this.funcionarios = this.getFuncionarios();
+      return this.funcionarios[index];
+    }
+
+    getFuncionarioSelect(index:number){
+      return this.funcionarioSelect[index];
+    }
+
+    setFuncionarioFiltro(funcionarios:any[]){
+      this.funcionarioSelect = funcionarios
     }
 
     cambiarContraseña = async (oldPassword: string, newPassword: string,identificacion:number) => {
@@ -33,26 +50,22 @@ export class FuncionariosService {
     }
 
 
-    getFuncionarios(): Observable<Funcionario[]> {
-      console.log("Results:")
+    getFuncionarios(): Funcionario[] {
       this.http.get(this.baseUrl+"/consultar-Funcionarios").subscribe(_funcionarios => {
         this.funcionarios = _funcionarios
-        console.log(_funcionarios)
+        return this.funcionarios;
       })
       return this.funcionarios;
     }
   
 
     editarUsuario = async (_body:any)  => {  
-      return this.http.put<any>(`${this.baseUrl}/editarUsuario`,_body)
-      .subscribe(data => {
-        console.log(data)
-      });
+      this.http.put<any>(`${this.baseUrl}/editarUsuario`,_body)
+      .subscribe(data => {});
       
     }
 
     login = async (mail : string, password : string)  =>  {
-      console.log("Results:")
       // Login con body de contrasena y email
       this.http.put(this.baseUrl+'/login',{contraseña : password, 
         correoInstitucional : mail}).subscribe (data => {
@@ -116,5 +129,22 @@ export class FuncionariosService {
 
     actualInfo = async (usuario:any) => {
       this.usuarioLoggeado = usuario
+    }
+
+    getFuncionario = async (funcionarioId:any) => {
+      // window.alert("llega aqui")
+      this.funcionario = this.http.put(this.baseUrl + "/getFuncionario",{identificacion: funcionarioId})
+      .subscribe(_result => {
+          this.funcionario = _result.valueOf()
+      })
+      return this.funcionario
+    }
+
+    getDepartamentos() {
+      this.http.get(this.baseUrl+"/consultar-departamentos").subscribe(result => {
+        this.departamentos = result;
+        return result;
+      })
+      return this.departamentos;
     }
 }

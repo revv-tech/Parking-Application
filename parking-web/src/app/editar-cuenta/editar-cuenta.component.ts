@@ -38,14 +38,16 @@ export class EditarCuentaComponent implements OnInit {
   campus2: TCampus;
   horarios: Horario[] = [];
   horarioDia: TDia = TDia.DOMINGO;
-  horarioInicio: number=12;
-  horarioFin: number=12;
+  horarioInicio: any=12;
+  horarioFin: any=12;
   dias: any[];
   horas: any[];
   esJefatura:boolean=true;
   inicioTiempo:String="am";
   finTiempo:String="pm";
   tipoHoras:any[]=["am","pm"]
+  departamentoSelect:String="";
+  departamentos: any[] = []
 
 
   constructor(private _servicioUsuario:FuncionariosService) {
@@ -56,7 +58,6 @@ export class EditarCuentaComponent implements OnInit {
       this.tiposCampus = Object.values(TCampus)
       this.identificacion = this.usuarioLoggeado["identificacion"]
       this.nombreCompleto = this.usuarioLoggeado["nombreCompleto"]
-      this.codigo = this.usuarioLoggeado["codigo"]
       this.correoAlterno = this.usuarioLoggeado["correoAlterno"]
       this.necesidadEspecial = this.usuarioLoggeado["necesidadEspecial"]
       this.correoInstitucional = this.usuarioLoggeado["correoInstitucional"]
@@ -69,7 +70,6 @@ export class EditarCuentaComponent implements OnInit {
       this.funcionario = this.usuarioLoggeado["funcionario"]
       this.esJefatura = this.usuarioLoggeado["esJefatura"]
       this.horarios = this.usuarioLoggeado["horarios"]
-      console.log(this.usuarioLoggeado["horarios"])
       this.tiposFuncionarios = this.tiposFuncionarios.filter(value=>value != this.tipo)
       this.tiposCampus = this.tiposCampus.filter(value=>value != this.campus)
       this.tipo2 = this.tipo
@@ -81,6 +81,9 @@ export class EditarCuentaComponent implements OnInit {
    }
 
   ngOnInit(): void {
+    this.departamentos = this._servicioUsuario.getDepartamentos()["lista"];
+    console.log(this.departamentos)
+    this.departamentoSelect = this.getDepartamento(this.usuarioLoggeado["codigo"])
   }
 
   
@@ -89,7 +92,7 @@ export class EditarCuentaComponent implements OnInit {
     let body = {
       identificacion:this.identificacion,
       nombreCompleto:this.nombreCompleto,
-      codigo:this.codigo,
+      codigo:this.getCodigo(this.departamentoSelect),
       correoAlterno:this.correoAlterno,
       necesidadEspecial:this.necesidadEspecial,
       correoInstitucional:this.correoInstitucional,
@@ -113,8 +116,6 @@ export class EditarCuentaComponent implements OnInit {
 setTipos(){
   this.tiposFuncionarios.push(TFuncionario.ADMINISTRATIVO)
   this.tiposFuncionarios.push(TFuncionario.DOCENTE)
-  console.log(this.tiposFuncionarios)
-  console.log("no")
 };
 
 agregarVehiculo(){
@@ -151,6 +152,14 @@ agregarHorario(){
 eliminarHorario(i:number){
   this.horarios.splice(i,1);
   this.submitted1 = false
+}
+
+getDepartamento(codigo:any):any{
+  return this.departamentos.filter(dep => dep["codigo"] == codigo)[0]["descripcion"]
+}
+
+getCodigo(departamentoSelect: any): any {
+  return this.departamentos.filter(dep => dep["descripcion"] == departamentoSelect)[0]["codigo"]
 }
 
 }
