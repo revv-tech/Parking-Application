@@ -16,7 +16,9 @@
                     
                     <h5>Espacio Reservado:</h5> <h6>{{parqueo.ubicacion}}</h6>
                     <p></p>&nbsp;&nbsp;&nbsp;
-                    <button class="btnVerInfo" [routerLink]="['/un-estacionamiento',i]"> Ver más información </button>&nbsp;&nbsp;&nbsp;
+                    <!--
+                        <button class="btnVerInfo" [routerLink]="['/un-estacionamiento']"> Ver más información </button>&nbsp;&nbsp;&nbsp;
+                    --->
                     <button class="btnEliminar" >Eliminar reserva</button>&nbsp;&nbsp;&nbsp;
                     <p></p>
                 </div>
@@ -34,10 +36,12 @@
     <h4 for="meeting-time">Seleccione el parqueo: </h4>
     
     <label>Parqueos disponibles: </label>&nbsp;&nbsp;&nbsp;
+        <!--
         <select [(ngModel)]="tipoParqueo" id="dropdown2">
             <option >Seleccione uno...</option>&nbsp;&nbsp;&nbsp;
             <option  *ngFor="let parqueo of parqueos,index as i">{{parqueo.nombre}}</option>
         </select>&nbsp;&nbsp;&nbsp;
+        --->
     <div class="text-center">
         <button class="btnVerInfo" > Realizar nueva reserva </button>&nbsp;&nbsp;&nbsp;
     </div>
