@@ -1,0 +1,48 @@
+<div class="mt-5">
+    <h2 style="text-align: center;">Consulta de Reservas</h2>
+    
+    <h4>Sus reservas disponibles:</h4>
+    <p></p>
+    <p></p>
+    <div class ="scrollmenu" style="width: 1100px; height: 600px; overflow-y: scroll;">
+      <ul class="list-group">
+            <li class="list-group-item" *ngFor="let parqueo of parqueos, index as i">
+                <div class="text-center">
+                    <h4>
+                        Fecha de reserva: {{parqueo.nombre}}
+                    </h4>
+                    <img src={{parqueo.imagen}} alt="Fachada del parqueo" height="100">
+                    <h5>Parqueo de reserva:</h5> <h6>{{parqueo.ubicacion}}</h6>
+                    
+                    <h5>Espacio Reservado:</h5> <h6>{{parqueo.ubicacion}}</h6>
+                    <p></p>&nbsp;&nbsp;&nbsp;
+                    <!--
+                        <button class="btnVerInfo" [routerLink]="['/un-estacionamiento']"> Ver más información </button>&nbsp;&nbsp;&nbsp;
+                    --->
+                    <button class="btnEliminar" >Eliminar reserva</button>&nbsp;&nbsp;&nbsp;
+                    <p></p>
+                </div>
+                
+        </ul>
+    </div>
+    &nbsp;&nbsp;&nbsp;
+    <h2 style="text-align: center;">Realizar nueva reserva</h2>
+    <h4 for="meeting-time">Seleccione la fecha y hora: </h4>
+    <p></p>&nbsp;&nbsp;&nbsp;
+    <input type="datetime-local" id="horaReserva"
+       name="meeting-time" value="2022-06-12T19:30"
+       min="2018-06-07T00:00" max="2023-06-14T00:00">
+       <p></p>
+    <h4 for="meeting-time">Seleccione el parqueo: </h4>
+    
+    <label>Parqueos disponibles: </label>&nbsp;&nbsp;&nbsp;
+        
+        <select [(ngModel)]="tipoParqueo" id="dropdown2">
+            <option >Seleccione uno...</option>&nbsp;&nbsp;&nbsp;
+            <option  *ngFor="let parqueo of parqueos,index as i">{{parqueo.nombre}}</option>
+        </select>&nbsp;&nbsp;&nbsp;
+        -
+    <div class="text-center">
+        <button class="btnVerInfo" > Realizar nueva reserva </button>&nbsp;&nbsp;&nbsp;
+    </div>
+</div>

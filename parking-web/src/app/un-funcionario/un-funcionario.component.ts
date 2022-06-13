@@ -9,11 +9,11 @@ import { FuncionariosService } from '../servicios/funcionarios.service';
   styleUrls: ['./un-funcionario.component.css']
 })
 export class UnFuncionarioComponent implements OnInit {
-
-  funcionario:Funcionario={identificacion:0, nombreCompleto:"",codigo:"",correoAlterno:"",correoInstitucional:"",necesidadEspecial:false,vehiculos:[],
-                          tipoUsuario:TUsuario.COMUN, tipo:TFuncionario.DOCENTE, contrasena:"",campus:TCampus.SAN_JOSE,celular:"", horarios:[]};
   departamentoSelect:any
   departamentos:any=[]
+  funcionario:Funcionario={identificacion:0, nombreCompleto:"",codigo:"",correoAlterno:"",correoInstitucional:"",necesidadEspecial:false,vehiculos:[],
+                          tipoUsuario:TUsuario.COMUN, tipo:TFuncionario.DOCENTE, contrasena:"",campus:TCampus.SAN_JOSE,celular:"", horarios:[]};
+  
 
   constructor(private ruta:ActivatedRoute, public _servicioUsuario:FuncionariosService) {
     this.ruta.params.subscribe(params=>{

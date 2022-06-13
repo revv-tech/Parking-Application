@@ -20,6 +20,9 @@
           <a class="nav-link"  [routerLink]="['/manageParking']" >Estacionamientos</a>
         </li>
 
+        <li class="nav-item" routerLinkActive="active" >
+          <a class="nav-link" [routerLink]="['/gestorReservas']">Consultar Reservas</a>
+        </li>
         <li class="nav-item" routerLinkActive="active" *ngIf="funcionarioService.isAdmin  == true">
           <a class="nav-link" [routerLink]="['/gestorFuncionarios']">Funcionarios</a>
         </li>
