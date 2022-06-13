@@ -27,6 +27,8 @@ export class GestorFuncionariosComponent implements OnInit {
   departamentoSelect:String="";
   departamentoSelect2:String="Cualquiera";
   cuentaFuncionarios:any=0
+  necesidadEspecial:boolean = false;
+  esJefatura: boolean = false;
 
   constructor(public _servicioFuncionario : FuncionariosService) { 
   }
