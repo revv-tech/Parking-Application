@@ -28,8 +28,8 @@ import { GlobalsComponent } from './globals/globals.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { GestorFuncionariosComponent } from './gestor-funcionarios/gestor-funcionarios.component';
 import { ConsultaFuncionarioComponent } from './consulta-funcionario/consulta-funcionario.component';
-import { GestorreservasComponent } from './gestorreservas/gestorreservas.component';
 import { UnFuncionarioComponent } from './un-funcionario/un-funcionario.component';
+import { GestorReservasComponent } from './gestor-reservas/gestor-reservas.component';
 
 // Nueva ruta agregada
 const routes: Routes = [
@@ -44,6 +44,7 @@ const routes: Routes = [
   { path: 'manageParking', component: GestorEstacionamientoComponent },
   { path: '', component: LoginComponent, pathMatch:'full' },
   { path: '**', redirectTo: '/login', pathMatch:'full' },
+  { path: 'gestorReservas', component: GestorReservasComponent },
   { path: 'consultar-parqueos/:tipo', component: ConsultarParqueosComponent },
   { path: 'gestorFuncionarios', component: GestorEstacionamientoComponent },
 ];
@@ -63,6 +64,7 @@ const routes: Routes = [
     DashboardComponent,
     GestorFuncionariosComponent,
     ConsultaFuncionarioComponent,
+    GestorReservasComponent,
   ],
   imports: [
     BrowserModule,

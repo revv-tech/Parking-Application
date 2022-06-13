@@ -2,13 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { TEstacionamiento } from '../model/estacionamiento';
 import { EstacionamientosService } from '../servicios/estacionamientos.service';
 import { FuncionariosService } from '../servicios/funcionarios.service';
+import AOS from 'aos'
 
 @Component({
-  selector: 'app-gestorreservas',
-  templateUrl: './gestorreservas.component.html',
-  styleUrls: ['./gestorreservas.component.css']
+  selector: 'app-gestor-reservas',
+  templateUrl: './gestor-reservas.component.html',
+  styleUrls: ['./gestor-reservas.component.css']
 })
-export class GestorreservasComponent implements OnInit {
+export class GestorReservasComponent implements OnInit {
   parqueos:any=[]
   tipoParqueo:any = "Cualquiera"
   tiposParqueos:TEstacionamiento[] =[]
@@ -21,6 +22,7 @@ export class GestorreservasComponent implements OnInit {
    }
 
   ngOnInit(): void {
+    AOS.init();
   }
 
 }

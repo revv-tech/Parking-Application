@@ -10,8 +10,8 @@ import { UnEstacionamientoComponent } from './un-estacionamiento/un-estacionamie
 import { GestorFuncionariosComponent } from './gestor-funcionarios/gestor-funcionarios.component';
 import { DashboardComponent } from './dashboard/dashboard.component'
 import { ConsultaFuncionarioComponent } from './consulta-funcionario/consulta-funcionario.component';
+import { GestorReservasComponent } from './gestor-reservas/gestor-reservas.component';
 import { UnFuncionarioComponent } from './un-funcionario/un-funcionario.component';
-import { GestorreservasComponent } from './gestorreservas/gestorreservas.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -25,7 +25,7 @@ const routes: Routes = [
   { path: 'gestorFuncionarios', component: GestorFuncionariosComponent },
   { path: 'consulta-funcionario', component: ConsultaFuncionarioComponent },
   { path: 'dashboard', component: DashboardComponent },
-  { path: 'gestorReservas', component: GestorreservasComponent },
+  { path: 'gestorReservas', component: GestorReservasComponent },
   { path: '', component: LoginComponent, pathMatch:'full' },
   { path: '**', redirectTo: '/login', pathMatch:'full' },
   
