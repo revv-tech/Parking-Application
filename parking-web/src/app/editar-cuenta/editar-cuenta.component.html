@@ -91,41 +91,25 @@
                 <p></p>
               </div>
               <div>
-                <label for="oficiales">Agregar horarios</label>
-              </div>
-              <div >
-                <label>Día </label>&nbsp;&nbsp;&nbsp;
-                <select [(ngModel)]="horarioDia" id="dropdown">
-                  <option *ngFor="let func of dias,index as i">{{func}}</option>
-                </select>
+                <H2>Horarios</H2>
               </div>
               <div>
-                <label>Hora de inicio </label>&nbsp;&nbsp;&nbsp;
-                <select [(ngModel)]="horarioInicio" id="dropdown">
-                  <option *ngFor="let func of horas,index as i">{{func}}</option>
-                </select>
-                <select [(ngModel)]="inicioTiempo" id="dropdown">
-                  <option *ngFor="let func of tipoHoras,index as i">{{func}}</option>
-                </select>
-              </div>
-              <div>
-                <label>Hora de finalización </label>&nbsp;&nbsp;&nbsp;
-                <select [(ngModel)]="horarioFin" id="dropdown">
-                  <option *ngFor="let func of horas,index as i">{{func}}</option>
-                </select>
-                <select [(ngModel)]="finTiempo" id="dropdown">
-                  <option *ngFor="let func of tipoHoras,index as i">{{func}}</option>
-                </select>
-              </div>
-              <div>
-                <button type="button" class="btn btn-secondary" (click)="agregarHorario()">Agregar</button>
                 <div style="width: 400px; height: 200px; overflow-y: scroll;">
                   <ul class="list-group">
                         <li class="list-group-item" *ngFor="let horario of horarios, index as i">
-                            <h6>
-                                {{horario.dia}} desde {{horario.inicio}}{{inicioTiempo}} hasta {{horario.fin}}{{finTiempo}}
-                            </h6>
-                            <button type="button" class="btn btn-secondary" (click)="eliminarHorario(i)">eliminarHorario</button>
+                          <div class="horariosForm">
+                            <h6>{{horario.dia}}</h6>
+                            <p></p><p></p>
+                            <small>Hora de Entrada: </small>
+                            <p></p><p></p>
+                            <input type="time" id="horaLunesEntrada" name="horaLunesEntrada" min="00:00" max="24:00" [(ngModel)]="horario.inicio" disabled>
+                            <p></p>
+                            <small>Hora de Salida: </small>
+                            <p></p>
+                            <input type="time" id="horaLunesSalida" name="horaLunesSalida" min="00:00" max="24:00" [(ngModel)]="horario.fin" disabled>
+                            <span class="input-group-btn" 
+                                style="width:0px;"></span>
+                            </div>
                         </li>
                     </ul>
                 </div>
@@ -247,39 +231,41 @@
               <div>
                 <label for="oficiales">Agregar horarios</label>
               </div>
-              <div >
-                <label>Día </label>&nbsp;&nbsp;&nbsp;
-                <select [(ngModel)]="horarioDia" id="dropdown">
+              <div class="horariosForm">
+                <select [(ngModel)]="horarioDia" id="dropdown" name="diaHorario">
                   <option *ngFor="let func of dias,index as i">{{func}}</option>
                 </select>
-              </div>
+                <p></p><p></p>
+                <small>Hora de Entrada: </small>
+                <p></p><p></p>
+                <input type="time" id="horaLunesEntrada" name="horaLunesEntrada" min="00:00" max="24:00" [(ngModel)]="horarioInicio">
+                <p></p>
+                <small>Hora de Salida: </small>
+                <p></p>
+                <input type="time" id="horaLunesSalida" name="horaLunesSalida" min="00:00" max="24:00" [(ngModel)]="horarioFin">
+                <span class="input-group-btn" 
+                    style="width:0px;"></span>
+            </div>
+            <p></p>
+            <button style="position: relative; left:200px; top:-150px;" type="button" class="btn btn-secondary" (click)="agregarHorario()">Agregar</button>
               <div>
-                <label>Hora de inicio </label>&nbsp;&nbsp;&nbsp;
-                <select [(ngModel)]="horarioInicio" id="dropdown">
-                  <option *ngFor="let func of horas,index as i">{{func}}</option>
-                </select>
-                <select [(ngModel)]="inicioTiempo" id="dropdown">
-                  <option *ngFor="let func of tipoHoras,index as i">{{func}}</option>
-                </select>
-              </div>
-              <div>
-                <label>Hora de finalización </label>&nbsp;&nbsp;&nbsp;
-                <select [(ngModel)]="horarioFin" id="dropdown">
-                  <option *ngFor="let func of horas,index as i">{{func}}</option>
-                </select>
-                <select [(ngModel)]="finTiempo" id="dropdown">
-                  <option *ngFor="let func of tipoHoras,index as i">{{func}}</option>
-                </select>
-              </div>
-              <div>
-                <button type="button" class="btn btn-secondary" (click)="agregarHorario()">Agregar</button>
-                <div style="width: 400px; height: 200px; overflow-y: scroll;">
+                <div style="width: 400px; height: 260px; overflow-y: scroll;">
                   <ul class="list-group">
                         <li class="list-group-item" *ngFor="let horario of horarios, index as i">
-                            <h6>
-                                {{horario.dia}} desde {{horario.inicio}}{{inicioTiempo}} hasta {{horario.fin}}{{finTiempo}}
-                            </h6>
-                            <button type="button" class="btn btn-secondary" (click)="eliminarHorario(i)">eliminarHorario</button>
+                          <div class="horariosForm">
+                            <h6>{{horario.dia}}</h6>
+                            <p></p><p></p>
+                            <small>Hora de Entrada: </small>
+                            <p></p><p></p>
+                            <input type="time" id="horaLunesEntrada" name="horaLunesEntrada" min="00:00" max="24:00" [(ngModel)]="horario.inicio" disabled>
+                            <p></p>
+                            <small>Hora de Salida: </small>
+                            <p></p>
+                            <input type="time" id="horaLunesSalida" name="horaLunesSalida" min="00:00" max="24:00" [(ngModel)]="horario.fin" disabled>
+                            <span class="input-group-btn" 
+                                style="width:0px;"></span>
+                        </div>
+                            <button style="position: relative; left: 10px; top: -70px;" type="button" class="btn btn-secondary" (click)="eliminarHorario(i)">eliminarHorario</button>
                         </li>
                     </ul>
                 </div>
@@ -308,18 +294,5 @@
             <p></p>
             <p></p>
         </div>
-        <div class="col text-center">
-          <ul id="redbutton">
-            <button (click)="editarUsuario()" class="btn btn-success"> Actualizar tu Información </button>
-          </ul>
-        </div>
-        
-        <div *ngIf="submitted">
-          <p></p>
-            <p></p>
-          <h4>Información actualizada!</h4>
-          <p></p>
-            <p></p>
-        </div>    -->
     
 </ng-template>
