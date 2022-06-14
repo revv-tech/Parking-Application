@@ -20,16 +20,16 @@
           <a class="nav-link"  [routerLink]="['/manageParking']" >Estacionamientos</a>
         </li>
 
-        <li class="nav-item" routerLinkActive="active" >
+        <li class="nav-item" routerLinkActive="active"  *ngIf="funcionarioService.isJefe  == true or funcionarioService.isAdmin  == true">
           <a class="nav-link" [routerLink]="['/gestorReservas']">Consultar Reservas</a>
         </li>
-        <li class="nav-item" routerLinkActive="active" *ngIf="funcionarioService.isAdmin  == true">
+        <li class="nav-item" routerLinkActive="active" *ngIf="funcionarioService.isJefe  == true or funcionarioService.isAdmin  == true">
           <a class="nav-link" [routerLink]="['/gestorFuncionarios']">Funcionarios</a>
         </li>
         <li class="nav-item" routerLinkActive="active" >
           <a class="nav-link" [routerLink]="['/editar-cuenta']">Editar mi información</a>
         </li>
-        <li class="nav-item" routerLinkActive="active" *ngIf="funcionarioService.isAdmin">
+        <li class="nav-item" routerLinkActive="active" *ngIf="funcionarioService.isJefe  == true or funcionarioService.isAdmin == true">
           <a class="nav-link" [routerLink]="['/consulta-funcionario']">Consultar Funcionario</a>
         </li>
         
