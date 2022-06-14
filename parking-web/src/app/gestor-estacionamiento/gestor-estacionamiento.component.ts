@@ -3,6 +3,7 @@ import { Estacionamiento, TEstacionamiento } from '../model/estacionamiento';
 import AOS from 'aos'
 import { EstacionamientosService } from '../servicios/estacionamientos.service';
 import { identifierName } from '@angular/compiler';
+import { Horario, TDia, THorario } from '../model/horario';
 
 interface HtmlInputEvent extends Event {
   target: HTMLInputElement & EventTarget
@@ -19,7 +20,7 @@ export class GestorEstacionamientoComponent implements OnInit {
   //Simula la base de datos
   listaEstacionamientos:any = [] 
   estacionamiento:any
-  estacionamientoSelec:Estacionamiento = new Estacionamiento(0, "", "", 0, 0, 0, 0, TEstacionamiento.CAMPUS)
+  estacionamientoSelec:Estacionamiento = new Estacionamiento(0, "", "", 0, 0, 0, 0, TEstacionamiento.CAMPUS, [])
 
   isEditing:boolean = false
   isSelected:boolean = false
@@ -28,7 +29,7 @@ export class GestorEstacionamientoComponent implements OnInit {
   photoSelected: string | ArrayBuffer | null= "";
 
   tipoSelec:any = 0
-
+  horarios: any = {lunes:new Horario(TDia.LUNES,"00:00","00:00"), martes:new Horario(TDia.MARTES,"00:00","00:00"),miercoles:new Horario(TDia.MIERCOLES,"00:00","00:00"),jueves:new Horario(TDia.JUEVES,"00:00","00:00"),viernes:new Horario(TDia.VIERNES,"00:00","00:00"),sabado:new Horario(TDia.SABADO,"00:00","00:00"),domingo:new Horario(TDia.DOMINGO,"00:00","00:00")}
   constructor(private _servicioEstacionamiento:EstacionamientosService) { 
     this.listaEstacionamientos = this._servicioEstacionamiento.getParqueos()
 
@@ -63,7 +64,8 @@ export class GestorEstacionamientoComponent implements OnInit {
                 espaciosComunes :     this.estacionamientoSelec.espaciosComunes,
                 espaciosEspeciales :  this.estacionamientoSelec.espaciosEspeciales,
                 espaciosOficiales :   this.estacionamientoSelec.espaciosOficiales,
-                tipo :                this.estacionamientoSelec.tipo}
+                tipo :                this.estacionamientoSelec.tipo,
+                horarios: [this.horarios.lunes,this.horarios.martes,this.horarios.miercoles,this.horarios.jueves,this.horarios.viernes,this.horarios.sabado,this.horarios.domingo]}
 
     this.addResult = this._servicioEstacionamiento.addParking(body,data)
     this.listaEstacionamientos = this._servicioEstacionamiento.getParqueos()
@@ -76,14 +78,16 @@ export class GestorEstacionamientoComponent implements OnInit {
     if (confirm("¿Esta seguro que desea borrar?")){
       this._servicioEstacionamiento.deleteParking(this.estacionamientoSelec.idEstacionamiento)
       this.listaEstacionamientos = this._servicioEstacionamiento.getParqueos()
-      this.estacionamientoSelec = new Estacionamiento(0, "", "", 0, 0, 0, 0, TEstacionamiento.CAMPUS)
+      this.estacionamientoSelec = new Estacionamiento(0, "", "", 0, 0, 0, 0, TEstacionamiento.CAMPUS,[])
       this.photoSelected = null;
+      this.horarios = {lunes:new Horario(TDia.LUNES,"00:00","00:00"), martes:new Horario(TDia.MARTES,"00:00","00:00"),miercoles:new Horario(TDia.MIERCOLES,"00:00","00:00"),jueves:new Horario(TDia.JUEVES,"00:00","00:00"),viernes:new Horario(TDia.VIERNES,"00:00","00:00"),sabado:new Horario(TDia.SABADO,"00:00","00:00"),domingo:new Horario(TDia.DOMINGO,"00:00","00:00")}
     }
     
     this.tipoSelec = 0
   }
 
   actualizarEstacionamiento(){
+    this.estacionamientoSelec.horarios = [this.horarios.lunes,this.horarios.martes,this.horarios.miercoles,this.horarios.jueves,this.horarios.viernes,this.horarios.sabado,this.horarios.domingo]
     this._servicioEstacionamiento.updateParking(this.estacionamientoSelec)
     this.listaEstacionamientos = this._servicioEstacionamiento.getParqueos()
     this.tipoSelec = 0
@@ -102,6 +106,13 @@ export class GestorEstacionamientoComponent implements OnInit {
   cargarEstacionamientoSelec(estacionamiento:Estacionamiento){
     this.isSelected = true
     this.estacionamientoSelec = estacionamiento;
+    this.horarios.lunes = estacionamiento.horarios.filter((horario) => horario.dia == TDia.LUNES)[0]
+    this.horarios.martes = estacionamiento.horarios.filter((horario) => horario.dia == TDia.MARTES)[0]
+    this.horarios.miercoles = estacionamiento.horarios.filter((horario) => horario.dia == TDia.MIERCOLES)[0]
+    this.horarios.jueves = estacionamiento.horarios.filter((horario) => horario.dia == TDia.JUEVES)[0]
+    this.horarios.viernes = estacionamiento.horarios.filter((horario) => horario.dia == TDia.VIERNES)[0]
+    this.horarios.sabado = estacionamiento.horarios.filter((horario) => horario.dia == TDia.SABADO)[0]
+    this.horarios.domingo = estacionamiento.horarios.filter((horario) => horario.dia == TDia.DOMINGO)[0]
     this.isEditing = true
     this.photoSelected = this.estacionamientoSelec["imagen"];
   }

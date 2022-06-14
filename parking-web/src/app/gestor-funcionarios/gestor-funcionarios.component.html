@@ -79,7 +79,9 @@
           <!--
           Lunes
           -->
-          <h5>Lunes</h5>
+          <select [(ngModel)]="horarioDia" id="dropdown">
+            <option *ngFor="let func of dias,index as i">{{func}}</option>
+          </select>
           <p></p><p></p>
           <small>Hora de Entrada: </small>
           <p></p><p></p>
@@ -91,108 +93,7 @@
           <span class="input-group-btn" 
               style="width:0px;"></span> 
       </div>
-      <div class="horariosForm">
-        <!--
-        Martes
-        -->
-        <h5>Martes</h5>
-        <p></p><p></p>
-        <small>Hora de Entrada: </small>
-        <p></p><p></p>
-        <input type="time" id="horaMartesEntrada" name="horaMartesEntrada" min="00:00" max="24:00">
-        <p></p>
-        <small>Hora de Salida: </small>
-        <p></p>
-        <input type="time" id="horaMartesSalida" name="horaMartesSalida" min="00:00" max="24:00">
-    </div>
-    
-    <div class="horariosForm">
-      <!--
-      Miercoles
-      -->
-      <h5>Miercoles</h5>
-      <p></p><p></p>
-      <small>Hora de Entrada: </small>
-      <p></p><p></p>
-      <input type="time" id="horaMiercolesEntrada" name="horaMiercolesEntrada" min="00:00" max="24:00">
-      <p></p>
-      <small>Hora de Salida: </small>
-      <p></p>
-      <input type="time" id="horaMiercolesSalida" name="horaMiercolesSalida" min="00:00" max="24:00">
-  </div>
-  <div class="horariosForm">
-    <!--
-    Jueves
-    -->
-    <h5>Jueves</h5>
-    <p></p><p></p>
-    <small>Hora de Entrada: </small>
-    <p></p><p></p>
-    <input type="time" id="horaJuevesEntrada" name="horaJuevesEntrada" min="00:00" max="24:00">
-    <p></p>
-    <small>Hora de Salida: </small>
-    <p></p>
-    <input type="time" id="horaJuevesSalida" name="horaJuevesSalida" min="00:00" max="24:00">
-</div>
-
-<div class="horariosForm">
-  <!--
-  Viernes
-  -->
-  <h5>Viernes</h5>
-  <p></p><p></p>
-  <small>Hora de Entrada: </small>
-  <p></p><p></p>
-  <input type="time" id="horaViernesEntrada" name="horaViernesEntrada" min="00:00" max="24:00">
-  <p></p>
-  <small>Hora de Salida: </small>
-  <p></p>
-  <input type="time" id="horaViernesSalida" name="horaViernesSalida" min="00:00" max="24:00">
-</div>
-<div class="horariosForm">
-  <!--
-  Sabado
-  -->
-  <h5>Sabado</h5>
-  <p></p><p></p>
-  <small>Hora de Entrada: </small>
-  <p></p><p></p>
-  <input type="time" id="horaSabadoEntrada" name="horaSabadoEntrada" min="00:00" max="24:00">
-  <p></p>
-  <small>Hora de Salida: </small>
-  <p></p>
-  <input type="time" id="horaSabadoSalida" name="horaSabadoSalida" min="00:00" max="24:00">
-</div>
-<div class="horariosForm">
-  <!--
-  Domingo
-  -->
-  <h5>Domingo</h5>
-  <p></p><p></p>
-  <small>Hora de Entrada: </small>
-  <p></p><p></p>
-  <input type="time" id="horaDomingoEntrada" name="horaDomingoEntrada" min="00:00" max="24:00">
-  <p></p>
-  <small>Hora de Salida: </small>
-  <p></p>
-  <input type="time" id="horaDomingoSalida" name="horaDomingoSalida" min="00:00" max="24:00">
-</div>
-<div class="form-group">
-  <label for="esJefe">¿Es jefatura? </label>
-  <p></p>
-  <div *ngIf="esJefatura; else elseBlockJefatura">
-    <input  [(ngModel)]="esJefatura" type="radio" id="siEsJefe"  name="esJefe" [value]="true" checked>
-    <label for="siEsJefe">Sí</label><br>
-    <input  [(ngModel)]="esJefatura" type="radio" id="noEsJefe"  name="esJefe" [value]="false">
-    <label for="noEsJefe">No</label><br>
-</div>
-<ng-template #elseBlockJefatura>
-    <input  [(ngModel)]="esJefatura" type="radio" id="siEsJefe" [value]="true" name="esJefe" value="Sí" >
-   <label for="siEsJefe">Sí</label><br>
-    <input  [(ngModel)]="esJefatura" type="radio" id="noEsJefe" [value]="false" name="esJefe" checked>
-  <label for="noEsJefe">No</label><br>
-</ng-template>
-</div>
+      
       <p></p><p></p><p></p>
           <div class="btn-group" role="group" aria-label="Basic example">
             
