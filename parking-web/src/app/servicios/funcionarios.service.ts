@@ -73,10 +73,10 @@ export class FuncionariosService {
             // Iguala usuario con usuario recibido de consulta
             this.usuarioLoggeado = data;
             
-            if (this.usuarioLoggeado["tipoUsuario"] == "Administrativo"){
+            if (this.usuarioLoggeado["tipoUsuario"] == TUsuario.ADMIN){
               this.isAdmin = true;
             }
-            if (this.usuarioLoggeado["tipoUsuario"] == "Común"){
+            if (this.usuarioLoggeado["tipoUsuario"] == TUsuario.COMUN){
               this.isAdmin = false;
             }
             

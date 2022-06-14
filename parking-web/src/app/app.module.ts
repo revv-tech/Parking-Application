@@ -22,7 +22,6 @@ import { ConsultarParqueosComponent } from './consultar-parqueos/consultar-parqu
 import { UnEstacionamientoComponent } from './un-estacionamiento/un-estacionamiento.component';
 import { FuncionariosService } from './servicios/funcionarios.service';
 import { EditarCuentaComponent } from './editar-cuenta/editar-cuenta.component';
-import { EditarFuncionarioComponent } from './editar-funcionario/editar-funcionario.component';
 import { CambiarContrasenaComponent } from './cambiar-contrasena/cambiar-contrasena.component';
 import { GlobalsComponent } from './globals/globals.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -39,7 +38,6 @@ const routes: Routes = [
   { path: 'un-funcionario/:id', component: UnFuncionarioComponent },
   { path: 'editar-cuenta', component: EditarCuentaComponent },
   { path: 'cambiar-contrasena', component: CambiarContrasenaComponent },
-  { path: 'editar-funcionario', component: EditarFuncionarioComponent },
   { path: 'dashboard', component: DashboardComponent },
   { path: 'manageParking', component: GestorEstacionamientoComponent },
   { path: '', component: LoginComponent, pathMatch:'full' },
@@ -59,7 +57,6 @@ const routes: Routes = [
     ConsultarParqueosComponent,
     UnEstacionamientoComponent,
     EditarCuentaComponent,
-    EditarFuncionarioComponent,
     CambiarContrasenaComponent,
     DashboardComponent,
     GestorFuncionariosComponent,

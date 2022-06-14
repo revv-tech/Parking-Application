@@ -74,36 +74,56 @@
         </div>
       <h3>Registro de horarios: </h3>
       <p></p><p></p>
-        
-      <div class="horariosForm">
-          <!--
-          Lunes
-          -->
-          <select [(ngModel)]="horarioDia" id="dropdown">
+       <div class="horariosForm">
+          <select [(ngModel)]="horario.dia" id="dropdown" name="diaHorario">
             <option *ngFor="let func of dias,index as i">{{func}}</option>
           </select>
           <p></p><p></p>
           <small>Hora de Entrada: </small>
           <p></p><p></p>
-          <input type="time" id="horaLunesEntrada" name="horaLunesEntrada" min="00:00" max="24:00">
+          <input type="time" id="horaLunesEntrada" name="horaLunesEntrada" min="00:00" max="24:00" [(ngModel)]="horario.inicio">
           <p></p>
           <small>Hora de Salida: </small>
           <p></p>
-          <input type="time" id="horaLunesSalida" name="horaLunesSalida" min="00:00" max="24:00">
+          <input type="time" id="horaLunesSalida" name="horaLunesSalida" min="00:00" max="24:00" [(ngModel)]="horario.fin">
           <span class="input-group-btn" 
-              style="width:0px;"></span> 
+              style="width:0px;"></span>
+      </div>
+      <p></p>
+      <button style="position: relative; left:200px; top:-150px;" type="button" class="btn btn-secondary" (click)="agregarHorario()">Agregar</button>
+      <div style="width: 400px; height: 200px; overflow-y: scroll;">
+        <ul class="list-group">
+              <li class="list-group-item" *ngFor="let horario of horarios, index as i">
+                <div class="horariosForm">
+                  <select id="dropdown" disabled="">
+                    <option>{{horario.dia}}</option>
+                  </select>
+                  <p></p><p></p>
+                  <small>Hora de Entrada: </small>
+                  <p></p><p></p>
+                  <input type="time" id="horaLunesEntrada" name="horaLunesEntrada" min="00:00" max="24:00" [(ngModel)]="horario.inicio">
+                  <p></p>
+                  <small>Hora de Salida: </small>
+                  <p></p>
+                  <input type="time" id="horaLunesSalida" name="horaLunesSalida" min="00:00" max="24:00" [(ngModel)]="horario.fin">
+                  <span class="input-group-btn" 
+                      style="width:0px;"></span>
+              </div>
+              <p></p>
+              <button type="button" class="btn btn-secondary" (click)="eliminarHorario(i)">eliminarHorario</button>
+              </li>
+          </ul>
       </div>
       
-      <p></p><p></p><p></p>
-          <div class="btn-group" role="group" aria-label="Basic example">
-            
-            <div class="template-tabs-container">
-             
-              <label>Tipo de funcionario</label>
-               <div class="buttons" tile color="secondary" group>
-                <button type="button" class="btn btn-secondary" (click)="tipoFuncionario(2)" [class.btn-success]="tipofuncionarioSelec == 2">Docente</button>&nbsp;&nbsp;&nbsp;
-                <button type="button" class="btn btn-secondary" (click)="tipoFuncionario(1)" [class.btn-success]="tipofuncionarioSelec == 1">Administrativo</button>&nbsp;&nbsp;&nbsp;
-              </div>
+      <div style="position: relative; left:-80px" class="btn-group" role="group" aria-label="Basic example">
+        
+        <div class="template-tabs-container">
+          
+          <label>Tipo de funcionario</label>
+            <div class="buttons" tile color="secondary" group>
+            <button type="button" class="btn btn-secondary" (click)="tipoFuncionario(2)" [class.btn-success]="tipofuncionarioSelec == 2">Docente</button>&nbsp;&nbsp;&nbsp;
+            <button type="button" class="btn btn-secondary" (click)="tipoFuncionario(1)" [class.btn-success]="tipofuncionarioSelec == 1">Administrativo</button>&nbsp;&nbsp;&nbsp;
+          </div>
               
             
             <label>Tipo de usuario</label>
