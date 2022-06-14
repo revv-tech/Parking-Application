@@ -18,6 +18,8 @@ export class FuncionariosService {
   isLoggedInBool = false;
   failedPassword = false;
   isAdmin = false;
+  isEncargado = false;
+  isJefe = false;
   exito:any;
   funcionarios:any=[]
   funcionario: any= {}
@@ -78,6 +80,9 @@ export class FuncionariosService {
             }
             if (this.usuarioLoggeado["tipoUsuario"] == TUsuario.COMUN){
               this.isAdmin = false;
+            }
+            if (this.usuarioLoggeado["esJefatura"] == true){
+              this.isJefe = true;
             }
             
             this.isLoggedInBool = true;
