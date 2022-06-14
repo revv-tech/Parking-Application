@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FuncionariosService } from '../servicios/funcionarios.service';
 import AOS from 'aos'
 import { Funcionario, TCampus, TFuncionario, TUsuario } from '../model/funcionario';
+import { TDia } from '../model/horario';
 @Component({
   selector: 'app-gestor-funcionarios',
   templateUrl: './gestor-funcionarios.component.html',
@@ -29,6 +30,8 @@ export class GestorFuncionariosComponent implements OnInit {
   cuentaFuncionarios:any=0
   necesidadEspecial:boolean = false;
   esJefatura: boolean = false;
+  horarioDia: TDia = TDia.DOMINGO;
+  dias: any[] = [TDia.DOMINGO, TDia.LUNES, TDia.MARTES, TDia.MIERCOLES, TDia.JUEVES, TDia.VIERNES, TDia.SABADO]
 
   constructor(public _servicioFuncionario : FuncionariosService) { 
   }
