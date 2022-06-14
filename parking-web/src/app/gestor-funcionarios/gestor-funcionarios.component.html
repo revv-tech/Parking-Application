@@ -18,6 +18,22 @@
           <label for="identificacion">Identificación</label>
           <input type="text" [(ngModel)]="funcionarioSelec.identificacion" class="form-control" name="identificacion">
         </ng-template>
+        <div class="form-group">
+          <label for="especiales" >¿Presenta alguna discapacidad?</label>
+            <p></p>
+            <div *ngIf="necesidadEspecial; else elseBlockSpecialNeed">
+                <input [(ngModel)]="necesidadEspecial" type="radio" id="siPresenta"  name="necesidadEspecial" [value]="true" checked>
+                <label for="siPresenta">Sí</label><br>
+                <input [(ngModel)]="necesidadEspecial" type="radio" id="noPresenta"  [value]="false" name="necesidadEspecial">
+                <label for="noPresenta">No</label><br>
+            </div>
+            <ng-template #elseBlockSpecialNeed>
+                <input [(ngModel)]="necesidadEspecial" type="radio" id="siPresenta" name="necesidadEspecial" [value]="true" >
+               <label for="siPresenta">Sí</label><br>
+                <input [(ngModel)]="necesidadEspecial" type="radio" id="noPresenta" name="necesidadEspecial" [value]="false" checked>
+              <label for="noPresenta">No</label><br>
+          </ng-template>
+        </div>
         <p></p>
           <h4>Cambiar contraseña</h4>
           <p></p><p></p><p></p><p></p>
@@ -30,8 +46,10 @@
           <div class="alert alert-fail" role="alert" *ngIf= "!todobien">
             Las contraseñas no coinciden o no ha creado una
           </div>
-          <p></p><p></p><p></p>
 
+          
+          <p></p><p></p><p></p>
+          
         
           <div class="btn-group">
             <label>Departamento: </label>&nbsp;&nbsp;&nbsp;
@@ -56,122 +74,56 @@
         </div>
       <h3>Registro de horarios: </h3>
       <p></p><p></p>
-        
-      <div class="horariosForm">
-          <!--
-          Lunes
-          -->
-          <h5>Lunes</h5>
+       <div class="horariosForm">
+          <select [(ngModel)]="horario.dia" id="dropdown" name="diaHorario">
+            <option *ngFor="let func of dias,index as i">{{func}}</option>
+          </select>
           <p></p><p></p>
           <small>Hora de Entrada: </small>
           <p></p><p></p>
-          <input type="time" id="horaLunesEntrada" name="horaLunesEntrada" min="00:00" max="24:00">
+          <input type="time" id="horaLunesEntrada" name="horaLunesEntrada" min="00:00" max="24:00" [(ngModel)]="horario.inicio">
           <p></p>
           <small>Hora de Salida: </small>
           <p></p>
-          <input type="time" id="horaLunesSalida" name="horaLunesSalida" min="00:00" max="24:00">
+          <input type="time" id="horaLunesSalida" name="horaLunesSalida" min="00:00" max="24:00" [(ngModel)]="horario.fin">
           <span class="input-group-btn" 
-              style="width:0px;"></span> 
+              style="width:0px;"></span>
       </div>
-      <div class="horariosForm">
-        <!--
-        Martes
-        -->
-        <h5>Martes</h5>
-        <p></p><p></p>
-        <small>Hora de Entrada: </small>
-        <p></p><p></p>
-        <input type="time" id="horaMartesEntrada" name="horaMartesEntrada" min="00:00" max="24:00">
-        <p></p>
-        <small>Hora de Salida: </small>
-        <p></p>
-        <input type="time" id="horaMartesSalida" name="horaMartesSalida" min="00:00" max="24:00">
-    </div>
-    
-    <div class="horariosForm">
-      <!--
-      Miercoles
-      -->
-      <h5>Miercoles</h5>
-      <p></p><p></p>
-      <small>Hora de Entrada: </small>
-      <p></p><p></p>
-      <input type="time" id="horaMiercolesEntrada" name="horaMiercolesEntrada" min="00:00" max="24:00">
       <p></p>
-      <small>Hora de Salida: </small>
-      <p></p>
-      <input type="time" id="horaMiercolesSalida" name="horaMiercolesSalida" min="00:00" max="24:00">
-  </div>
-  <div class="horariosForm">
-    <!--
-    Jueves
-    -->
-    <h5>Jueves</h5>
-    <p></p><p></p>
-    <small>Hora de Entrada: </small>
-    <p></p><p></p>
-    <input type="time" id="horaJuevesEntrada" name="horaJuevesEntrada" min="00:00" max="24:00">
-    <p></p>
-    <small>Hora de Salida: </small>
-    <p></p>
-    <input type="time" id="horaJuevesSalida" name="horaJuevesSalida" min="00:00" max="24:00">
-</div>
-
-<div class="horariosForm">
-  <!--
-  Viernes
-  -->
-  <h5>Viernes</h5>
-  <p></p><p></p>
-  <small>Hora de Entrada: </small>
-  <p></p><p></p>
-  <input type="time" id="horaViernesEntrada" name="horaViernesEntrada" min="00:00" max="24:00">
-  <p></p>
-  <small>Hora de Salida: </small>
-  <p></p>
-  <input type="time" id="horaViernesSalida" name="horaViernesSalida" min="00:00" max="24:00">
-</div>
-<div class="horariosForm">
-  <!--
-  Sabado
-  -->
-  <h5>Sabado</h5>
-  <p></p><p></p>
-  <small>Hora de Entrada: </small>
-  <p></p><p></p>
-  <input type="time" id="horaSabadoEntrada" name="horaSabadoEntrada" min="00:00" max="24:00">
-  <p></p>
-  <small>Hora de Salida: </small>
-  <p></p>
-  <input type="time" id="horaSabadoSalida" name="horaSabadoSalida" min="00:00" max="24:00">
-</div>
-<div class="horariosForm">
-  <!--
-  Domingo
-  -->
-  <h5>Domingo</h5>
-  <p></p><p></p>
-  <small>Hora de Entrada: </small>
-  <p></p><p></p>
-  <input type="time" id="horaDomingoEntrada" name="horaDomingoEntrada" min="00:00" max="24:00">
-  <p></p>
-  <small>Hora de Salida: </small>
-  <p></p>
-  <input type="time" id="horaDomingoSalida" name="horaDomingoSalida" min="00:00" max="24:00">
-</div>
-      
-      <p></p><p></p><p></p>
-          <div class="btn-group" role="group" aria-label="Basic example">
-            
-            <div class="template-tabs-container">
-             
-              <label>Tipo de funcionario</label>
-               <div class="buttons" tile color="secondary" group>
-                <button type="button" class="btn btn-secondary" (click)="tipoFuncionario(2)" [class.btn-success]="tipofuncionarioSelec == 2">Docente</button>&nbsp;&nbsp;&nbsp;
-                <button type="button" class="btn btn-secondary" (click)="tipoFuncionario(1)" [class.btn-success]="tipofuncionarioSelec == 1">Administrativo</button>&nbsp;&nbsp;&nbsp;
-                <button type="button" class="btn btn-secondary" (click)="tipoFuncionario(3)" [class.btn-success]="tipofuncionarioSelec == 3">Jefatura</button>&nbsp;&nbsp;&nbsp;
-                <button type="button" class="btn btn-secondary" (click)="tipoFuncionario(4)" [class.btn-success]="tipofuncionarioSelec == 4">Visitante</button>&nbsp;&nbsp;&nbsp;
+      <button style="position: relative; left:200px; top:-150px;" type="button" class="btn btn-secondary" (click)="agregarHorario()">Agregar</button>
+      <div style="width: 400px; height: 200px; overflow-y: scroll;">
+        <ul class="list-group">
+              <li class="list-group-item" *ngFor="let horario of horarios, index as i">
+                <div class="horariosForm">
+                  <select id="dropdown" disabled="">
+                    <option>{{horario.dia}}</option>
+                  </select>
+                  <p></p><p></p>
+                  <small>Hora de Entrada: </small>
+                  <p></p><p></p>
+                  <input type="time" id="horaLunesEntrada" name="horaLunesEntrada" min="00:00" max="24:00" [(ngModel)]="horario.inicio">
+                  <p></p>
+                  <small>Hora de Salida: </small>
+                  <p></p>
+                  <input type="time" id="horaLunesSalida" name="horaLunesSalida" min="00:00" max="24:00" [(ngModel)]="horario.fin">
+                  <span class="input-group-btn" 
+                      style="width:0px;"></span>
               </div>
+              <p></p>
+              <button type="button" class="btn btn-secondary" (click)="eliminarHorario(i)">eliminarHorario</button>
+              </li>
+          </ul>
+      </div>
+      
+      <div style="position: relative; left:-80px" class="btn-group" role="group" aria-label="Basic example">
+        
+        <div class="template-tabs-container">
+          
+          <label>Tipo de funcionario</label>
+            <div class="buttons" tile color="secondary" group>
+            <button type="button" class="btn btn-secondary" (click)="tipoFuncionario(2)" [class.btn-success]="tipofuncionarioSelec == 2">Docente</button>&nbsp;&nbsp;&nbsp;
+            <button type="button" class="btn btn-secondary" (click)="tipoFuncionario(1)" [class.btn-success]="tipofuncionarioSelec == 1">Administrativo</button>&nbsp;&nbsp;&nbsp;
+          </div>
               
             
             <label>Tipo de usuario</label>

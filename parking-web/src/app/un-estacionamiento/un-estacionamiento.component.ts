@@ -28,7 +28,7 @@ export class UnEstacionamientoComponent implements OnInit {
     this.horarioMarte = this.parqueos[0].horarios.filter((horario:any) => horario["dia"] == TDia.MARTES)[0]
     this.horarioMierc = this.parqueos[0].horarios.filter((horario:any) => horario["dia"] == TDia.MIERCOLES)[0]
     this.horarioJueve = this.parqueos[0].horarios.filter((horario:any) => horario["dia"] == TDia.JUEVES)[0]
-    this.horarioViern = this.parqueos[0].horarios.filter((horario:any) => horario["dia"] == TDia.JUEVES)[0]
+    this.horarioViern = this.parqueos[0].horarios.filter((horario:any) => horario["dia"] == TDia.VIERNES)[0]
     this.horarioSabad = this.parqueos[0].horarios.filter((horario:any) => horario["dia"] == TDia.SABADO)[0]
     this.horarioDomin = this.parqueos[0].horarios.filter((horario:any) => horario["dia"] == TDia.DOMINGO)[0]
     console.log("horario", this.horarioDomin)

@@ -52,11 +52,11 @@
               <p></p><p></p>
               <small>Hora de Entrada: </small>
               <p></p><p></p>
-              <input type="time" id="horaLunesEntrada" name="horaLunesEntrada" min="00:00" max="24:00">
+              <input type="time" id="horaLunesEntrada" name="horaLunesEntrada" min="00:00" max="24:00" [(ngModel)]="horarios.lunes.inicio">
               <p></p>
               <small>Hora de Salida: </small>
               <p></p>
-              <input type="time" id="horaLunesSalida" name="horaLunesSalida" min="00:00" max="24:00">
+              <input type="time" id="horaLunesSalida" name="horaLunesSalida" min="00:00" max="24:00" [(ngModel)]="horarios.lunes.fin">
               <span class="input-group-btn" 
                   style="width:0px;"></span> 
           </div>
@@ -68,11 +68,11 @@
             <p></p><p></p>
             <small>Hora de Entrada: </small>
             <p></p><p></p>
-            <input type="time" id="horaMartesEntrada" name="horaMartesEntrada" min="00:00" max="24:00">
+            <input type="time" id="horaMartesEntrada" name="horaMartesEntrada" min="00:00" max="24:00" [(ngModel)]="horarios.martes.inicio">
             <p></p>
             <small>Hora de Salida: </small>
             <p></p>
-            <input type="time" id="horaMartesSalida" name="horaMartesSalida" min="00:00" max="24:00">
+            <input type="time" id="horaMartesSalida" name="horaMartesSalida" min="00:00" max="24:00" [(ngModel)]="horarios.martes.fin">
         </div>
         
         <div class="horariosForm">
@@ -83,11 +83,11 @@
           <p></p><p></p>
           <small>Hora de Entrada: </small>
           <p></p><p></p>
-          <input type="time" id="horaMiercolesEntrada" name="horaMiercolesEntrada" min="00:00" max="24:00">
+          <input type="time" id="horaMiercolesEntrada" name="horaMiercolesEntrada" min="00:00" max="24:00" [(ngModel)]="horarios.miercoles.inicio">
           <p></p>
           <small>Hora de Salida: </small>
           <p></p>
-          <input type="time" id="horaMiercolesSalida" name="horaMiercolesSalida" min="00:00" max="24:00">
+          <input type="time" id="horaMiercolesSalida" name="horaMiercolesSalida" min="00:00" max="24:00" [(ngModel)]="horarios.miercoles.fin">
       </div>
       <div class="horariosForm">
         <!--
@@ -97,11 +97,11 @@
         <p></p><p></p>
         <small>Hora de Entrada: </small>
         <p></p><p></p>
-        <input type="time" id="horaJuevesEntrada" name="horaJuevesEntrada" min="00:00" max="24:00">
+        <input type="time" id="horaJuevesEntrada" name="horaJuevesEntrada" min="00:00" max="24:00" [(ngModel)]="horarios.jueves.inicio">
         <p></p>
         <small>Hora de Salida: </small>
         <p></p>
-        <input type="time" id="horaJuevesSalida" name="horaJuevesSalida" min="00:00" max="24:00">
+        <input type="time" id="horaJuevesSalida" name="horaJuevesSalida" min="00:00" max="24:00" [(ngModel)]="horarios.jueves.fin"> 
     </div>
 
     <div class="horariosForm">
@@ -112,11 +112,11 @@
       <p></p><p></p>
       <small>Hora de Entrada: </small>
       <p></p><p></p>
-      <input type="time" id="horaViernesEntrada" name="horaViernesEntrada" min="00:00" max="24:00">
+      <input type="time" id="horaViernesEntrada" name="horaViernesEntrada" min="00:00" max="24:00" [(ngModel)]="horarios.viernes.inicio">
       <p></p>
       <small>Hora de Salida: </small>
       <p></p>
-      <input type="time" id="horaViernesSalida" name="horaViernesSalida" min="00:00" max="24:00">
+      <input type="time" id="horaViernesSalida" name="horaViernesSalida" min="00:00" max="24:00" [(ngModel)]="horarios.viernes.fin">
     </div>
     <div class="horariosForm">
       <!--
@@ -126,11 +126,11 @@
       <p></p><p></p>
       <small>Hora de Entrada: </small>
       <p></p><p></p>
-      <input type="time" id="horaSabadoEntrada" name="horaSabadoEntrada" min="00:00" max="24:00">
+      <input type="time" id="horaSabadoEntrada" name="horaSabadoEntrada" min="00:00" max="24:00" [(ngModel)]="horarios.sabado.inicio">
       <p></p>
       <small>Hora de Salida: </small>
       <p></p>
-      <input type="time" id="horaSabadoSalida" name="horaSabadoSalida" min="00:00" max="24:00">
+      <input type="time" id="horaSabadoSalida" name="horaSabadoSalida" min="00:00" max="24:00" [(ngModel)]="horarios.sabado.fin">
     </div>
     <div class="horariosForm">
       <!--
@@ -140,11 +140,11 @@
       <p></p><p></p>
       <small>Hora de Entrada: </small>
       <p></p><p></p>
-      <input type="time" id="horaDomingoEntrada" name="horaDomingoEntrada" min="00:00" max="24:00">
+      <input type="time" id="horaDomingoEntrada" name="horaDomingoEntrada" min="00:00" max="24:00" [(ngModel)]="horarios.domingo.inicio">
       <p></p>
       <small>Hora de Salida: </small>
       <p></p>
-      <input type="time" id="horaDomingoSalida" name="horaDomingoSalida" min="00:00" max="24:00">
+      <input type="time" id="horaDomingoSalida" name="horaDomingoSalida" min="00:00" max="24:00" [(ngModel)]="horarios.domingo.fin">
     </div>
             <label>Tipo de estacionamiento</label>
             <div class="buttons" tile color="secondary" group>
