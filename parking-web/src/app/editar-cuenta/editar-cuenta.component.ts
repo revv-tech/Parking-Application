@@ -82,7 +82,6 @@ export class EditarCuentaComponent implements OnInit {
 
   ngOnInit(): void {
     this.departamentos = this._servicioUsuario.getDepartamentos()["lista"];
-    console.log(this.departamentos)
     this.departamentoSelect = this.getDepartamento(this.usuarioLoggeado["codigo"])
   }
 

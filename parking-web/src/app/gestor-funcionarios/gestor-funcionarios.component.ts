@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FuncionariosService } from '../servicios/funcionarios.service';
 import AOS from 'aos'
 import { Funcionario, TCampus, TFuncionario, TUsuario } from '../model/funcionario';
-import { TDia } from '../model/horario';
+import { Horario, TDia } from '../model/horario';
 @Component({
   selector: 'app-gestor-funcionarios',
   templateUrl: './gestor-funcionarios.component.html',
@@ -30,7 +30,8 @@ export class GestorFuncionariosComponent implements OnInit {
   cuentaFuncionarios:any=0
   necesidadEspecial:boolean = false;
   esJefatura: boolean = false;
-  horarioDia: TDia = TDia.DOMINGO;
+  horario: any = {dia:"Domingo",inicio:"00:00", fin:"00:00"}
+  horarios: any[]=[];
   dias: any[] = [TDia.DOMINGO, TDia.LUNES, TDia.MARTES, TDia.MIERCOLES, TDia.JUEVES, TDia.VIERNES, TDia.SABADO]
 
   constructor(public _servicioFuncionario : FuncionariosService) { 
@@ -42,6 +43,21 @@ export class GestorFuncionariosComponent implements OnInit {
     this.listaFuncionarios2 = this.listaFuncionarios
     this.departamentos = this._servicioFuncionario.getDepartamentos()["lista"];
     this.cuentaFuncionarios = this.listaFuncionarios.length
+  }
+
+  eliminarHorario(i:number){
+    this.horarios.splice(i,1);
+  }
+
+  agregarHorario(){
+    console.log(this.horario.dia)
+    let horario:Horario = new Horario(this.horario.dia,this.horario.inicio,this.horario.fin);
+    if(this.horarios.filter(e => (e.dia == horario.dia && e.inicio == horario.inicio && e.fin == horario.fin)).length > 0){
+      window.alert("El horario ya está agregado")
+    }
+    else{
+      this.horarios.push(horario)
+    }
   }
 
   agregarFuncionario(){
@@ -67,7 +83,8 @@ export class GestorFuncionariosComponent implements OnInit {
                 tipoUsuario:          this.funcionarioSelec.tipoUsuario,
                 campus :              TCampus.SAN_JOSE,
                 tipo :                this.funcionarioSelec.tipo,
-                celular :             this.funcionarioSelec.celular}
+                celular :             this.funcionarioSelec.celular,
+                horarios:             this.horarios}
 
     this.addResult = this._servicioFuncionario.addFuncionario(body)
     this.listaFuncionarios= this._servicioFuncionario.getFuncionarios()
@@ -86,6 +103,7 @@ export class GestorFuncionariosComponent implements OnInit {
     this.tipofuncionarioSelec = 0
     this.usuarioSelec = 0
     this.campusSelec = 0
+    this.horarios = []
   }
 
   actualizarFuncionario(){
@@ -169,7 +187,7 @@ export class GestorFuncionariosComponent implements OnInit {
     this.camposContrasenas=true
     this.funcionarioSelec.codigo = this.getDepartamento(funcionario.codigo);
     this.departamentoSelect = this.funcionarioSelec.codigo
-    
+    this.horarios = this.funcionarioSelec.horarios
   }
 
   getDepartamento(codigo:any):any{
