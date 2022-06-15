@@ -25,7 +25,7 @@ export class GestorEstacionamientoComponent implements OnInit {
   estacionamiento:any
   
   funcionarioSelec:Funcionario = new Funcionario(0,"","","",false,"",TFuncionario.DOCENTE,[],TUsuario.COMUN,"","",TCampus.CARTAGO,[]);
-  estacionamientoSelec:Estacionamiento = new Estacionamiento(0, "", "", 0, 0, 0, 0, TEstacionamiento.CAMPUS, [], this.funcionarioSelec)
+  estacionamientoSelec:Estacionamiento = new Estacionamiento(0, "", "", 0, 0, 0, 0, TEstacionamiento.CAMPUS, [], 0)
   departamentos: any[] = []
 
   isEditing:boolean = false
@@ -60,6 +60,7 @@ export class GestorEstacionamientoComponent implements OnInit {
   }
 
   agregarEstacionamiento(){
+    console.log(this.funcionarioSelec.nombreCompleto)
     const file_data = this.archivo;
     const data = new FormData();
     data.append("file",file_data);
@@ -76,7 +77,7 @@ export class GestorEstacionamientoComponent implements OnInit {
                 espaciosEspeciales :  this.estacionamientoSelec.espaciosEspeciales,
                 espaciosOficiales :   this.estacionamientoSelec.espaciosOficiales,
                 tipo :                this.estacionamientoSelec.tipo,
-                encargado :           this.estacionamientoSelec.encargado,
+                encargado :           this.funcionarioSelec,
                 horarios: [this.horarios.lunes,this.horarios.martes,this.horarios.miercoles,this.horarios.jueves,this.horarios.viernes,this.horarios.sabado,this.horarios.domingo]}
 
     this.addResult = this._servicioEstacionamiento.addParking(body,data)
@@ -119,7 +120,7 @@ export class GestorEstacionamientoComponent implements OnInit {
     return this.departamentos.filter(dep => dep["codigo"] == codigo)[0]["descripcion"]
   }
 
-  cargarEstacionamientoSelec(estacionamiento:Estacionamiento){
+  cargarEstacionamientoSelec = async (estacionamiento:Estacionamiento) =>{
     this.isSelected = true
     this.estacionamientoSelec = estacionamiento;
     this.horarios.lunes = estacionamiento.horarios.filter((horario) => horario.dia == TDia.LUNES)[0]
@@ -131,7 +132,8 @@ export class GestorEstacionamientoComponent implements OnInit {
     this.horarios.domingo = estacionamiento.horarios.filter((horario) => horario.dia == TDia.DOMINGO)[0]
     this.isEditing = true
     this.photoSelected = this.estacionamientoSelec["imagen"];
-    this.funcionarioSelec = this.estacionamientoSelec.encargado
+    this.funcionarioSelec = await this._servicioEstacionamiento.findEncargado(this.estacionamientoSelec.encargado)
+    console.log(this.funcionarioSelec)
   }
 
   cargarFuncionarioSelec(funcionario:Funcionario){

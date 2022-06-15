@@ -13,10 +13,10 @@ export class Estacionamiento {
     tipo:                   TEstacionamiento
     imagen:                 string
     horarios:               any[]
-    encargado:              Funcionario
+    encargado:              any
 
     constructor(_id:number, _nombre:string, _ubicacion:string, _espaciosTotales:number,
-        _espaciosEspeciales:number, _espaciosOficiales:number, _espaciosComunes:number, _tipo:TEstacionamiento,_horarios:any[],_encargado:Funcionario){
+        _espaciosEspeciales:number, _espaciosOficiales:number, _espaciosComunes:number, _tipo:TEstacionamiento,_horarios:any[],_encargado:any){
 
         this.idEstacionamiento      = _id
         this.nombre                 = _nombre
