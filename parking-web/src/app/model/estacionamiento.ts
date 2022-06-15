@@ -1,3 +1,4 @@
+import { Funcionario } from "./funcionario"
 
 // Clase que representa los estacionamientos
 export class Estacionamiento {
@@ -12,9 +13,10 @@ export class Estacionamiento {
     tipo:                   TEstacionamiento
     imagen:                 string
     horarios:               any[]
+    encargado:              Funcionario
 
     constructor(_id:number, _nombre:string, _ubicacion:string, _espaciosTotales:number,
-        _espaciosEspeciales:number, _espaciosOficiales:number, _espaciosComunes:number, _tipo:TEstacionamiento,_horarios:any[]){
+        _espaciosEspeciales:number, _espaciosOficiales:number, _espaciosComunes:number, _tipo:TEstacionamiento,_horarios:any[],_encargado:Funcionario){
 
         this.idEstacionamiento      = _id
         this.nombre                 = _nombre
@@ -26,6 +28,7 @@ export class Estacionamiento {
         this.tipo                   = _tipo
         this.imagen                 = ""
         this.horarios               = _horarios
+        this.encargado              = _encargado
     }
 
 }

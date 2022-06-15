@@ -49,7 +49,6 @@ export class FuncionariosService {
       return await this.exito
     }
 
-
     getFuncionarios(): Funcionario[] {
       this.http.get(this.baseUrl+"/consultar-Funcionarios").subscribe(_funcionarios => {
         this.funcionarios = _funcionarios
