@@ -151,6 +151,26 @@
               <button type="button" class="btn btn-secondary" (click)="tipoPropio()" [class.btn-success]="tipoSelec == 1">Propio</button>&nbsp;&nbsp;&nbsp;
               <button type="button" class="btn btn-secondary" (click)="tipoSubcontratado()" [class.btn-success]="tipoSelec == 2">Subcontratado</button>&nbsp;&nbsp;&nbsp;
             </div>
+            <h3>Encargado</h3>
+            <div class="container">
+              <ul class="list-group"  style="height: 400px; overflow-y: scroll;" >
+               <li class="list-group-item list-group-item-action" style="color:blue">Nombre funcionario</li>
+               <li class="list-group-item list-group-item-action">
+                   {{funcionarioSelec.nombreCompleto}}
+               </li>
+             </ul>     
+           </div>
+            <h3>Lista de Funcionarios</h3>
+            <div class="container" *ngIf="tipoSelec == 2">
+              <ul class="list-group"  style="height: 400px; overflow-y: scroll;" >
+               <li class="list-group-item list-group-item-action" style="color:blue">Nombre funcionario</li>
+               <li *ngFor="let funcionario of listaFuncionarios" class="list-group-item list-group-item-action"
+               (click)="cargarFuncionarioSelec(funcionario)"
+               [class.active]="funcionario == funcionarioSelec">
+                   {{funcionario.nombreCompleto}}
+               </li>
+             </ul>     
+           </div>
             <p></p>
             <p></p>
             <p></p>
