@@ -37,7 +37,7 @@ export class GestorEstacionamientoComponent implements OnInit {
   camposContrasenas:boolean=false;
   tipoSelec:any = 0
   
-  horarios: any = {lunes:new Horario(TDia.LUNES,"00:00","00:00"), martes:new Horario(TDia.MARTES,"00:00","00:00"),miercoles:new Horario(TDia.MIERCOLES,"00:00","00:00"),jueves:new Horario(TDia.JUEVES,"00:00","00:00"),viernes:new Horario(TDia.VIERNES,"00:00","00:00"),sabado:new Horario(TDia.SABADO,"00:00","00:00"),domingo:new Horario(TDia.DOMINGO,"00:00","00:00")}
+  horarios: any = {lunes: {dia: TDia.LUNES,inicio:"00:00",fin:"00:00"}, martes:{dia: TDia.MARTES,inicio:"00:00",fin:"00:00"},miercoles:{dia: TDia.MIERCOLES,inicio:"00:00",fin:"00:00"},jueves:{dia: TDia.JUEVES,inicio:"00:00",fin:"00:00"},viernes:{dia: TDia.VIERNES,inicio:"00:00",fin:"00:00"},sabado:{dia: TDia.SABADO,inicio:"00:00",fin:"00:00"},domingo:{dia: TDia.DOMINGO,inicio:"00:00",fin:"00:00"}}
   constructor(private _servicioEstacionamiento:EstacionamientosService, public _servicioFuncionario : FuncionariosService) { 
     this.listaEstacionamientos = this._servicioEstacionamiento.getParqueos()
     this.listaFuncionarios= this._servicioFuncionario.getFuncionarios()
