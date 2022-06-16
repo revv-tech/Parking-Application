@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FuncionariosService } from '../servicios/funcionarios.service';
 import AOS from 'aos'
 import { Funcionario, TCampus, TFuncionario, TUsuario } from '../model/funcionario';
@@ -14,7 +14,7 @@ export class GestorFuncionariosComponent implements OnInit {
   listaFuncionarios:any = [] 
   listaFuncionarios2:any = [] 
   funcionario:any
-  funcionarioSelec:Funcionario = new Funcionario(0,"","","",false,"",TFuncionario.DOCENTE,[],TUsuario.COMUN,"","",TCampus.CARTAGO,[]);
+  funcionarioSelec:Funcionario = new Funcionario(0,"","","",false,"",TFuncionario.DOCENTE,[],TUsuario.COMUN,"","",TCampus.CARTAGO,[],false);
   isEditing:boolean = false
   isSelected:boolean = false
   addResult:any
@@ -33,8 +33,17 @@ export class GestorFuncionariosComponent implements OnInit {
   horario: any = {dia:"Domingo",inicio:"00:00", fin:"00:00"}
   horarios: any[]=[];
   dias: any[] = [TDia.DOMINGO, TDia.LUNES, TDia.MARTES, TDia.MIERCOLES, TDia.JUEVES, TDia.VIERNES, TDia.SABADO]
-
+  esJefaura:boolean=false
+  @ViewChild('clickComun')
+  clickComun!: ElementRef<HTMLElement>;
+  @ViewChild('clickAdministrador')
+  clickAdministrador!: ElementRef<HTMLElement>;
+  @ViewChild('clickDocente')
+  clickDocente!: ElementRef<HTMLElement>;
+  @ViewChild('clickAdministrativo')
+  clickAdministrativo!: ElementRef<HTMLElement>;
   constructor(public _servicioFuncionario : FuncionariosService) { 
+
   }
 
   ngOnInit(): void {
@@ -115,6 +124,7 @@ export class GestorFuncionariosComponent implements OnInit {
     this.funcionarioSelec.contrasena = this.confirmar
     this.funcionarioSelec.codigo = this.getCodigo(this.departamentoSelect)
     this.funcionarioSelec.campus = TCampus.SAN_JOSE
+    this.funcionarioSelec.esJefatura = this.esJefatura
     this._servicioFuncionario.updateFuncionario(this.funcionarioSelec)
     window.alert("Funcionario Actualizado!")
     this.listaFuncionarios= this._servicioFuncionario.getFuncionarios()
@@ -124,6 +134,7 @@ export class GestorFuncionariosComponent implements OnInit {
   }
 
   filtrarFuncionarios(departamento:any){
+    console.log("entra")
     if(departamento=="Cualquiera"){
       this.listaFuncionarios = this.listaFuncionarios2
       this.cuentaFuncionarios = this.listaFuncionarios.length
@@ -179,15 +190,31 @@ export class GestorFuncionariosComponent implements OnInit {
     } 
   }
 
-  cargarFuncionarioSelec(funcionario:Funcionario){
+  async cargarFuncionarioSelec(funcionario:Funcionario){
     this.isSelected = true
     this.funcionarioSelec = funcionario;
     this.funcionarioSelec.contrasena =""
     this.isEditing = true
     this.camposContrasenas=true
-    this.funcionarioSelec.codigo = this.getDepartamento(funcionario.codigo);
-    this.departamentoSelect = this.funcionarioSelec.codigo
+    this.departamentoSelect = await this.getDepartamento(funcionario.codigo);
     this.horarios = this.funcionarioSelec.horarios
+    this.esJefatura = this.funcionarioSelec.esJefatura
+    if(this.funcionarioSelec.tipoUsuario == TUsuario.COMUN){
+      let elemento = this.clickComun.nativeElement;
+      elemento.click();
+    }
+    else{
+      let elemento = this.clickAdministrador.nativeElement;
+      elemento.click();
+    }
+    if(this.funcionarioSelec.tipo == TFuncionario.DOCENTE){
+      let elemento = this.clickDocente.nativeElement;
+      elemento.click();
+    }
+    else{
+      let elemento = this.clickAdministrativo.nativeElement;
+      elemento.click();
+    }
   }
 
   getDepartamento(codigo:any):any{

@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Estacionamiento } from '../model/estacionamiento';
 import { response } from 'express';
+import { Funcionario, TCampus, TFuncionario, TUsuario } from '../model/funcionario';
 
 @Injectable({
   providedIn: 'root'
@@ -40,6 +41,7 @@ export class EstacionamientosService {
 
   parqueos:any=[]
   parqueosFiltro:any=[]
+  encargado:Funcionario = new Funcionario(0,"","","",false,"",TFuncionario.DOCENTE,[],TUsuario.COMUN,"","",TCampus.CARTAGO,[],false)
   // parqueos:any=[
   //   {
   //   "idEstacionamiento":2,
@@ -121,6 +123,18 @@ export class EstacionamientosService {
     })
   }
 
- 
+  findEncargado = async (id:number):Promise<Funcionario> => {
+    
+    this.http.put("http://localhost:8080/api/funcionarios" + `/getEncargado`, {identificacion:id})
+    .subscribe((_result:any) => {
+      this.encargado = _result.valueOf()
+      console.log("Servicio")
+      console.log(_result.valueOf())
+      console.log(this.encargado)
+      
+      return this.encargado
+    })
+    return await this.encargado
+  }
 }
 

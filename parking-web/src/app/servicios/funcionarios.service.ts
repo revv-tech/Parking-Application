@@ -18,11 +18,14 @@ export class FuncionariosService {
   isLoggedInBool = false;
   failedPassword = false;
   isAdmin = false;
+  isEncargado = false;
+  isJefe = false;
   exito:any;
   funcionarios:any=[]
   funcionario: any= {}
   funcionarioSelect:any[]=[]
   departamentos: any =[]
+  fechaSimulada:any={}
   
   
   constructor(private http: HttpClient) {
@@ -42,13 +45,20 @@ export class FuncionariosService {
       this.funcionarioSelect = funcionarios
     }
 
+    setFechaSimulada(date:any){
+      this.fechaSimulada = date
+    }
+
+    getFechaSimulada():any{
+      return this.fechaSimulada
+    }
+
     cambiarContraseña = async (oldPassword: string, newPassword: string,identificacion:number) => {
       this.http.put(`${this.baseUrl}/cambiarContrasena`,{vieja:oldPassword,nueva:newPassword,id:identificacion}).subscribe(data => {
         this.exito = data
       });
       return await this.exito
     }
-
 
     getFuncionarios(): Funcionario[] {
       this.http.get(this.baseUrl+"/consultar-Funcionarios").subscribe(_funcionarios => {
@@ -79,14 +89,19 @@ export class FuncionariosService {
             if (this.usuarioLoggeado["tipoUsuario"] == TUsuario.COMUN){
               this.isAdmin = false;
             }
+            if (this.usuarioLoggeado["esJefatura"] == true){
+              this.isJefe = true;
+            }
             
             this.isLoggedInBool = true;
+            this.failedPassword = false;
+
           }else{
             this.failedPassword = true;
           }
          
         })
-    
+      return this.usuarioLoggeado
     }
 
     logout(){
