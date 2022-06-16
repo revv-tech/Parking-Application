@@ -22,7 +22,11 @@
               <input type="password" [(ngModel)]="receivedPassword" class="form-control" id="floatingPassword" name="Password">
               
             </div>
-        
+            <p></p>
+            <h6>Fecha y hora a simular:</h6>
+            <input type="datetime-local" id="daytime" name="daytime" [(ngModel)]="simulacionDia">
+            <p></p>
+
             <button class="w-100 btn btn-lg btn-primary" type="submit"  (click)="submitLoginData()" >Aceptar</button>
             
           </form>
@@ -40,7 +44,9 @@
           </div>
           
          <!-- ALERT  WARNING START -->
-         
+          <div class="alert alert-danger" *ngIf="failedDate">
+            <strong>Fecha para simular inválida</strong> Revisa lo que introdujiste.
+          </div>
           <div class="alert alert-danger" *ngIf="funcionarioService.failedPassword">
             <strong>El correo o contraseña no son correctos!</strong> Revisa lo que introdujiste.
           </div>

@@ -12,7 +12,7 @@ export class UnFuncionarioComponent implements OnInit {
   departamentoSelect:any
   departamentos:any=[]
   funcionario:Funcionario={identificacion:0, nombreCompleto:"",codigo:"",correoAlterno:"",correoInstitucional:"",necesidadEspecial:false,vehiculos:[],
-                          tipoUsuario:TUsuario.COMUN, tipo:TFuncionario.DOCENTE, contrasena:"",campus:TCampus.SAN_JOSE,celular:"", horarios:[]};
+                          tipoUsuario:TUsuario.COMUN, tipo:TFuncionario.DOCENTE, contrasena:"",campus:TCampus.SAN_JOSE,celular:"", horarios:[],esJefatura:false};
   
 
   constructor(private ruta:ActivatedRoute, public _servicioUsuario:FuncionariosService) {

@@ -12,9 +12,10 @@ export class Funcionario {
     celular:string
     campus:TCampus
     horarios: any[]
+    esJefatura:boolean
 
     constructor(_identificacion:number,_nombreCompleto:string,_codigo:string,_correoAlterno:string,_necesidadEspecial:boolean,
-        _correoInstitucional:string,_tipo:TFuncionario,_vehiculos:string[],_tipoUsuario:TUsuario,_contraseña:string,_celular:string,_campus:TCampus,_horarios:any[]){
+        _correoInstitucional:string,_tipo:TFuncionario,_vehiculos:string[],_tipoUsuario:TUsuario,_contraseña:string,_celular:string,_campus:TCampus,_horarios:any[],_esJefatura:boolean){
             this.identificacion = _identificacion,
             this.nombreCompleto = _nombreCompleto,
             this.codigo = _codigo,
@@ -27,7 +28,8 @@ export class Funcionario {
             this.contrasena = _contraseña,
             this.celular = _celular,
             this.campus = _campus,
-            this.horarios = _horarios
+            this.horarios = _horarios,
+            this.esJefatura = _esJefatura
         }
 
 }

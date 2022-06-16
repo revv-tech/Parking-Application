@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Estacionamiento, TEstacionamiento } from '../model/estacionamiento';
 import { Funcionario, TCampus, TFuncionario, TUsuario } from '../model/funcionario';
 import { FuncionariosService } from '../servicios/funcionarios.service';
@@ -24,10 +24,13 @@ export class GestorEstacionamientoComponent implements OnInit {
   listaFuncionarios:any = [] 
   estacionamiento:any
   
-  funcionarioSelec:Funcionario = new Funcionario(0,"","","",false,"",TFuncionario.DOCENTE,[],TUsuario.COMUN,"","",TCampus.CARTAGO,[]);
+  funcionarioSelec:Funcionario = new Funcionario(0,"","","",false,"",TFuncionario.DOCENTE,[],TUsuario.COMUN,"","",TCampus.CARTAGO,[],false);
   estacionamientoSelec:Estacionamiento = new Estacionamiento(0, "", "", 0, 0, 0, 0, TEstacionamiento.CAMPUS, [], 0)
   departamentos: any[] = []
-
+  @ViewChild('clickPropio')
+  clickPropio!: ElementRef<HTMLElement>;
+  @ViewChild('clickSubcontratado')
+  clickSubcontratado!: ElementRef<HTMLElement>;
   isEditing:boolean = false
   isSelected:boolean = false
   addResult:any
@@ -91,7 +94,7 @@ export class GestorEstacionamientoComponent implements OnInit {
     if (confirm("¿Esta seguro que desea borrar?")){
       this._servicioEstacionamiento.deleteParking(this.estacionamientoSelec.idEstacionamiento)
       this.listaEstacionamientos = this._servicioEstacionamiento.getParqueos()
-      this.funcionarioSelec = new Funcionario(0,"","","",false,"",TFuncionario.DOCENTE,[],TUsuario.COMUN,"","",TCampus.CARTAGO,[]);
+      this.funcionarioSelec = new Funcionario(0,"","","",false,"",TFuncionario.DOCENTE,[],TUsuario.COMUN,"","",TCampus.CARTAGO,[],false);
       this.estacionamientoSelec = new Estacionamiento(0, "", "", 0, 0, 0, 0, TEstacionamiento.CAMPUS,[], this.funcionarioSelec)
       this.photoSelected = null;
       this.horarios = {lunes:new Horario(TDia.LUNES,"00:00","00:00"), martes:new Horario(TDia.MARTES,"00:00","00:00"),miercoles:new Horario(TDia.MIERCOLES,"00:00","00:00"),jueves:new Horario(TDia.JUEVES,"00:00","00:00"),viernes:new Horario(TDia.VIERNES,"00:00","00:00"),sabado:new Horario(TDia.SABADO,"00:00","00:00"),domingo:new Horario(TDia.DOMINGO,"00:00","00:00")}
@@ -136,6 +139,14 @@ export class GestorEstacionamientoComponent implements OnInit {
     if(this.estacionamientoSelec.encargado != 0){
       this.funcionarioSelec = await this._servicioEstacionamiento.findEncargado(this.estacionamientoSelec.encargado)
       console.log(this.funcionarioSelec)
+    }
+    if(this.estacionamientoSelec.tipo == TEstacionamiento.SUBCONTRATADO){
+      let el = this.clickSubcontratado.nativeElement
+      el.click();
+    }
+    else{
+      let el = this.clickPropio.nativeElement
+      el.click();
     }
   }
 

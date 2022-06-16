@@ -25,6 +25,7 @@ export class FuncionariosService {
   funcionario: any= {}
   funcionarioSelect:any[]=[]
   departamentos: any =[]
+  fechaSimulada:any={}
   
   
   constructor(private http: HttpClient) {
@@ -42,6 +43,14 @@ export class FuncionariosService {
 
     setFuncionarioFiltro(funcionarios:any[]){
       this.funcionarioSelect = funcionarios
+    }
+
+    setFechaSimulada(date:any){
+      this.fechaSimulada = date
+    }
+
+    getFechaSimulada():any{
+      return this.fechaSimulada
     }
 
     cambiarContraseña = async (oldPassword: string, newPassword: string,identificacion:number) => {
@@ -85,12 +94,14 @@ export class FuncionariosService {
             }
             
             this.isLoggedInBool = true;
+            this.failedPassword = false;
+
           }else{
             this.failedPassword = true;
           }
          
         })
-    
+      return this.usuarioLoggeado
     }
 
     logout(){

@@ -41,7 +41,7 @@ export class EstacionamientosService {
 
   parqueos:any=[]
   parqueosFiltro:any=[]
-  encargado:Funcionario = new Funcionario(0,"","","",false,"",TFuncionario.DOCENTE,[],TUsuario.COMUN,"","",TCampus.CARTAGO,[])
+  encargado:Funcionario = new Funcionario(0,"","","",false,"",TFuncionario.DOCENTE,[],TUsuario.COMUN,"","",TCampus.CARTAGO,[],false)
   // parqueos:any=[
   //   {
   //   "idEstacionamiento":2,

@@ -34,6 +34,22 @@
               <label for="noPresenta">No</label><br>
           </ng-template>
         </div>
+        <div class="form-group">
+          <label for="esJefe">¿Es jefatura?</label>
+          <p></p>
+          <div *ngIf="esJefatura; else elseBlockJefatura">
+            <input [(ngModel)]="esJefatura" type="radio" id="siEsJefe"  name="esJefe" [value]="true" checked>
+            <label for="siEsJefe">Sí</label><br>
+            <input [(ngModel)]="esJefatura" type="radio" id="noEsJefe"  name="esJefe" [value]="false">
+            <label for="noEsJefe">No</label><br>
+        </div>
+        <ng-template #elseBlockJefatura>
+            <input [(ngModel)]="esJefatura" type="radio" id="siEsJefe" name="esJefe" [value]="true" >
+           <label for="siEsJefe">Sí</label><br>
+            <input [(ngModel)]="esJefatura" type="radio" id="noEsJefe"  [value]="false" name="esJefe" checked>
+          <label for="noEsJefe">No</label><br>
+      </ng-template>
+      </div>
         <p></p>
           <h4>Cambiar contraseña</h4>
           <p></p><p></p><p></p><p></p>
@@ -53,7 +69,7 @@
         
           <div class="btn-group">
             <label>Departamento: </label>&nbsp;&nbsp;&nbsp;
-            <select [(ngModel)]="departamentoSelect" id="dropdown" name="departamento">
+            <select [(ngModel)]="departamentoSelect" id="dropdown1" name="departamento">
                   <option *ngFor="let func of departamentos,index as i">{{func["descripcion"]}}</option>
             </select>
           </div>
@@ -75,17 +91,17 @@
       <h3>Registro de horarios: </h3>
       <p></p><p></p>
        <div class="horariosForm">
-          <select [(ngModel)]="horario.dia" id="dropdown" name="diaHorario">
+          <select [(ngModel)]="horario.dia" id="dropdown3" name="diaHorario">
             <option *ngFor="let func of dias,index as i">{{func}}</option>
           </select>
           <p></p><p></p>
           <small>Hora de Entrada: </small>
           <p></p><p></p>
-          <input type="time" id="horaLunesEntrada" name="horaLunesEntrada" min="00:00" max="24:00" [(ngModel)]="horario.inicio">
+          <input type="time" id="horaInputEntrada" name="horaInputEntrada" min="00:00" max="24:00" [(ngModel)]="horario.inicio">
           <p></p>
           <small>Hora de Salida: </small>
           <p></p>
-          <input type="time" id="horaLunesSalida" name="horaLunesSalida" min="00:00" max="24:00" [(ngModel)]="horario.fin">
+          <input type="time" id="horaInputSalida" name="horaInputSalida" min="00:00" max="24:00" [(ngModel)]="horario.fin">
           <span class="input-group-btn" 
               style="width:0px;"></span>
       </div>
@@ -95,17 +111,17 @@
         <ul class="list-group">
               <li class="list-group-item" *ngFor="let horario of horarios, index as i">
                 <div class="horariosForm">
-                  <select id="dropdown" disabled="">
+                  <select id="dropdown4" disabled>
                     <option>{{horario.dia}}</option>
                   </select>
                   <p></p><p></p>
                   <small>Hora de Entrada: </small>
                   <p></p><p></p>
-                  <input type="time" id="horaLunesEntrada" name="horaLunesEntrada" min="00:00" max="24:00" [(ngModel)]="horario.inicio">
+                  <input type="time" id="horaOutputEntrada" name="horaOutputEntrada" min="00:00" max="24:00" [(ngModel)]="horario.inicio">
                   <p></p>
                   <small>Hora de Salida: </small>
                   <p></p>
-                  <input type="time" id="horaLunesSalida" name="horaLunesSalida" min="00:00" max="24:00" [(ngModel)]="horario.fin">
+                  <input type="time" id="horaOutputSalida" name="horaOutputSalida" min="00:00" max="24:00" [(ngModel)]="horario.fin">
                   <span class="input-group-btn" 
                       style="width:0px;"></span>
               </div>
@@ -121,15 +137,15 @@
           
           <label>Tipo de funcionario</label>
             <div class="buttons" tile color="secondary" group>
-            <button type="button" class="btn btn-secondary" (click)="tipoFuncionario(2)" [class.btn-success]="tipofuncionarioSelec == 2">Docente</button>&nbsp;&nbsp;&nbsp;
-            <button type="button" class="btn btn-secondary" (click)="tipoFuncionario(1)" [class.btn-success]="tipofuncionarioSelec == 1">Administrativo</button>&nbsp;&nbsp;&nbsp;
+            <button #clickDocente type="button" class="btn btn-secondary" (click)="tipoFuncionario(2)" [class.btn-success]="tipofuncionarioSelec == 2">Docente</button>&nbsp;&nbsp;&nbsp;
+            <button #clickAdministrativo type="button" class="btn btn-secondary" (click)="tipoFuncionario(1)" [class.btn-success]="tipofuncionarioSelec == 1">Administrativo</button>&nbsp;&nbsp;&nbsp;
           </div>
               
             
             <label>Tipo de usuario</label>
             <div class="buttons" tile color="secondary" group>
-              <button type="button" class="btn btn-secondary" (click)="tipoUsuario(2)" [class.btn-success]="usuarioSelec == 2">Comun</button>&nbsp;&nbsp;&nbsp;
-              <button type="button" class="btn btn-secondary" (click)="tipoUsuario(1)" [class.btn-success]="usuarioSelec == 1">Administrador</button>&nbsp;&nbsp;&nbsp;
+              <button #clickComun type="button" class="btn btn-secondary" (click)="tipoUsuario(2)" [class.btn-success]="usuarioSelec == 2">Comun</button>&nbsp;&nbsp;&nbsp;
+              <button #clickAdministrador type="button" class="btn btn-secondary" (click)="tipoUsuario(1)" [class.btn-success]="usuarioSelec == 1">Administrador</button>&nbsp;&nbsp;&nbsp;
             </div>
             <p></p>
             <p></p>
