@@ -4,8 +4,7 @@
     <p></p>
     <p></p>
     <form>
-
-<div class="form-group">
+  <div class="form-group">
           <label for="funcionario">Nombre del funcionario</label>
           <input type="text" [(ngModel)]="funcionarioSelec.nombreCompleto" class="form-control" name="estacionamiento">
         </div>
@@ -50,6 +49,15 @@
           <label for="noEsJefe">No</label><br>
       </ng-template>
       </div>
+
+        <label for="esEncargado">¿Es encargado? </label>
+                <p></p>
+                
+                  <input  [(ngModel)]="esEncargado" type="radio" id="esEncargado"  name="esEncargado" [value]="true" checked>
+                  <label for="siesEncargado">Sí</label><br>
+                  <input  [(ngModel)]="esEncargado" type="radio" id="esEncargado"  name="esEncargado" [value]="false">
+                  <label for="noesEncargado">No</label><br>
+               
         <p></p>
           <h4>Cambiar contraseña</h4>
           <p></p><p></p><p></p><p></p>
@@ -62,11 +70,7 @@
           <div class="alert alert-fail" role="alert" *ngIf= "!todobien">
             Las contraseñas no coinciden o no ha creado una
           </div>
-
-          
           <p></p><p></p><p></p>
-          
-        
           <div class="btn-group">
             <label>Departamento: </label>&nbsp;&nbsp;&nbsp;
             <select [(ngModel)]="departamentoSelect" id="dropdown1" name="departamento">
@@ -130,18 +134,13 @@
               </li>
           </ul>
       </div>
-      
       <div style="position: relative; left:-80px" class="btn-group" role="group" aria-label="Basic example">
-        
         <div class="template-tabs-container">
-          
           <label>Tipo de funcionario</label>
             <div class="buttons" tile color="secondary" group>
             <button #clickDocente type="button" class="btn btn-secondary" (click)="tipoFuncionario(2)" [class.btn-success]="tipofuncionarioSelec == 2">Docente</button>&nbsp;&nbsp;&nbsp;
             <button #clickAdministrativo type="button" class="btn btn-secondary" (click)="tipoFuncionario(1)" [class.btn-success]="tipofuncionarioSelec == 1">Administrativo</button>&nbsp;&nbsp;&nbsp;
           </div>
-              
-            
             <label>Tipo de usuario</label>
             <div class="buttons" tile color="secondary" group>
               <button #clickComun type="button" class="btn btn-secondary" (click)="tipoUsuario(2)" [class.btn-success]="usuarioSelec == 2">Comun</button>&nbsp;&nbsp;&nbsp;
@@ -158,36 +157,29 @@
         </div>
         
       </form>
-
-        
-
-
-<p></p>
-<p></p>
-<h3>Lista de Funcionarios: {{cuentaFuncionarios}}</h3>
-<div class="btn-group">
-  <label>Departamento: </label>&nbsp;&nbsp;&nbsp;
-  <select [(ngModel)]="departamentoSelect2" id="dropdown2" name="departamentoFiltro" (change)="filtrarFuncionarios(departamentoSelect2)">
-      <option>Cualquiera</option>
-      <option *ngFor="let func of departamentos,index as i">{{func["descripcion"]}}</option>
-  </select>
-</div>
-<div class="container">
-    
-   <ul class="list-group"  style="height: 400px; overflow-y: scroll;" >
-    <li class="list-group-item list-group-item-action" style="color:blue">Nombre funcionario</li>
-    <li *ngFor="let funcionario of listaFuncionarios" class="list-group-item list-group-item-action"
-    (click)="cargarFuncionarioSelec(funcionario)"
-    [class.active]="funcionario == funcionarioSelec">
-        {{funcionario.nombreCompleto}}
-    </li>
-    <p></p>
-    <p></p>
-    <p></p> 
-    <p></p>
-    <p></p>
-    <p></p> 
-  </ul>
-    
-  
-</div>
+      <p></p>
+      <p></p>
+      <h3>Lista de Funcionarios: {{cuentaFuncionarios}}</h3>
+      <div class="btn-group">
+        <label>Departamento: </label>&nbsp;&nbsp;&nbsp;
+        <select [(ngModel)]="departamentoSelect2" id="dropdown2" name="departamentoFiltro" (change)="filtrarFuncionarios(departamentoSelect2)">
+            <option>Cualquiera</option>
+            <option *ngFor="let func of departamentos,index as i">{{func["descripcion"]}}</option>
+        </select>
+      </div>
+      <div class="container">
+        <ul class="list-group"  style="height: 400px; overflow-y: scroll;" >
+          <li class="list-group-item list-group-item-action" style="color:blue">Nombre funcionario</li>
+          <li *ngFor="let funcionario of listaFuncionarios" class="list-group-item list-group-item-action"
+          (click)="cargarFuncionarioSelec(funcionario)"
+          [class.active]="funcionario == funcionarioSelec">
+              {{funcionario.nombreCompleto}}
+          </li>
+          <p></p>
+          <p></p>
+          <p></p> 
+          <p></p>
+          <p></p>
+          <p></p> 
+        </ul>
+      </div>

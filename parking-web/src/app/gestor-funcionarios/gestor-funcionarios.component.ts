@@ -30,6 +30,7 @@ export class GestorFuncionariosComponent implements OnInit {
   cuentaFuncionarios:any=0
   necesidadEspecial:boolean = false;
   esJefatura: boolean = false;
+  esEncargado: boolean = false;
   horario: any = {dia:"Domingo",inicio:"00:00", fin:"00:00"}
   horarios: any[]=[];
   dias: any[] = [TDia.DOMINGO, TDia.LUNES, TDia.MARTES, TDia.MIERCOLES, TDia.JUEVES, TDia.VIERNES, TDia.SABADO]
