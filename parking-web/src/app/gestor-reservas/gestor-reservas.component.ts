@@ -13,12 +13,13 @@ export class GestorReservasComponent implements OnInit {
   parqueos:any=[]
   tipoParqueo:any = "Cualquiera"
   tiposParqueos:TEstacionamiento[] =[]
+  fechaSimulada:any;
   public tParqueo = TEstacionamiento
   
   constructor(private _servicioEstacionamiento:EstacionamientosService, public _servicioFuncionario : FuncionariosService ) {
     this.parqueos=_servicioEstacionamiento.getParqueos();
     this.tiposParqueos= Object.values(this.tParqueo) //.filter(value => value != TEstacionamiento.CAMPUS)
-    
+    this.fechaSimulada=_servicioFuncionario.getFechaSimulada();
    }
 
   ngOnInit(): void {

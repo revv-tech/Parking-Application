@@ -25,6 +25,7 @@ export class FuncionariosService {
   funcionario: any= {}
   funcionarioSelect:any[]=[]
   departamentos: any =[]
+  fechaSimulada:any={}
   
   
   constructor(private http: HttpClient) {
@@ -44,13 +45,20 @@ export class FuncionariosService {
       this.funcionarioSelect = funcionarios
     }
 
+    setFechaSimulada(date:any){
+      this.fechaSimulada = date
+    }
+
+    getFechaSimulada():any{
+      return this.fechaSimulada
+    }
+
     cambiarContraseña = async (oldPassword: string, newPassword: string,identificacion:number) => {
       this.http.put(`${this.baseUrl}/cambiarContrasena`,{vieja:oldPassword,nueva:newPassword,id:identificacion}).subscribe(data => {
         this.exito = data
       });
       return await this.exito
     }
-
 
     getFuncionarios(): Funcionario[] {
       this.http.get(this.baseUrl+"/consultar-Funcionarios").subscribe(_funcionarios => {
@@ -86,12 +94,14 @@ export class FuncionariosService {
             }
             
             this.isLoggedInBool = true;
+            this.failedPassword = false;
+
           }else{
             this.failedPassword = true;
           }
          
         })
-    
+      return this.usuarioLoggeado
     }
 
     logout(){
