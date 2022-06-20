@@ -1,3 +1,5 @@
+import { Reserva } from "./reserva"
+
 export class Funcionario {
     identificacion:number
     nombreCompleto:string
@@ -13,6 +15,7 @@ export class Funcionario {
     campus:TCampus
     horarios: any[]
     esJefatura:boolean
+    reservas!:Reserva[]
 
     constructor(_identificacion:number,_nombreCompleto:string,_codigo:string,_correoAlterno:string,_necesidadEspecial:boolean,
         _correoInstitucional:string,_tipo:TFuncionario,_vehiculos:string[],_tipoUsuario:TUsuario,_contraseña:string,_celular:string,_campus:TCampus,_horarios:any[],_esJefatura:boolean){

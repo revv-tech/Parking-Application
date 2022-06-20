@@ -52,8 +52,6 @@ export class LoginComponent implements OnInit {
     let mes = date.slice(5,7)
     let dia = date.slice(8,10)
     let hora= date.slice(11,17)
-    // console.log("Fecha simulada formato string:",date)
-    // console.log("Fecha simulada formato object:",{año:año,mes:mes,dia:dia,hora:hora})
     return {año:año,mes:mes,dia:dia,hora:hora}
   }
 

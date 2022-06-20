@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Estacionamiento } from '../model/estacionamiento';
 import { response } from 'express';
 import { Funcionario, TCampus, TFuncionario, TUsuario } from '../model/funcionario';
+import { Reserva } from '../model/reserva';
 
 @Injectable({
   providedIn: 'root'
@@ -42,6 +43,7 @@ export class EstacionamientosService {
   parqueos:any=[]
   parqueosFiltro:any=[]
   encargado:Funcionario = new Funcionario(0,"","","",false,"",TFuncionario.DOCENTE,[],TUsuario.COMUN,"","",TCampus.CARTAGO,[],false)
+  unosParqueos!:Estacionamiento[];
   // parqueos:any=[
   //   {
   //   "idEstacionamiento":2,
@@ -78,7 +80,7 @@ export class EstacionamientosService {
   //   // return this.parqueos;
   // }
 
-  getParqueos(): Observable<Estacionamiento[]> {
+  getParqueos(): Estacionamiento[] {
     this.http.get(this.baseUrl+"/consultar-parqueos").subscribe(_parqueos => {
       this.parqueos = _parqueos
     })
@@ -123,18 +125,34 @@ export class EstacionamientosService {
     })
   }
 
+  findParqueosByIds = async (idsParqueos:number[]): Promise<Estacionamiento[]> => {
+     this.http.put(this.baseUrl + "/getParqueosByIds",{ids:idsParqueos})
+    .subscribe((_result:any) => {
+      this.unosParqueos = _result.valueOf()
+      return this.unosParqueos
+    })
+    return await this.unosParqueos
+  }
+
+  actualizarEspacios = async(parqueo:Estacionamiento,funcionario:Funcionario) => {
+      let reservas:any[] = []
+      funcionario.reservas.forEach((reserva:Reserva)=>{
+      let r = new Reserva(reserva.horarioInicio,reserva.horarioFin,reserva.usuario,reserva.estacionamiento.idEstacionamiento)
+      reservas.push(r)
+    })
+    this.http.put(this.baseUrl + "/actualizarEspacios", {id:parqueo.idEstacionamiento, espacios:parqueo.espacios, funcionarioId:funcionario.identificacion,reservas:reservas})
+      .subscribe(_result => {
+          return  _result
+      })
+  }
   findEncargado = async (id:number):Promise<Funcionario> => {
     
     this.http.put("http://localhost:8080/api/funcionarios" + `/getEncargado`, {identificacion:id})
     .subscribe((_result:any) => {
       this.encargado = _result.valueOf()
-      console.log("Servicio")
-      console.log(_result.valueOf())
-      console.log(this.encargado)
-      
       return this.encargado
     })
-    return await this.encargado
+    return this.encargado
   }
 }
 

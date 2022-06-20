@@ -12,7 +12,7 @@ export class UnFuncionarioComponent implements OnInit {
   departamentoSelect:any
   departamentos:any=[]
   funcionario:Funcionario={identificacion:0, nombreCompleto:"",codigo:"",correoAlterno:"",correoInstitucional:"",necesidadEspecial:false,vehiculos:[],
-                          tipoUsuario:TUsuario.COMUN, tipo:TFuncionario.DOCENTE, contrasena:"",campus:TCampus.SAN_JOSE,celular:"", horarios:[],esJefatura:false};
+                          tipoUsuario:TUsuario.COMUN, tipo:TFuncionario.DOCENTE, contrasena:"",campus:TCampus.SAN_JOSE,celular:"", horarios:[],esJefatura:false,reservas:[]};
   
 
   constructor(private ruta:ActivatedRoute, public _servicioUsuario:FuncionariosService) {
@@ -22,7 +22,7 @@ export class UnFuncionarioComponent implements OnInit {
 
   }
   ngOnInit(): void {
-    this.departamentos = this._servicioUsuario.getDepartamentos()["lista"];
+    this.departamentos = this._servicioUsuario.getDepartamentos();
     this.departamentoSelect = this.getDepartamento(this.funcionario.codigo)
   }
 

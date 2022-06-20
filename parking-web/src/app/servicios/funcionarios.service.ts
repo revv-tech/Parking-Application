@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { Funcionario, TCampus, TFuncionario, TUsuario } from '../model/funcionario';
 import { Router } from '@angular/router';
+import { Reserva } from '../model/reserva';
 
 @Injectable({
   providedIn: 'root'
@@ -24,11 +25,14 @@ export class FuncionariosService {
   funcionarios:any=[]
   funcionario: any= {}
   funcionarioSelect:any[]=[]
-  departamentos: any =[]
+  departamentos: any[] =[]
   fechaSimulada:any={}
   
   
   constructor(private http: HttpClient) {
+    this.http.get(this.baseUrl+"/consultar-departamentos").subscribe( (result:any) => {
+      this.departamentos = result;
+    })
     }
 
 
@@ -112,7 +116,6 @@ export class FuncionariosService {
     }
 
     getUsuarioLoggeado = () => {
-      
       return this.usuarioLoggeado
     }
 
@@ -138,6 +141,21 @@ export class FuncionariosService {
       })
     }
 
+    reservar = async (funcionario:Funcionario) => {
+      let reservas:any[] = []
+      let parqueos:any[] = []
+      funcionario.reservas.forEach((reserva:Reserva)=>{
+        let r = new Reserva(reserva.horarioInicio,reserva.horarioFin,reserva.usuario,reserva.estacionamiento.idEstacionamiento)
+        r.campoReservado = reserva.campoReservado
+        reservas.push(r)
+        parqueos.push(reserva.estacionamiento)
+      })
+      this.http.put(this.baseUrl + "/realizarReserva", {identificacion:funcionario.identificacion,reservas:reservas,parqueosReservados:parqueos})
+      .subscribe(_result => {
+          return  _result
+      })
+    }
+
     setUsuarioLoggeado = async (usuarioLoggeadoNuevaInfo:any) => {
       this.usuarioLoggeado = usuarioLoggeadoNuevaInfo
     }
@@ -156,10 +174,6 @@ export class FuncionariosService {
     }
 
     getDepartamentos() {
-      this.http.get(this.baseUrl+"/consultar-departamentos").subscribe(result => {
-        this.departamentos = result;
-        return result;
-      })
       return this.departamentos;
     }
 }

@@ -5,7 +5,7 @@ import { FuncionariosService } from '../servicios/funcionarios.service';
 import AOS from 'aos'
 import { EstacionamientosService } from '../servicios/estacionamientos.service';
 import { identifierName } from '@angular/compiler';
-import { Horario, TDia, THorario } from '../model/horario';
+import { Horario, TDia } from '../model/horario';
 
 interface HtmlInputEvent extends Event {
   target: HTMLInputElement & EventTarget
@@ -25,7 +25,7 @@ export class GestorEstacionamientoComponent implements OnInit {
   estacionamiento:any
   
   funcionarioSelec:Funcionario = new Funcionario(0,"","","",false,"",TFuncionario.DOCENTE,[],TUsuario.COMUN,"","",TCampus.CARTAGO,[],false);
-  estacionamientoSelec:Estacionamiento = new Estacionamiento(0, "", "", 0, 0, 0, 0, TEstacionamiento.CAMPUS, [], 0)
+  estacionamientoSelec:Estacionamiento = new Estacionamiento(0, "", "", 0, 0, 0, 0, TEstacionamiento.CAMPUS, [], 0,0)
   departamentos: any[] = []
   @ViewChild('clickPropio')
   clickPropio!: ElementRef<HTMLElement>;
@@ -44,7 +44,7 @@ export class GestorEstacionamientoComponent implements OnInit {
   constructor(private _servicioEstacionamiento:EstacionamientosService, public _servicioFuncionario : FuncionariosService) { 
     this.listaEstacionamientos = this._servicioEstacionamiento.getParqueos()
     this.listaFuncionarios= this._servicioFuncionario.getFuncionarios()
-    this.departamentos = this._servicioFuncionario.getDepartamentos()["lista"];
+    this.departamentos = this._servicioFuncionario.getDepartamentos();
   }
 
 
@@ -81,7 +81,8 @@ export class GestorEstacionamientoComponent implements OnInit {
                 espaciosOficiales :   this.estacionamientoSelec.espaciosOficiales,
                 tipo :                this.estacionamientoSelec.tipo,
                 encargado :           this.funcionarioSelec,
-                horarios: [this.horarios.lunes,this.horarios.martes,this.horarios.miercoles,this.horarios.jueves,this.horarios.viernes,this.horarios.sabado,this.horarios.domingo]}
+                horarios: [this.horarios.lunes,this.horarios.martes,this.horarios.miercoles,this.horarios.jueves,this.horarios.viernes,this.horarios.sabado,this.horarios.domingo],
+                espaciosJefatura:     this.estacionamientoSelec.espaciosJefatura}
 
     this.addResult = this._servicioEstacionamiento.addParking(body,data)
     this.listaEstacionamientos = this._servicioEstacionamiento.getParqueos()
@@ -95,7 +96,7 @@ export class GestorEstacionamientoComponent implements OnInit {
       this._servicioEstacionamiento.deleteParking(this.estacionamientoSelec.idEstacionamiento)
       this.listaEstacionamientos = this._servicioEstacionamiento.getParqueos()
       this.funcionarioSelec = new Funcionario(0,"","","",false,"",TFuncionario.DOCENTE,[],TUsuario.COMUN,"","",TCampus.CARTAGO,[],false);
-      this.estacionamientoSelec = new Estacionamiento(0, "", "", 0, 0, 0, 0, TEstacionamiento.CAMPUS,[], this.funcionarioSelec)
+      this.estacionamientoSelec = new Estacionamiento(0, "", "", 0, 0, 0, 0, TEstacionamiento.CAMPUS,[], this.funcionarioSelec, 0)
       this.photoSelected = null;
       this.horarios = {lunes:new Horario(TDia.LUNES,"00:00","00:00"), martes:new Horario(TDia.MARTES,"00:00","00:00"),miercoles:new Horario(TDia.MIERCOLES,"00:00","00:00"),jueves:new Horario(TDia.JUEVES,"00:00","00:00"),viernes:new Horario(TDia.VIERNES,"00:00","00:00"),sabado:new Horario(TDia.SABADO,"00:00","00:00"),domingo:new Horario(TDia.DOMINGO,"00:00","00:00")}
     }

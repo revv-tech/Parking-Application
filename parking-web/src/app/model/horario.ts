@@ -10,10 +10,6 @@ export class Horario {
     }
 }
 
-export enum THorario {
-    PARQUEO, RESERVA, FUNCIONARIO
-}
-
 export enum TDia {
     LUNES="Lunes",
     MARTES="Martes",

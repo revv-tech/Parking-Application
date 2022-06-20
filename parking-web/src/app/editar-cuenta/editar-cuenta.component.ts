@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Funcionario, TCampus, TFuncionario, TUsuario } from '../model/funcionario';
 import { FuncionariosService } from '../servicios/funcionarios.service';
-import {Horario, THorario, TDia} from '../model/horario';
+import {Horario, TDia} from '../model/horario';
 
 @Component({
   selector: 'app-editar-cuenta',
@@ -50,8 +50,11 @@ export class EditarCuentaComponent implements OnInit {
   departamentos: any[] = []
 
 
-  constructor(private _servicioUsuario:FuncionariosService) {
+    constructor(private _servicioUsuario:FuncionariosService) {
       this.setTipos();
+      // console.log(this.departamentos)
+      this.departamentos = this._servicioUsuario.getDepartamentos();
+      // console.log(this.departamentos)
       this.usuarioLoggeado = _servicioUsuario.getUsuarioLoggeado()
       this.tiposFuncionarios = Object.values(TFuncionario);
       this.tiposUsuarios = Object.values(TUsuario)
@@ -76,13 +79,12 @@ export class EditarCuentaComponent implements OnInit {
       this.campus2 = this.campus
       this.dias = [TDia.DOMINGO, TDia.LUNES, TDia.MARTES, TDia.MIERCOLES, TDia.JUEVES, TDia.VIERNES, TDia.SABADO]
       this.horas = [1,2,3,4,5,6,7,8,9,10,11,12]
-      // this.listaFuncionarios = this.usuarioLoggeado[""]
+      this.departamentoSelect = this.getDepartamento(this.usuarioLoggeado["codigo"])
+    // this.listaFuncionarios = this.usuarioLoggeado[""]
       // this.usuario = this.usuarioLoggeado[""]
    }
 
   ngOnInit(): void {
-    this.departamentos = this._servicioUsuario.getDepartamentos()["lista"];
-    this.departamentoSelect = this.getDepartamento(this.usuarioLoggeado["codigo"])
   }
 
   
@@ -102,7 +104,8 @@ export class EditarCuentaComponent implements OnInit {
       celular:this.celular,
       campus:this.campus,
       horarios: this.horarios,
-      esJefatura: this.esJefatura
+      esJefatura: this.esJefatura,
+      reservas: this.usuarioLoggeado.reservas
     }
     await this._servicioUsuario.editarUsuario(body)
     await this._servicioUsuario.setUsuarioLoggeado(body)

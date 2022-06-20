@@ -1,48 +1,77 @@
 <div class="mt-5">
     <h2 style="text-align: center;">Consulta de Reservas</h2>
-    
+    <h6>Son las {{fechaSimulada.hora}} del {{fechaSimulada.anio}}/{{fechaSimulada.mes}}/{{fechaSimulada.dia}}</h6>
     <h4>Sus reservas disponibles:</h4>
     <p></p>
     <p></p>
-    <div class ="scrollmenu" style="width: 1100px; height: 600px; overflow-y: scroll;">
+    <div class ="scrollmenu" style="width: 700px; height: 300px; overflow-y: scroll;">
       <ul class="list-group">
-            <li class="list-group-item" *ngFor="let parqueo of parqueos, index as i">
-                <div class="text-center">
-                    <h4>
-                        Fecha de reserva: {{parqueo.nombre}}
-                    </h4>
-                    <img src={{parqueo.imagen}} alt="Fachada del parqueo" height="100">
-                    <h5>Parqueo de reserva:</h5> <h6>{{parqueo.ubicacion}}</h6>
-                    
-                    <h5>Espacio Reservado:</h5> <h6>{{parqueo.ubicacion}}</h6>
-                    <p></p>&nbsp;&nbsp;&nbsp;
-                    <!--
-                        <button class="btnVerInfo" [routerLink]="['/un-estacionamiento']"> Ver más información </button>&nbsp;&nbsp;&nbsp;
-                    --->
-                    <button class="btnEliminar" >Eliminar reserva</button>&nbsp;&nbsp;&nbsp;
-                    <p></p>
+            <li class="list-group-item" *ngFor="let reserva of reservas, index as i">
+                <h6>
+                Vence el: {{reserva.horarioFin.anio}} / {{reserva.horarioFin.mes}} / {{reserva.horarioFin.dia}} a las {{reserva.horarioFin.hora}} <br>
+                Parqueo de reserva: {{reserva.estacionamiento.nombre}} ({{reserva.estacionamiento.idEstacionamiento}}) <br>
+                <div class="alert alert-danger" *ngIf="reserva.estado == 1">
+                    <strong>Reserva vencida</strong>
                 </div>
-                
+                </h6>
+                <span class="badge">
+                    <div>
+                        <img [src]="'assets/delete.webp'" width="50" height="50" (click)="eliminarReserva(reserva)" >
+                    </div>
+                </span>
+            </li>
         </ul>
     </div>
     &nbsp;&nbsp;&nbsp;
     <h2 style="text-align: center;">Realizar nueva reserva</h2>
-    <h4 for="meeting-time">Seleccione la fecha y hora: </h4>
-    <p></p>&nbsp;&nbsp;&nbsp;
-    <input type="datetime-local" id="horaReserva"
-       name="meeting-time" value="2022-06-12T19:30"
-       min="2018-06-07T00:00" max="2023-06-14T00:00">
-       <p></p>
-    <h4 for="meeting-time">Seleccione el parqueo: </h4>
-    
-    <label>Parqueos disponibles: </label>&nbsp;&nbsp;&nbsp;
-        
-        <select [(ngModel)]="tipoParqueo" id="dropdown2">
-            <option >Seleccione uno...</option>&nbsp;&nbsp;&nbsp;
-            <option  *ngFor="let parqueo of parqueos,index as i">{{parqueo.nombre}}</option>
-        </select>&nbsp;&nbsp;&nbsp;
-        -
+    <div>
+        <h5 for="meeting-time">Día de la reserva: </h5>
+        <input [(ngModel)]="fechaReserva" style="position: relative; left:170px; top: -32px;" type="date" id="horaReserva"
+        name="meeting-time" min="fechaReserva">
+    </div>
+    <div *ngIf="usuario.esJefatura">
+        <h5 for="meeting-time" style="position: relative; left:24px; top: 0px;" >Hora de inicio: </h5>
+        <input [(ngModel)]="inicioReserva" style="position: relative; left:170px; top: -32px;" type="time" id="horaReserva"
+           name="meeting-time" disabled>
+        <h5 for="meeting-time" style="position: relative; left:320px; top: -61px;">Hora de finalización: </h5>
+        <input [(ngModel)]="finReserva" style="position: relative; left:520px; top: -94px;" type="time" id="horaReserva"
+            name="meeting-time" disabled>
+    </div>
+    <div *ngIf="!usuario.esJefatura">
+        <h5 for="meeting-time" style="position: relative; left:24px; top: 0px;" >Hora de inicio: </h5>
+        <input [(ngModel)]="inicioReserva" style="position: relative; left:170px; top: -32px;" type="time" id="horaReserva"
+           name="meeting-time">
+        <h5 for="meeting-time" style="position: relative; left:320px; top: -61px;">Hora de finalización: </h5>
+        <input [(ngModel)]="finReserva" style="position: relative; left:520px; top: -94px;" type="time" id="horaReserva"
+            name="meeting-time">
+    </div>
+    <div class="btn-group" style="position: relative; left:716px; top: -123px;">
+        <label ><h5>Vehículo: </h5></label>
+        <select [(ngModel)]="placaSelect" id="dropdown1" name="departamento" style="position: relative; left:18px; top: -4px;">
+              <option *ngFor="let placa of usuario.vehiculos,index as i">{{placa}}</option>
+        </select>
+    </div>
+    <label style="position: relative;top: -50px;" ><h5>Seleccione el parqueo: </h5></label>
+    <ul class="list-group" style="position:relative;top:-50px;width: 700px; height: 200px; overflow-y: scroll;">
+        <li class="list-group-item" *ngFor="let parqueo of parqueosDisponibles,index as i" >
+        <ng-container *ngIf="parqueo.espaciosDisponibles != 0">
+        <h6>
+            Nombre: {{parqueo.nombre}}<br>
+            Ubicación: {{parqueo.ubicacion}}<br>
+            Espacios Disponibles: {{parqueo.espaciosDisponibles}}
+        </h6>
+        <span class="badge">
+            <div *ngIf="!parqueo.seleccionado">
+                <img [src]="'assets/unselect.jpg'" width="50" height="50" (click)="seleccionado(parqueo)" >
+            </div>
+            <div *ngIf="parqueo.seleccionado">
+                <img [src]="'assets/select.jpg'" width="50" height="50">
+            </div>
+        </span>
+        </ng-container>
+        </li>
+    </ul>
     <div class="text-center">
-        <button class="btnVerInfo" > Realizar nueva reserva </button>&nbsp;&nbsp;&nbsp;
+        <button type="button" class="btn btn-secondary" (click)="reservar()"> Realizar nueva reserva </button>&nbsp;&nbsp;&nbsp;
     </div>
 </div>

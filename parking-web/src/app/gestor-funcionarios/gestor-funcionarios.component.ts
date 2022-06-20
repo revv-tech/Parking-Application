@@ -50,7 +50,7 @@ export class GestorFuncionariosComponent implements OnInit {
     AOS.init();
     this.listaFuncionarios= this._servicioFuncionario.getFuncionarios()
     this.listaFuncionarios2 = this.listaFuncionarios
-    this.departamentos = this._servicioFuncionario.getDepartamentos()["lista"];
+    this.departamentos = this._servicioFuncionario.getDepartamentos();
     this.cuentaFuncionarios = this.listaFuncionarios.length
   }
 
